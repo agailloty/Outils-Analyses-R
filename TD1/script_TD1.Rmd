@@ -1,0 +1,50 @@
+---
+title: "TD1"
+output: html_document
+date: "2023-02-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1) Importer le jeu de données dans R
+
+Le bloc de code suivant permet de charger dans R un fichier au format Excel.
+
+```{r}
+library(readxl)
+fifa22 <- read_excel("fifa22.xlsx")
+```
+
+Nous venons d'importer la base de données dans R en lui donnant le nom fifa22. C'est avec ce nom que nous nous référons à la base de données plus tard dans le reste du code.
+
+2) Afficher les noms des colonnes du jeu de données actif
+
+On utilise la fonction colnames(fifa22) pour afficher les noms des colonnes qui sont dans la base de données.
+Cela nous permet de vérifier que la base de donnée a été importée correctement.
+
+
+```{r}
+colnames(fifa22)
+```
+3) Afficher les types de données de chaque colonne
+
+Nous allons utiliser la fonction str(fifa22) pour afficher la structure de la base de donnée.
+
+Cette fonction affiche aussi les types de données pour chaque type de colonne. 
+Par exemple chr pour des données texte, num pour des données numériques. 
+Il y a des opérations qui ne sont permises que pour certains types de données.
+
+```{r}
+str(fifa22)
+```
+
+4) Est-ce que R a correctement reconnu le type de chaque colonne ?
+
+Pour la plupart des données, R semble avoir bien reconnu le type des données. 
+Par contre toutes les données qui comportent du texte ont été lus comme chr alors que certaines données texte peuvent représenter des catégories. Par exemple la variable work_rate représente une catégorie (plusieurs joueurs peuvent être caractérisés pour un même work_rate, cette donnée n'est pas unique à chaque joueur.). 
+
+
+
