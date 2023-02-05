@@ -42,5 +42,10 @@ Voici le script pour vérifier si le package "FactoMineR" est correctement insta
 "FactoMineR" %in% installed.packages()[, "Package"]
 ```
 
+## Lien collaboratif 
+
+J'ai créé un espace Framapad pour collborer en temps réel lors des séances de TD. Je pourrai de temps en temps copier et coller le code R que j'écris pour que vous le récupériez. 
+Pour y accéder cliquer sur le lien https://semestriel.framapad.org/p/analyses-donnees-r-9z4q?lang=fr
+
 ## Contact 
 Je suis joignable par mail => agailloty@gmail.com
