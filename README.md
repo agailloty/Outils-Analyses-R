@@ -16,7 +16,7 @@ Ce guide vous permet d'installer R et Rstudio sur votre PC personnel et ainsi su
 Se rendre sur le site : https://posit.co/download/rstudio-desktop/
 
 Ce site vous propose deux liens de téléchagrement. 
-### Le téléchargement du langage R : https://cran.rstudio.com/
+Le téléchargement du langage R : https://cran.rstudio.com/ et de Rstudio
 Si vous avez déjà R installé, vous pouvez sauter cette étape et passer à l'installation de Rstudio en cliquant sur le second lien proposé sur site: ce lien détecte votre système d'exploitation et vous propose de télécharger l'installateur.
 
 ### Pour Chromebook 
