@@ -371,3 +371,99 @@ La fonction plot.PCA prend en argument l'objet ACP qu'on a créé, puis les axes
 plot.PCA(premiere_acp, axes = c(1, 2), choix = "var")
 ```
 
+## LES INDIVIDUS
+
+### Afficher les 10 premiers individus ayant des coordonnées positives sur l’axe 1 
+
+On explore toujours les propriétés de l'objet premiere_acp et on regarde dans les individus. 
+Si on affiche le tableau global on a les coordonnées de chaque joueur sur chaque axe (dimension , composante).
+
+
+```{r}
+sort(premiere_acp$ind$coord[, 1], decreasing = TRUE)[1:10]
+```
+N, Kante est le plus à droite de l'axe 1, a la plus grande coordonnée positive. 
+
+### Afficher les 10 premiers individus ayant des coordonnées négatives sur l’axe 1 
+
+```{r}
+sort(premiere_acp$ind$coord[, 1], decreasing = FALSE)[1:10]
+```
+
+
+
+### Afficher les 10 premiers individus ayant des coordonnées positives sur l’axe 2 
+
+```{r}
+sort(premiere_acp$ind$coord[, 2], decreasing = TRUE)[1:10]
+```
+
+### Afficher les 10 premiers individus ayant des coordonnées négatives sur l’axe 2 
+
+```{r}
+sort(premiere_acp$ind$coord[, 2], decreasing = FALSE)[1:10]
+```
+
+
+## PRODUIRE DES GRAPHIQUES AVEC FACTOEXTRA
+
+```{r}
+library(factoextra)
+```
+
+
+### Représenter le % des variances expliquées par chaque axe 
+
+Ce graphique représente le pouvoir explicatif de chaque axe. 
+La dimension 1 explique 50% de la variance du jeu de données. 
+
+```{r}
+factoextra::fviz_screeplot(premiere_acp, title = "Pouvoir explicatif de chaque composante")
+```
+
+### Représenter le cercle de corrélation puis mettre en avant la contribution de chaque variable 
+
+```{r fig.height=6, fig.width=10}
+factoextra::fviz_pca_var(premiere_acp, axes = c(1,2), col.var="contrib", title= "Cercle de corrélation avec contribution des variables")
+```
+
+### Représenter le % de contribution de chaque variable sur les axes 1 et 2 
+
+la fonction fviz_contrib montre le pourcentage de contribution de chaque variable sur l'axe choisi.
+
+```{r}
+fviz_contrib(premiere_acp, axes = 1, choice = "var")
+```
+```{r}
+fviz_contrib(premiere_acp, axes = 2, choice = "var")
+```
+
+# CLASSIFICATION ASCENDANTE HIERARCHIQUE 
+
+La classification ascendante hiérarchique nous permet de regrouper des joueurs qui ont des caractéristiques similaires dans un même groupe qu'on appelle cluster. 
+On choisit un nombre de cluster à produire et la CAH fait en sorte que chaque cluster soit différent d'un autre mais qu'au sein de chaque cluster les individus se ressemblent. 
+
+### CLASSER LES JOUEURS DANS 5 CLUSTERS
+
+On va utiliser une fonction qui vient du package FactoMineR qui s'appelle HCPC
+on lui donne en agument l'objet ACP qu'on a créé puis on précise le nombre de cluster qu'on veut créer.
+
+```{r}
+library(FactoMineR)
+classsif <- HCPC(premiere_acp, nb.clust = 5, graph = FALSE)
+```
+## QUELLE(S) COMPOSANTE(S) CARACTÉRISENT LES PLUS LES INDIVIDUS DE CHAQUE CLUSTER ? 
+Il nous crée un objet classif qui contient tous les résultats de la classification. 
+
+La propriété desc.axes renvoie une description de chaque cluster
+
+Pour la classification, l'algrithme a déterminé qu'il est optimal de ne retenir que 3 dimensions pour différencier les joueurs et les classer dans chaque cluster.
+
+```{r}
+classsif$desc.axes
+```
+Pour la classification, l'algrithme a déterminé qu'il est optimal de ne retenir que 3 dimensions pour différencier les joueurs et les classer dans chaque cluster.
+
+
+2.3 QUELS INDIVIDUS SONT LES PLUS REPRÉSENTATIFS DANS CHAQUE CLUSTER ? 
+2.4 QUELS INDIVIDUS SONT LES MOINS REPRÉSENTATIFS DANS CHAQUE CLUSTER ?
