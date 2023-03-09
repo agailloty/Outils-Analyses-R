@@ -1,11 +1,13 @@
 ---
 title: "TD1"
-output: html_document
+output: word_document
 date: "2023-02-03"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(corrplot)
 ```
 
 
@@ -44,7 +46,60 @@ str(fifa22)
 4) Est-ce que R a correctement reconnu le type de chaque colonne ?
 
 Pour la plupart des données, R semble avoir bien reconnu le type des données. 
-Par contre toutes les données qui comportent du texte ont été lus comme chr alors que certaines données texte peuvent représenter des catégories. Par exemple la variable work_rate représente une catégorie (plusieurs joueurs peuvent être caractérisés pour un même work_rate, cette donnée n'est pas unique à chaque joueur.). 
+Par contre toutes les données qui comportent du texte ont été lus comme chr alors que certaines données texte peuvent représenter des catégories. Par exemple la variable work_rate représente une catégorie (plusieurs joueurs peuvent être caractérisés pour un même work_rate, cette donnée n'est pas unique à chaque joueur). 
+
+
+5) Convertir les colonnes dans le bon type si besoin
+
+
+6) Afficher le salaire mensuel moyen des joueurs par ligue. Commenter quelques uns
+
+```{r}
+aggregate(wage_eur ~ league_name, data = fifa22, FUN = mean)
+```
+```{r}
+wage_league <- aggregate(wage_eur ~ league_name, data = fifa22, FUN = mean)
+arrange(wage_league, -wage_eur)
+```
+7) Afficher le potentiel moyen des joueurs par ligue
+
+```{r}
+potential_league <- aggregate(potential ~ league_name, data = fifa22, FUN = mean)
+arrange(potential_league, -potential)
+```
+
+8) Afficher le salaire moyen des joueurs par niveau de réputation
+
+```{r}
+aggregate(wage_eur ~ international_reputation, data = fifa22, FUN = mean)
+```
+
+9) Le salaire moyen des joueurs par ligue et par réputation internationale
+
+```{r}
+aggregate(wage_eur ~ league_name +international_reputation, data = fifa22, FUN = mean)
+```
+10) Afficher les statistiques générales de toutes les données numériques
+
+```{r}
+# Récupérer les colonnes qui ne contiennent que des données numériques
+num_cols <- select(fifa22, where(is.numeric))
+summary(num_cols)
+```
+
+```{r}
+matrice_cor <- cor(fifa22[, c("height_cm", "weight_kg", "skill_dribbling", "skill_ball_control",
+"movement_acceleration", "movement_agility", "power_shot_power",
+"power_jumping", "power_stamina", "power_strength", "mentality_aggression",
+"mentality_interceptions", "defending_marking_awareness",
+"defending_standing_tackle", "defending_sliding_tackle", "goalkeeping_diving",
+"goalkeeping_handling", "goalkeeping_kicking", "goalkeeping_speed"
+)])
+matrice_cor
+```
+```{r fig.height=10, fig.width=16}
+corrplot(matrice_cor, method = "number")
+```
 
 
 

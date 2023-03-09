@@ -1,0 +1,208 @@
+---
+title: "Analyse des correspondances multiples"
+author: "Axel-Cleris Gailloty"
+date: "2023-02-18"
+output: 
+  word_document:
+    reference_docx: "template.docx"
+    df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA, message = FALSE, warning = FALSE, fig.height = 5, fig.width = 6)
+```
+
+```{r}
+library(readxl)
+mental_health <- read_excel("mental_health_survey.xlsx")
+```
+
+# Analyse exploratoire des données
+
+```{r include=FALSE}
+pretty_present_data <- function(df, preview = 5) {
+  colum_names <- colnames(df)
+  col_types <- sapply(df, class)
+  
+  take_preview <- function(colname) {
+    paste(head(df[colname], preview))
+  }
+  previews <- sapply(colum_names, take_preview)
+  
+  data.frame(
+    Column = colum_names,
+    Type = col_types,
+    Preview = previews
+  )
+}
+```
+
+
+```{r}
+pretty_present_data(mental_health)
+```
+
+
+
+## Renommer les colonnes 
+
+- I am currently employed at least part-time : EMPLOYED
+- I identify as having a mental illness : MENTAL_ILLNESS
+- Education : EDUCATION
+- I have my own computer separate from a smart phone : OWN_COMPUTER
+- I have been hospitalized before for my mental illness : HOSPITALIZED
+- How many days were you hospitalized for your mental illness : DAYS_HOSPITALIZED
+- I am legally disabled	: DISABLED
+- I have my regular access to the internet : HAS_INTERNET
+- I live with my parents : LIVE_WITH_PARENTS
+- I have a gap in my resume : GAP_RESUME
+- Total length of any gaps in my resume in months. : GAP_LENGTH
+- Annual income (including any social welfare programs) in USD : ANNUAL_INCOME
+- I am unemployed : UNEMPLOYED
+- I read outside of work and school : READ_OUTSIDE
+- Annual income from social welfare programs : ANNUAL_SOCIAL_WELFARE_INCOME
+- I receive food stamps : RECEIVE_FOOD_STAMPS
+- I am on section 8 housing : SECTION_8_HOUSING
+- How many times were you hospitalized for your mental illness : TIMES_HOSPITALIZED
+- Lack of concentration : LACK_CONCENTRATION
+- Anxiety	: ANXIETY
+- Depression : DEPRESSION
+- Obsessive thinking : OBSESSIVE_THINKING
+- Mood swings	: MOOD_SWINGS
+- Panic attacks : PANIC_ATTACKS
+- Compulsive behavior : COMPULSIVE_BEHAVIOR
+- Tiredness: TIREDNESS
+- Age : AGE
+- Gender : GENDER
+- Household Income : HOUSEHOLD_INCOME
+- Region	: REGION
+- Device Type : DEVICE_TYPE
+
+
+```{r}
+library(dplyr)
+
+mental_health <- rename(mental_health, 
+                        "EMPLOYED" = "I am currently employed at least part-time",
+                        "MENTAL_ILLNESS" = "I identify as having a mental illness",
+                        "EDUCATION" = "Education",
+                        "OWN_COMPUTER" = "I have my own computer separate from a smart phone",
+                        "HOSPITALIZED" = "I have been hospitalized before for my mental illness",
+                        "DAYS_HOSPITALIZED" = "How many days were you hospitalized for your mental illness",
+                        "DISABLED" = "I am legally disabled",
+                        "HAS_INTERNET" = "I have my regular access to the internet",
+                        "LIVE_WITH_PARENTS" = "I live with my parents",
+                        "GAP_RESUME" = "I have a gap in my resume",
+                        "GAP_LENGTH" = "Total length of any gaps in my resume in months.",
+                        "ANNUAL_INCOME" = "Annual income (including any social welfare programs) in USD",
+                        "UNEMPLOYED" = "I am unemployed",
+                        "READ_OUTSIDE" = "I read outside of work and school",
+                        "ANNUAL_SOCIAL_WELFARE_INCOME" = "Annual income from social welfare programs",
+                        "RECEIVE_FOOD_STAMPS" = "I receive food stamps",
+                        "SECTION_8_HOUSING" = "I am on section 8 housing",
+                        "TIMES_HOSPITALIZED" = "How many times were you hospitalized for your mental illness",
+                        "LACK_CONCENTRATION" = "Lack of concentration",
+                        "ANXIETY" = "Anxiety",
+                        "DEPRESSION" = "Depression",
+                        "OBSESSIVE_THINKING" = "Obsessive thinking",
+                        "MOOD_SWINGS" = "Mood swings",
+                        "PANIC_ATTACKS" = "Panic attacks",
+                        "COMPULSIVE_BEHAVIOR" = "Compulsive behavior",
+                        "TIREDNESS" = "Tiredness",
+                        
+                        "AGE" = "Age",
+                        "GENDER" = "Gender",
+                        "HOUSEHOLD_INCOME" = "Household Income",
+                        "REGION" = "Region",
+                        "DEVICE_TYPE" = "Device Type")
+
+```
+
+
+Nous allons enlever la colonne UNEMPLOYED du jeu de donnée car elle est corrélée à la colonne EMPLOYED. 
+
+```{r}
+mental_health <- select(mental_health, -UNEMPLOYED)
+```
+
+
+## Est-ce que R a bien reconnu le type des données ?
+
+### Convertir des colonnes en facteur
+
+Convertir toutes les colonnes en facteur à l'exception des colonnes DAYS_HOSPITALZED, GAP_LENGTH,ANNUAL_SOCIAL_WELFARE_INCOME, ANNUAL_INCOME, TIMES_HOSPITALIZED
+
+```{r}
+all_columns <- colnames(mental_health)
+num_cols <- c("DAYS_HOSPITALIZED", "GAP_LENGTH", "ANNUAL_SOCIAL_WELFARE_INCOME" , "ANNUAL_INCOME", "TIMES_HOSPITALIZED")
+factor_cols <- setdiff(all_columns, num_cols)
+mental_health <- data.frame(mental_health)
+mental_health[factor_cols] <- lapply(mental_health[factor_cols], factor)
+```
+
+```{r}
+summary(mental_health)
+```
+
+```{r}
+str(mental_health)
+```
+
+
+## Réaliser des visualisations 
+
+# Analyse des correspondances multiples 
+
+L'Analyse des Correspondances Multiples (ACM) est une méthode qui permet d'étudier l'association entre au moins deux variables qualitatives.
+
+L’Analyse des Correspondances Multiples est aux variables qualitatives ce que l'Analyse en Composantes Principales est aux variables quantitatives. Elle permet en effet d'aboutir à des cartes de représentation sur lesquelles on peut visuellement observer les proximités entre les catégories des variables qualitatives et les observations.
+
+## Filtrer les colonnes
+
+```{r}
+var_quali_illustratives <- c("HOUSEHOLD_INCOME", "REGION", "DEVICE_TYPE")
+idx_quali_illustratives <- match(var_quali_illustratives, all_columns)
+```
+
+
+```{r}
+idx_num_cols <- match(num_cols, all_columns)
+```
+
+
+
+```{r}
+library(FactoMineR)
+library(factoextra)
+premiere_acm <- MCA(X = mental_health[1:333,], quanti.sup = idx_num_cols, quali.sup = idx_quali_illustratives, graph = FALSE)
+```
+
+
+```{r}
+fviz_screeplot(premiere_acm, title = "% des variances expliquées par composante")
+```
+Nous retenons les 4 premières dimensions. 
+
+
+
+```{r}
+premiere_acm$eig[1:4,]
+```
+
+```{r}
+var_actives <- setdiff(colnames(mental_health), c(num_cols, var_quali_illustratives))
+modalites_acm <- row.names(premiere_acm$var$contrib)
+```
+
+
+Les 4 premières dimensions expliquent 34.14% de la variance totale. 
+En ACM le pouvoir explicatif des axes est généralement plus faible. Les variables actives que nous avons sélectionnées pour l'ACM sont **`r var_actives`**. Contrairement à une ACP qui s'effectue directement sur des variables quantitatives continues, l'ACM se réalise sur les modalités que prend chaque variable. Il y a donc nécessairement une multiplication du nombre de colonnes qui entrent dans le calcul des composantes. Chaque modalité est considérée comme une colonne à part entière. 
+Voilà la liste complète des colonnes qui servent à calculer les composantes : **`r modalites_acm`**. 
+
+Nous passons donc de *`r length(var_actives)`* colonnes initiales à *`r length(modalites_acm)`*. 
+
+
+```{r}
+dimdesc(premiere_acm)
+```
+

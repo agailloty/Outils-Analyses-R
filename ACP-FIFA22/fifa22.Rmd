@@ -1,0 +1,479 @@
+---
+title: "Analyse en composantes principales sur le jeu de données FIFA 2022"
+author: "Axel-Cleris Gailloty"
+date: "2023-02-18"
+output: 
+  word_document:
+    reference_docx: "template.docx"
+    df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA, tidy = TRUE, fig.height=8, fig.width=10)
+```
+
+# Introduction 
+
+Dans ce travail, je propose de revenir sur l'étude que nous avons réalisée ensemble en classe sur le jeu de données FIFA 2022 afin de vous fournir plus d'élements d'aide à l'interprétation d'une analyse en composantes principales avec R. 
+
+## Présentation du jeu de données 
+
+https://sports-statistics.com/soccer/fifa-2022-dataset-csvs/
+
+## Lecture du jeu de données 
+
+Le jeu de données est au format Excel, nous pouvons utiliser la fonction `read_excel()` qui provient du package *readxl* pour l'importer dans R. 
+
+```{r}
+library(readxl)
+fifa22 <- read_excel("fifa22.xlsx")
+```
+
+## L'échantillon 
+
+Nous pouvons afficher les 10 premières lignes du jeu de données pour avoir un aperçu des données. 
+
+```{r}
+fifa22[1:10, 1:10]
+```
+
+
+# Réaliser une ACP sur le jeu de données
+
+## Le principe d'une ACP 
+
+L'ACP permet de décrire un jeu de données, de le résumer, d'en réduire la dimensionnalité.
+L'ACP réalisée sur les individus du tableau de données répond à différentes questions :
+
+Etude des individus (i.e. des athlètes) : deux athlètes sont proches s'ils ont des résultats similaires. On s'intéresse à la variabilité entre individus. Y a-t-il des similarités entre les individus pour toutes les variables ? Peut-on établir des profils d'athlètes ? Peut-on opposer un groupe d'individus à un autre ?
+Etude des variables (i.e. des performances) : on étudie les liaisons linéaires entre les variables. Les objectifs sont de résumer la matrice des corrélations et de chercher des variables synthétiques: peut-on résumer les performances des athlètes par un petit nombre de variables ?
+Lien entre les deux études : peut-on caractériser des groupes d'individus par des variables ?
+
+Nous allons réaliser une ACP sur le jeu de données FIFA 222 en ne prenant que les 100 premiers joueurs du jeu de données et les variables suivantes :
+
+- "height_cm", "weight_kg", "skill_dribbling", "skill_ball_control",
+"movement_acceleration", "movement_agility", "power_shot_power",
+"power_jumping", "power_stamina", "power_strength", "mentality_aggression",
+"mentality_interceptions", "defending_marking_awareness",
+"defending_standing_tackle", "defending_sliding_tackle", "goalkeeping_diving",
+"goalkeeping_handling", "goalkeeping_kicking", "goalkeeping_speed"
+
+comme variables quantitatives illustratives
+
+- "overall", "potential", "value_eur", "pace", "shooting", "passing", "dribbling",
+"defending","physic"
+et comme variable qualitative illustrative
+
+- “body_type”.
+
+## Séparer les variables dans des objets R pour une meilleure visibilité. 
+
+Nous allons mettre les noms des colonnes dans des variables R pour mieux comprendre le code.
+
+### A quoi servent les variables quanti actives ? 
+
+Les variables quantitatives illustratives servent à calculer les composantes de l'ACP. 
+Elles entrent dans le calcul de la matrice de variance-covariance. 
+
+```{r}
+var_quanti_actives <- c("height_cm", "weight_kg", "skill_dribbling", "skill_ball_control",
+"movement_acceleration", "movement_agility", "power_shot_power",
+"power_jumping", "power_stamina", "power_strength", "mentality_aggression",
+"mentality_interceptions", "defending_marking_awareness",
+"defending_standing_tackle", "defending_sliding_tackle", "goalkeeping_diving",
+"goalkeeping_handling", "goalkeeping_kicking", "goalkeeping_speed")
+```
+
+### A quoi servent les variables quantitatives illustratives ? 
+
+Les variables illustratives n'influencent pas la construction des composantes principales de l'analyse. Elles aident à l'interprétation des dimensions de variabilité.
+
+```{r}
+var_quanti_illustratives <- c("overall", "potential", "value_eur", "pace", "shooting", "passing", "dribbling","defending","physic")
+```
+
+### A quoi servent les variables qualitatives illustratives
+
+Comme les variables quantitatives illustratives, elles aident à l'interprétation des composantes.
+Elles sont qualitatives (modalités discrètes) : par club, par league, par nationalité ...
+
+l'ACP ne se base que sur des données numériques. 
+
+```{r}
+var_quali_illustratives <- c("body_type")
+```
+
+### Filtrer le jeu de données
+
+```{r}
+fifa_100 <- fifa22[1:100,]
+```
+
+Ne prendre que les colonnes (variables) qui nous intéressent 
+
+```{r}
+variables_acp <- c(var_quanti_actives, var_quanti_illustratives, var_quali_illustratives)
+```
+
+```{r}
+fifa_100 <- fifa_100[, variables_acp]
+```
+
+Parmi les colonnes que nous avons sélectionnée, rien n'indique le nom des joueurs. Si nous ne précisions pas les noms des joueurs, les joueurs seront numérotés de 1 à 100 comme dans le tableau suivant. 
+
+```{r}
+fifa_100[1:10, 1:10]
+```
+
+
+```{r}
+fifa_100 <- data.frame(fifa_100)
+rownames(fifa_100) <- head(fifa22$short_name, 100)
+```
+
+Maintenant chaque ligne correspond au nom d'un joueur. 
+
+```{r}
+fifa_100[1:10, 1:10]
+```
+
+## Réalisation de l'ACP avec FactoMineR
+
+Pour réaliser une ACP avec FactoMineR, il fournir à la fonction PCA les arguments suivants : 
+
+- X : le jeu de données
+- scale.unit : TRUE ou FALSE (pour réduire et centrer les données numériques)
+- ncp : Le nombre de composantes principales
+- quanti.sup : Les indices des variables quantitatives illustratives
+- quali.sup : Les indices des variables qualitatives illustratives
+- ind.sup : Les indices des lignes contenant les individus illustratifs. 
+- graph : TRUE ou FALSE pour indiquer si R doit afficher les graphiques de l'ACP
+
+Nous ne sommes pas obligés de renseigner tous les paramètres de la fonction PCA. 
+
+La condition minimale à satisfaire pour réaliser une ACP avec la fonction PCA c'est de fournir en argument au paramètre X un jeu de données ne contenant que des variables numériques et ne contenant aucune donnée manquante. 
+
+Dans ce cas une ACP sera réalisée en considérant toutes les colonnes comme variables actives. 
+
+Dans la pratique nous voulons avoir un contrôle sur les résultats de l'ACP donc nous allons donner plus de précisions à la fonction PCA. 
+
+Dans notre présent cas nous allons préciser les indices des variables actives, variables quantitatives illustratives et des variables qualitatives illustratives. 
+
+### Trouver les positions des colonnes dans le jeu de données
+
+```{r}
+idx_var_actives <- match(var_quanti_actives, colnames(fifa_100))
+```
+
+```{r}
+idx_var_quanti_illustratives <- match(var_quanti_illustratives, colnames(fifa_100))
+```
+
+```{r}
+idx_var_quali_illustratives <- match(var_quali_illustratives, colnames(fifa_100))
+```
+
+```{r}
+# Charger la librairie FactoMineR
+library(FactoMineR)
+library(factoextra) # Pour représenter graphiques
+```
+
+
+```{r}
+premiere_acp <- PCA(X = fifa_100, scale.unit = TRUE, quanti.sup = idx_var_quanti_illustratives, 
+                    quali.sup = idx_var_quali_illustratives, graph = FALSE)
+```
+
+## Combien de composantes retenir ? 
+
+Comme tout objet dans R, nous pouvons utiliser la fonction `summary()` sur l'objet *premiere_acp* pour afficher certaines informations.
+
+```{r}
+summary(premiere_acp)
+```
+
+L'objet eig nous renvoie un tbaleau qui nous permet de déterminer combien de composantes retenir dans l'ACP.
+
+La règle de Kaiser-Guttman "Le nombre des valeurs-propres supérieures à l'unité d'une matrice d'inter-corrélation est égal au nombre de facteur à extraire". 
+
+La règle de Kaiser nous aide à sélectionner le nombre optimal de composantes à retenir dans l'analyse. Nous regardons les valeurs de eigenvalues >= 1. 
+Dans le présent exemple nous allons retenir 4 composantes car à partir de la 5e composante la valeur propre est inférieure à 1.
+
+```{r}
+data.frame(premiere_acp$eig)
+```
+
+
+
+Chaque composante résume la variance (intertie) du jeu de donnée. Par exemple, la première composante explique à elle seule 50% de la variance du jeu de données. La composante 2 explique 22% de la variance, la composante 3 explique 9,0% etc... 
+
+Cumulativement les 4 composantes que nous retiendront dans l'analyse expliquent 87% de la variance totale du jeu de données. 
+
+Nous avons sélectionné 19 variables actives dans l'analyse en composantes principales. Ces variables sont **`r var_quanti_actives`**.  
+
+Grâce à l'ACP nous avons pû extraire 87% de l'information (l'inertie / variance) contenue dans 19 variables grâce à 4 variables synthétiques que nous appelons composantes principales. 
+
+Le reste de l'analyse consite donc à décomposer quelles variables initiales (variables actives) entrent dans la composition de chacune des composantes. 
+
+## Quel % de variance arrive-t-on à expliquer avec ces composantes ? 
+
+On explique 87% de l'information totale du jeu de données avec 4 composantes. 
+
+### Une composante est une variable synthétique
+
+Une composante est une variable synthétique qu'on a produite en combinant plusieurs autres variables du jeu de données initiale. C'est comme si nous passons d'un jeu de données composé de 19 variables à un jeu de donnée comportant 4 variables. Ces 4 variables contiennent 87% de l'information (l'inertie) des 19 variables.
+
+```{r}
+head(premiere_acp$ind$coord[, 1:4], 10)
+```
+
+
+## CONTRIBUTIONS DES VARIABLES DANS LA FORMATION DES COMPOSANTES (AXES) 
+
+Dans le tableau suivant on a la contribution de chaque variable sur chaque composante. 
+
+```{r}
+data.frame(premiere_acp$var$contrib)
+```
+
+La variable height_cm contribue à hauteur de 2.9% à former l'axe 1, la variable goalkeeping_diving contribue à hauteur de 9.53% à former l'axe 1.
+
+
+La somme de toutes les contributions des variables sur un axe (composante) est égale à 100. 
+
+```{r}
+sum(premiere_acp$var$contrib[, 1])
+```
+## Afficher les poids des variables qui forment l’axe 1 
+
+Les variables contribuent différemment à définir la première composante. Nous pouvons par ordre décroissant la contribution des variables sur la dimension 1.
+
+
+```{r}
+sort(premiere_acp$var$contrib[, 1], decreasing = TRUE)
+```
+On voit par exemple que sur l'axe 1 la variable goalkeeping_handling a une plus grande contribution que les autres. 
+
+Nous pouvons aussi représenter graphiquement le pourcentage de contribution des variables sur la dimension 1. 
+
+```{r}
+fviz_contrib(premiere_acp, choice = "var", axes = 1)
+```
+
+ 
+## Afficher les poids des variables qui forment l’axe 2 
+ 
+```{r}
+sort(premiere_acp$var$contrib[, 2], decreasing = TRUE)
+```
+
+Sur l'axe 2, c'est la variable power_strength qui a la plus forte contribution. Le poids relatif de cet axe est important dans la construction de l'axe. 
+Pour se donner une meilleure idée de ce que pourrait représenter cet axe nous pouvons afficher tous les poids relatifs des variables par odre croissant. 
+
+```{r}
+fviz_contrib(premiere_acp, choice = "var", axes = 2)
+```
+
+
+## LES COORDONNÉES DES VARIABLES SUR LES AXES
+
+Nous venons de voir à combien de % chaque variable contribue sur chaque axe. on aimerait savoir le signe de chaque variable sur les axes. 
+
+```{r}
+data.frame(premiere_acp$var$coord)
+```
+
+## Afficher les 5 premières coordonnées positives sur l’axe 1 
+
+```{r}
+sort(premiere_acp$var$coord[, 1], decreasing = TRUE)[1:5]
+```
+
+Sur l'axe 1, les variables power_stamina, skill_ball_control, skill_dribbling ont des coordonnées positives. cela signifie que si un individu du jeu de données a une coordonnée positive c'est que cet individu est représenté par ces variables. 
+
+
+
+## Afficher les 5 premières coordonnées négatives sur l’axe 1 
+
+```{r}
+sort(premiere_acp$var$coord[, 1], decreasing = FALSE)[1:5]
+```
+
+## Afficher les 5 premières coordonnées positives sur l’axe 2 
+
+```{r}
+sort(premiere_acp$var$coord[, 2], decreasing = TRUE)[1:5]
+```
+
+### Afficher les 5 premières coordonnées négatives sur l’axe 2 
+
+```{r}
+sort(premiere_acp$var$coord[, 2], decreasing = FALSE)[1:5]
+```
+
+## Corrélation entre les variables et les dimensions 
+
+```{r}
+dimdesc(premiere_acp, c(1,2))
+```
+
+
+## REPRÉSENTATION SIMULTANÉE DES DEUX PREMIERS AXES
+
+Le graphique suivant s'appelle le cercle de corrélation. 
+On représente simultanément deux dimensions (axes). 
+On lit ce graphique de gauche à droite puis de bas en haut. 
+Les axes représentent des corrélations. Si une variable pointe vers la gauche, c'est qu'elle est négativement corrélée à l'axe 1 et vice versa. 
+Si une variable pointe vers le bas elle est négativement corrélée à l'axe 2 et vice versa. 
+Ce graphique nous permet de voir quelles variables s'opposent entre elles sur chaque axe.
+
+```{r fig.height=8, fig.width=10}
+plot.PCA(premiere_acp, axes = c(1, 2), choix = "var")
+```
+
+## LES INDIVIDUS
+
+## Afficher les 10 premiers individus ayant des coordonnées positives sur l’axe 1 
+
+```{r}
+sort(premiere_acp$ind$coord[, 1], decreasing = TRUE)[1:10]
+```
+
+
+## Afficher les 10 premiers individus ayant des coordonnées négatives sur l’axe 1 
+
+```{r}
+sort(premiere_acp$ind$coord[, 1], decreasing = FALSE)[1:10]
+```
+
+
+## Afficher les 10 premiers individus ayant des coordonnées positives sur l’axe 2 
+
+```{r}
+sort(premiere_acp$ind$coord[, 2], decreasing = TRUE)[1:10]
+```
+
+## Afficher les 10 premiers individus ayant des coordonnées négatives sur l’axe 2
+
+```{r}
+sort(premiere_acp$ind$coord[, 2], decreasing = FALSE)[1:10]
+```
+
+## Représenter les individus sur les deux axes 
+
+```{r fig.height=8, fig.width=12}
+plot.PCA(premiere_acp, axes = c(1, 2), choix = "ind")
+```
+
+Les composantes 1 et 2 arrivent à faire une grande distinction entre les individus du jeu de données.
+
+`
+
+
+
+
+### 2 Représenter le cercle de corrélation puis mettre en avant la contribution de chaque variable 
+
+```{r fig.height=8, fig.width=12}
+fviz_pca_var(premiere_acp, col.var="contrib", axes = c(1,2), gradient.cols = c("blue", "yellow", "red"), title = "Cercle des corrélations avec contribution de chaque variable")
+```
+
+### Représenter le % de contribution de chaque variable sur les axes 1 et 2 
+
+```{r}
+fviz_contrib(premiere_acp, choice = "var", axes = 1)
+```
+
+```{r}
+fviz_contrib(premiere_acp, choice = "var", axes = 2)
+```
+
+# CLASSIFICATION ASCENDANTE HIERARCHIQUE 
+
+## CLASSER LES JOUEURS DANS 5 CLUSTERS
+
+On a un jeu de données de 100 joueurs, comment peut-on classer les joueurs en 5 groupes homogènes ?
+On utilise la fonction HCPC du package FactoMineR, en précisant en argument l'objet acp qu'on a créé avec la fonction PCA, puis on précise le nombre de clusters (groupes, classes) qu'on veut produire. 
+L'argument graph = FALSE instruit R de ne représenter les résultats graphiquement.
+
+```{r}
+classif <- HCPC(premiere_acp, nb.clust = 5, graph = FALSE)
+```
+
+## QUELLE(S) COMPOSANTE(S) CARACTÉRISENT LES PLUS LES INDIVIDUS DE CHAQUE CLUSTER ? 
+
+On peut utiliser une propriété de l'objet classif pour afficher la description de chaque cluster. 
+
+```{r}
+classif$desc.axes
+```
+
+Ces résultats nous permettent de savoir quelle(s) composante(s) caractérisent les mieux les individus qui appartiennent à un cluster. 
+On a créé 5 clusters, le tableau affiche donc les caractéristiques de chaque cluster. 
+
+v.test: c'est une statistique calculée qui permet de tester la significativité du lien du cluster avec le(s) composante(s). Si sa valeur est supérieure à 1.96 c'est que le lien entre le cluster et l'axe est significatif. 
+Il y a un lien entre v.test et la p.value. Plus la v.test est grande moins la p.value sera. 
+Une p.value inférieure ou égale à 0.05 indique que le test statistique est significatif. 
+
+Le signe de la v.test
+Si positif : les individus qui sont dans le cluster ont en moyenne une coordonnée positive sur l'axe considérée
+
+Si négatif : les individus qui sont dans le cluster ont en moyenne une coordonnée négative sur l'axe considérée.
+
+Interprétation résultat cluster 1
+Les individus qui sont dans le cluster  sont caractérisés essentiellement par la dimension 1.
+Les joueurs qui sont classés dans ce clusters ont en moyenne une coordonnée égale à -7.11018 tandis que dans le reste du jeu de données les joueurs ont en moyenne une coordonnée de 6.931955e-16 (proche de 0) sur cette dimension. 
+
+
+
+
+## QUELS INDIVIDUS SONT LES PLUS REPRÉSENTATIFS DANS CHAQUE CLUSTER ? 
+
+### Les individus parangon 
+
+Le but de la classification ascendante hiérarchique c'est de regrouper les individus qui se ressemblent le plus (minimiser la variance intra cluster) et faire en sorte que chaque cluster diffère d'un autre (maximiser la variance entre chaque cluster).
+
+Les individus parangon sont les individus qui se rapprochent le plus du centre de chaque cluster. Ce sont les individus "moyens" de chaque cluster. C'est eux qui caractérisent le mieux le cluster étudié.
+
+```{r}
+classif$desc.ind$para
+```
+
+
+### QUELS INDIVIDUS SONT LES MOINS REPRÉSENTATIFS DANS CHAQUE CLUSTER ?
+
+## Les individus spécifiques
+
+Ce sont les individus les plus éloignés du centre du cluster. On aurait pu les mettre dans un autre cluster. Ils sont à la frontière de plusieurs clusters.
+
+```{r}
+classif$desc.ind$dist
+```
+
+```{r}
+factoextra::fviz_cluster(classif, repel = TRUE, title = "Représentation des clusters")
+```
+
+
+```{r}
+fviz_dend(classif)
+```
+
+```{r}
+classif2 <- HCPC(premiere_acp, graph = FALSE)
+```
+
+```{r}
+fviz_cluster(classif2)
+```
+# Générer un rapport automatique de l'ACP
+
+Le package FactoInvestigate permet de générer un rapport automatique ayant pour but de résumer rapidement les résultats de l'ACP. Pour l'utiliser, il vous suffit de charge le package et de fournir l'objet ACP en argument puis choisir le type de fichier en sortie. 
+
+Dans notre cas nous allons génerer un rapport automatique Word qui résume synthétiquement les données. 
+```{r}
+library(FactoInvestigate)
+Investigate(premiere_acp, document = "word_document")
+```
+

@@ -500,7 +500,7 @@ classif$desc.ind$para
 
 ## Les individus spécifiques
 
-Ce sont les individus les plus éloignés du centre du cluster. On aurait pu les mettre dans un autre cluster. ils sont à la frontière de plusieurs clusters.
+Ce sont les individus les plus éloignés du centre du cluster. On aurait pu les mettre dans un autre cluster. Ils sont à la frontière de plusieurs clusters.
 
 ```{r}
 classif$desc.ind$dist

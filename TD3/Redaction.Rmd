@@ -1,0 +1,469 @@
+---
+title: "TD2 Groupe 5"
+author: "Axel-Cleris Gailloty"
+date: "2023-02-10"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1) Importer le jeu de données dans R
+
+Le bloc de code suivant permet de charger dans R un fichier au format Excel.
+
+```{r}
+library(readxl)
+fifa22 <- read_excel("fifa22.xlsx")
+```
+
+Nous venons d'importer la base de données dans R en lui donnant le nom fifa22. C'est avec ce nom que nous nous référons à la base de données plus tard dans le reste du code.
+
+# 2) Afficher les noms des colonnes du jeu de données actif
+
+On utilise la fonction colnames(fifa22) pour afficher les noms des colonnes qui sont dans la base de données.
+Cela nous permet de vérifier que la base de donnée a été importée correctement.
+
+
+```{r}
+colnames(fifa22)
+```
+# 3) Afficher les types de données de chaque colonne
+
+Nous allons utiliser la fonction str(fifa22) pour afficher la structure de la base de donnée.
+
+Cette fonction affiche aussi les types de données pour chaque type de colonne. 
+Par exemple chr pour des données texte, num pour des données numériques. 
+Il y a des opérations qui ne sont permises que pour certains types de données.
+
+```{r}
+str(fifa22)
+```
+
+# 4) Est-ce que R a correctement reconnu le type de chaque colonne ?
+
+Pour la plupart des données, R semble avoir bien reconnu le type des données. 
+Par contre toutes les données qui comportent du texte ont été lus comme chr alors que certaines données texte peuvent représenter des catégories. Par exemple la variable work_rate représente une catégorie (plusieurs joueurs peuvent être caractérisés pour un même work_rate, cette donnée n'est pas unique à chaque joueur). 
+
+# 5) Convertir les colonnes dans le bon type si besoin
+
+```{r}
+fifa22$nationality_name <- as.factor(fifa22$nationality_name)
+fifa22$work_rate <- as.factor(fifa22$work_rate)
+fifa22$club_name <- as.factor(fifa22$club_name)
+```
+
+# 6) Afficher le salaire mensuel moyen des joueurs par ligue. Commenter quelques uns
+
+Dans la base de données il y a une variable qui s'appelle wage_eur qui représente le salaire mensuel des jouers de foot. 
+
+```{r}
+aggregate(wage_eur ~ league_name, data=fifa22, FUN = mean)
+```
+Dans FUN on peut préciser median par exemple.
+
+Il me génère un tableau avec deux colonnes. 
+En moyenne les joueurs de Argentina Primera División gagnent 6140€. 
+
+On peut trier les données par ordre décroissant. 
+On utilise la fonction arrange du package dplyr. 
+
+```{r}
+salaire_moyen_league <- aggregate(wage_eur ~ league_name, data=fifa22, FUN = mean)
+library(dplyr)
+arrange(salaire_moyen_league, -wage_eur)
+```
+En moyenne les joueurs de l'English Premier League gagnent 50847.6994€ par mois. 
+
+
+# 7) Afficher le potentiel moyen des joueurs par ligue
+
+```{r}
+potentiel_moyen_league <- aggregate(potential ~ league_name, data=fifa22, FUN = mean)
+arrange(potentiel_moyen_league, -potential)
+```
+
+
+# 8) Afficher le salaire moyen des joueurs par niveau de réputation
+
+```{r}
+salaire_moyen_reputation <- aggregate(wage_eur ~ international_reputation, data=fifa22, FUN = mean)
+arrange(salaire_moyen_reputation, -wage_eur)
+```
+
+# 9) Le salaire moyen des joueurs par ligue et par réputation internationale
+
+```{r}
+aggregate(wage_eur ~ league_name + international_reputation, data=fifa22, FUN = mean)
+```
+
+# 10) Afficher les statistiques générales de toutes les données numériques
+
+Dans un premier temps on va filtrer le jeu de données pour ne retenir que les colonnes numériques. 
+La fonction select du package dplyr nous permet de sélectionner les colonnes d'un tableau de données (data.frame, tibble)
+
+```{r}
+num_cols <- select(fifa22, where(is.numeric))
+summary(num_cols)
+```
+La fonction summary() est utilisée pour résumer un jeu de donnée. Si les données sont numériques elle affiche le minimum (min), le premier quartile, la médiane, la moyenne, le 3e quartiel et le maximum de la variable. 
+
+```{r}
+fac_cols <- select(fifa22, where(is.factor))
+summary(fac_cols)
+```
+
+Si la colonne contient des données manquantes, la fonction affiche le nombre de données manquantes via la ligne NA's. 
+
+# 11) Afficher la matrice de corrélation entre les variables suivantes
+
+```{r}
+cor(fifa22$weight_kg, fifa22$height_cm)
+```
+
+La corrélation entre le poids d'un joueur de football et sa taille est de 0.76. Cette corrélation est positive, clea signifie que le poids et la taille vont dans le même sens. 
+Cette même fonction cor() peut nous générer une matrice de corrélation entre plusieurs variables numériques. 
+
+```{r}
+cor(fifa22[, c("height_cm", "weight_kg", "wage_eur", "potential", "skill_dribbling")])
+```
+
+S'il y a des données manquantes, R ignore le calcul des corrélations. Dans ce cas il faut expliciter dire à la fonction cor quoi faire. 
+On utilise l'argument use = "complete.obs" pour indiquer que R ne prenne les lignes qui n'ont pas de données manquantes.
+
+```{r}
+cor(fifa22[, c("height_cm", "weight_kg", "wage_eur", "potential", "skill_dribbling")], 
+    use = "complete.obs")
+```
+
+```{r}
+cor(fifa22[, c("movement_acceleration", "movement_agility", "power_shot_power",
+"power_jumping", "power_stamina", "power_strength", "mentality_aggression",
+"mentality_interceptions", "defending_marking_awareness",
+"defending_standing_tackle", "defending_sliding_tackle", "goalkeeping_diving",
+"goalkeeping_handling", "goalkeeping_kicking", "goalkeeping_speed")], 
+    use = "complete.obs")
+```
+
+
+# PARTIE 3 : Réaliser une ACP sur le jeu de données
+
+Réaliser une ACP sur les 100 premiers joueurs en prenant comme variables quantitatives
+actives les caractéristiques des joueurs suivant :
+
+
+- "height_cm", "weight_kg", "skill_dribbling", "skill_ball_control",
+"movement_acceleration", "movement_agility", "power_shot_power",
+"power_jumping", "power_stamina", "power_strength", "mentality_aggression",
+"mentality_interceptions", "defending_marking_awareness",
+"defending_standing_tackle", "defending_sliding_tackle", "goalkeeping_diving",
+"goalkeeping_handling", "goalkeeping_kicking", "goalkeeping_speed"
+
+## A quoi servent les variables quantitatives actives
+
+Les variables quantitatives actives sont des variables qui entrent dans le calcul des composantes principales de l'ACP. Elles servent à calculer la matrice variance-covariance. 
+Ce sont ces variables qui influent sur les composantes. 
+
+```{r}
+var_quanti_actives <- c("height_cm", "weight_kg", "skill_dribbling", "skill_ball_control",
+"movement_acceleration", "movement_agility", "power_shot_power",
+"power_jumping", "power_stamina", "power_strength", "mentality_aggression",
+"mentality_interceptions", "defending_marking_awareness",
+"defending_standing_tackle", "defending_sliding_tackle", "goalkeeping_diving",
+"goalkeeping_handling", "goalkeeping_kicking", "goalkeeping_speed")
+```
+
+
+comme variables quantitatives illustratives
+- "overall", "potential", "value_eur", "pace", "shooting", "passing", "dribbling",
+"defending","physic"
+
+```{r}
+var_quanti_illustratives <- c("overall", "potential", "value_eur", "pace", "shooting", "passing", "dribbling",
+"defending","physic")
+```
+
+## A quoi servent les variables quantitatives illustratives. 
+
+Elles nous servent essentiellement dans l'interprétation des résultats de l'ACP. Elles n'entrent pas dans le calcul des composantes. 
+Par exemple la variable overall est un combiné de toutes les caractéristiques des joueurs, si on l'incluait dans les variables actives il y a un risque de redondance dans les informations. 
+
+
+et comme variable qualitative illustrative
+- “body_type”.
+
+```{r}
+var_quali_illustratives <- c("body_type")
+```
+
+# Filtrer le jeu de données
+
+On prend les 100 premières observations pour les variables d'intérêts de l'ACP
+
+```{r}
+variables_acp <- c(var_quanti_actives, var_quanti_illustratives, var_quali_illustratives)
+```
+
+J'utilise la fonction head pour ne prendre que les 100 premières observations. 
+
+```{r}
+fifa_100 <- head(fifa22, 100)
+fifa_100 <- fifa_100[, variables_acp]
+```
+
+
+# ACP avec FactoMineR
+C'est dans le package FactoMineR que sont définies la plupart des fonctions qu'on va utiliser pour faire les analyses factorielles. 
+
+```{r}
+library(FactoMineR)
+```
+
+Pour réaliser une ACP avec FactoMineR on, utilise la fonction PCA. 
+
+- X : le jeu de données
+- scale.unit : TRUE ou FALSE (pour réduire et centrer les données numériques)
+- ncp : Le nombre de composantes principales
+- quanti.sup : Les indices (position) des variables quantitatives illustratives
+- quali.sup : Les indices des variables qualitatives illustratives
+- ind.sup : Les indices des lignes contenant les individus illustratifs. 
+- graph : TRUE ou FALSE pour indiquer si R doit afficher les graphiques de l'ACP
+
+Nous ne sommes pas obligés de renseigner tous les paramètres de la fonction PCA. 
+
+La condition minimale à satisfaire pour réaliser une ACP avec la fonction PCA c'est de fournir en argument au paramètre X un jeu de données ne contenant que des variables numériques et ne contenant aucune donnée manquante. 
+
+Dans ce cas une ACP sera réalisée en considérant toutes les colonnes comme variables actives. 
+
+Dans la pratique nous voulons avoir un contrôle sur les résultats de l'ACP donc nous allons donner plus de précisions à la fonction PCA. 
+
+Dans notre présent cas nous allons préciser les indices des variables actives, variables quantitatives illustratives et des variables qualitatives illustratives. 
+
+La fonction match retourne la position des variables dans une liste. 
+
+Les paramètres de la fonction PCA
+- quanti.sup : Les indices (position) des variables quantitatives illustratives
+- quali.sup : Les indices des variables qualitatives illustratives
+- ind.sup : Les indices des lignes contenant les individus illustratifs. 
+
+```{r}
+idx_var_quanti_actives <- match(var_quanti_actives, colnames(fifa_100))
+idx_var_quanti_illustratives <- match(var_quanti_illustratives, colnames(fifa_100))
+idx_var_quali_illustratives <- match(var_quali_illustratives, colnames(fifa_100))
+```
+
+
+```{r}
+premiere_acp <- PCA(X = fifa_100, quanti.sup = idx_var_quanti_illustratives, quali.sup = idx_var_quali_illustratives, graph = FALSE)
+```
+
+```{r}
+summary(premiere_acp)
+```
+
+## AJOUTER LES NOMS DES JOUEURS
+
+```{r}
+fifa_100 <- data.frame(fifa_100)
+rownames(fifa_100) <- head(fifa22$short_name, 100)
+```
+
+## RÉALISER UNE ACP
+
+```{r}
+premiere_acp <- PCA(X = fifa_100, quanti.sup = idx_var_quanti_illustratives, quali.sup = idx_var_quali_illustratives, graph = FALSE)
+```
+
+```{r}
+summary(premiere_acp)
+```
+
+1.3 COMBIEN DE COMPOSANTES RETENIR ? 
+
+```{r}
+premiere_acp$eig
+```
+L'objet eig nous renvoie un tableau qui nous permet de déterminer combien de composantes retenir dans l'ACP.
+
+La règle de Kaiser-Guttman "Le nombre des valeurs-propres supérieures à l'unité d'une matrice d'inter-corrélation est égal au nombre de facteur à extraire". 
+
+On peut grâce à l'ACP réduire la dimensionalité d'un jeu de donnée. 
+On avait 19 colonnes dans le jeu de donnée intial mais grâce à 4 variables synthétiques (dimensions, composantes) on arriver à extraire 87% de l'information totale.
+
+
+## QUEL % DE VARIANCE ARRIVE-T-ON À EXPLIQUER AVEC CES COMPOSANTES ? 
+
+## CONTRIBUTIONS DES VARIABLES DANS LA FORMATION DES COMPOSANTES (AXES) 
+
+```{r}
+premiere_acp$var$contrib
+```
+La variable goalkeeping_handling contribue à hauteur de 9.53% à former l'axe 1.
+La variable height_cm contribue à hauteur de 2.9% à former l'axe 1, la variable goalkeeping_diving contribue à hauteur de 9.53% à former l'axe 1.
+
+Si on fait la somme de toutes les contributions des variables sur chaque axe on trouve 100.
+
+```{r}
+sum(premiere_acp$var$contrib[, 1])
+```
+
+### Afficher les poids des variables qui forment l’axe 1 
+
+```{r}
+sort(premiere_acp$var$contrib[, 1], decreasing = TRUE)
+```
+On voit par exemple que sur l'axe 1 la variable goalkeeping_handling a une plus grande contribution que les autres. 
+
+### Afficher les poids des variables qui forment l’axe 2 
+
+```{r}
+sort(premiere_acp$var$contrib[, 2], decreasing = TRUE)
+```
+
+
+## LES COORDONNÉES DES VARIABLES SUR LES AXES
+
+On aimerait voir le signe de chaque variable dans la construction des axes. 
+
+```{r}
+premiere_acp$var$coord
+```
+Sur l'axe 1, les variables power_stamina, skill_ball_control, skill_dribbling ont des coordonnées positives. cela signifie que si un individu du jeu de données a une coordonnée positive c'est que cet individu est représenté par ces variables. 
+
+
+### Afficher les 5 premières coordonnées positives sur l’axe 1 
+
+```{r}
+sort(premiere_acp$var$coord[, 1], decreasing = TRUE)[1:5]
+```
+
+### Afficher les 5 premières coordonnées négatives sur l’axe 1 
+
+```{r}
+sort(premiere_acp$var$coord[, 1], decreasing = FALSE)[1:5]
+```
+
+### Afficher les 5 premières coordonnées positives sur l’axe 2 
+
+Sur la dimension 2 (composante 2) les variables power_strength et defending_sliding_tackle ont des coordonnées positives. Si on devrait les représenter sur un espace orhtonomé ces variables seraient à droite.
+
+```{r}
+sort(premiere_acp$var$coord[, 2], decreasing = TRUE)[1:5]
+```
+
+
+### Afficher les 5 premières coordonnées négatives sur l’axe 2
+
+```{r}
+sort(premiere_acp$var$coord[, 2], decreasing = FALSE)[1:5]
+```
+
+## REPRÉSENTATION SIMULTANÉE DES DEUX PREMIERS AXES
+
+On appelle ce graphique le cercle des corrélations. 
+Il représente les corrélations de chaque 
+
+La fonction plot.PCA prend en argument l'objet ACP qu'on a créé, puis les axes qu'on veut représenter et l'argument choix prend en valeur : "var", "ind".
+
+
+```{r fig.height=6, fig.width=10}
+plot.PCA(premiere_acp, axes = c(1, 2), choix = "var")
+```
+
+## LES INDIVIDUS
+
+### Afficher les 10 premiers individus ayant des coordonnées positives sur l’axe 1 
+
+On explore toujours les propriétés de l'objet premiere_acp et on regarde dans les individus. 
+Si on affiche le tableau global on a les coordonnées de chaque joueur sur chaque axe (dimension , composante).
+
+
+```{r}
+sort(premiere_acp$ind$coord[, 1], decreasing = TRUE)[1:10]
+```
+N, Kante est le plus à droite de l'axe 1, a la plus grande coordonnée positive. 
+
+### Afficher les 10 premiers individus ayant des coordonnées négatives sur l’axe 1 
+
+```{r}
+sort(premiere_acp$ind$coord[, 1], decreasing = FALSE)[1:10]
+```
+
+
+
+### Afficher les 10 premiers individus ayant des coordonnées positives sur l’axe 2 
+
+```{r}
+sort(premiere_acp$ind$coord[, 2], decreasing = TRUE)[1:10]
+```
+
+### Afficher les 10 premiers individus ayant des coordonnées négatives sur l’axe 2 
+
+```{r}
+sort(premiere_acp$ind$coord[, 2], decreasing = FALSE)[1:10]
+```
+
+
+## PRODUIRE DES GRAPHIQUES AVEC FACTOEXTRA
+
+```{r}
+library(factoextra)
+```
+
+
+### Représenter le % des variances expliquées par chaque axe 
+
+Ce graphique représente le pouvoir explicatif de chaque axe. 
+La dimension 1 explique 50% de la variance du jeu de données. 
+
+```{r}
+factoextra::fviz_screeplot(premiere_acp, title = "Pouvoir explicatif de chaque composante")
+```
+
+### Représenter le cercle de corrélation puis mettre en avant la contribution de chaque variable 
+
+```{r fig.height=6, fig.width=10}
+factoextra::fviz_pca_var(premiere_acp, axes = c(1,2), col.var="contrib", title= "Cercle de corrélation avec contribution des variables")
+```
+
+### Représenter le % de contribution de chaque variable sur les axes 1 et 2 
+
+la fonction fviz_contrib montre le pourcentage de contribution de chaque variable sur l'axe choisi.
+
+```{r}
+fviz_contrib(premiere_acp, axes = 1, choice = "var")
+```
+```{r}
+fviz_contrib(premiere_acp, axes = 2, choice = "var")
+```
+
+# CLASSIFICATION ASCENDANTE HIERARCHIQUE 
+
+La classification ascendante hiérarchique nous permet de regrouper des joueurs qui ont des caractéristiques similaires dans un même groupe qu'on appelle cluster. 
+On choisit un nombre de cluster à produire et la CAH fait en sorte que chaque cluster soit différent d'un autre mais qu'au sein de chaque cluster les individus se ressemblent. 
+
+### CLASSER LES JOUEURS DANS 5 CLUSTERS
+
+On va utiliser une fonction qui vient du package FactoMineR qui s'appelle HCPC
+on lui donne en agument l'objet ACP qu'on a créé puis on précise le nombre de cluster qu'on veut créer.
+
+```{r}
+library(FactoMineR)
+classsif <- HCPC(premiere_acp, nb.clust = 5, graph = FALSE)
+```
+## QUELLE(S) COMPOSANTE(S) CARACTÉRISENT LES PLUS LES INDIVIDUS DE CHAQUE CLUSTER ? 
+Il nous crée un objet classif qui contient tous les résultats de la classification. 
+
+La propriété desc.axes renvoie une description de chaque cluster
+
+Pour la classification, l'algrithme a déterminé qu'il est optimal de ne retenir que 3 dimensions pour différencier les joueurs et les classer dans chaque cluster.
+
+```{r}
+classsif$desc.axes
+```
+Pour la classification, l'algrithme a déterminé qu'il est optimal de ne retenir que 3 dimensions pour différencier les joueurs et les classer dans chaque cluster.
+
+
+2.3 QUELS INDIVIDUS SONT LES PLUS REPRÉSENTATIFS DANS CHAQUE CLUSTER ? 
+2.4 QUELS INDIVIDUS SONT LES MOINS REPRÉSENTATIFS DANS CHAQUE CLUSTER ?
