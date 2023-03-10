@@ -1,0 +1,11 @@
+---
+title: "Analyse factorielle des correspondances"
+author: "Axel-Cleris Gailloty"
+date: "2023-03-10"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
