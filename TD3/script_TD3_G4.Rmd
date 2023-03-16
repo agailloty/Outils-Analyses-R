@@ -506,6 +506,15 @@ Ce sont les individus les plus éloignés du centre du cluster. On aurait pu les
 classif$desc.ind$dist
 ```
 
+# Introduction de FactoShiny
+
+On peut utiliser Factoshiny directement sur le jeu de données. 
+Via l'interface R on réalisera l'analyse qu'on souhaite.
+
+```{r}
+library(Factoshiny)
+Factoshiny(fifa_100)
+```
 
 
 

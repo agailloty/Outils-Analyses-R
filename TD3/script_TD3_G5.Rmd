@@ -448,6 +448,9 @@ On choisit un nombre de cluster à produire et la CAH fait en sorte que chaque c
 On va utiliser une fonction qui vient du package FactoMineR qui s'appelle HCPC
 on lui donne en agument l'objet ACP qu'on a créé puis on précise le nombre de cluster qu'on veut créer.
 
+Pour laisser la classification déterminer le nombre optimal de classe, précisez nb.clust = -1.
+
+
 ```{r}
 library(FactoMineR)
 classsif <- HCPC(premiere_acp, nb.clust = 5, graph = FALSE)
@@ -462,8 +465,69 @@ Pour la classification, l'algrithme a déterminé qu'il est optimal de ne reteni
 ```{r}
 classsif$desc.axes
 ```
+
 Pour la classification, l'algrithme a déterminé qu'il est optimal de ne retenir que 3 dimensions pour différencier les joueurs et les classer dans chaque cluster.
 
 
 2.3 QUELS INDIVIDUS SONT LES PLUS REPRÉSENTATIFS DANS CHAQUE CLUSTER ? 
+
+
+```{r}
+library(dplyr)
+cluster1 <- filter(classsif$data.clust, clust ==1)
+row.names(cluster1)
+```
+
+```{r}
+cluster2 <- filter(classsif$data.clust, clust ==2)
+row.names(cluster2)
+```
+
+
+## L'individu parangon
+
+```{r}
+classsif$desc.ind$para
+```
+
+
+
 2.4 QUELS INDIVIDUS SONT LES MOINS REPRÉSENTATIFS DANS CHAQUE CLUSTER ?
+
+Les individus spécifiques. 
+Ce sont les individus le splus éloignés du centre du cluster.
+
+```{r}
+classsif$desc.ind$dist
+```
+
+# Graphiques
+
+```{r fig.height=5, fig.width=8}
+library(factoextra)
+fviz_cluster(classsif, repel = TRUE)
+```
+
+# Utiliser une interface graphique pour réaliser une ACP
+
+On peut utiliser Factoshiny directement sur le jeu de données.
+
+```{r}
+library(Factoshiny)
+Factoshiny(fifa_100)
+```
+
+Ou bien l'utiliser sur une ACP qu'on a déjà réalisée.
+
+```{r}
+Factoshiny(premiere_acp)
+```
+
+
+## Générer un rapport automatisé
+
+```{r}
+library(FactoInvestigate)
+Investigate(premiere_acp, document = "word_document")
+```
+
