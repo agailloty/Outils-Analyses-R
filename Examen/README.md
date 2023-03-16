@@ -21,6 +21,12 @@ Vous devrez :
 
 Pour chacun des contrôles je vous enverrai un énoncé comportant une douzaine de questions auxquelles vous devrez répondre en écrivant des lignes de codes R puis en interprétant les résultats.
 
+## Déroulement du contrôle 
+
+### 15 minutes de préparation au début de la séance
+### 1h30 d'examen
+### 15 minutes pour finaliser et m'envoyer votre rapport Rmarkdown
+
 A la fin du contrôle vous devrez m'envoyer un fichier Word qui est produit par Rmarkdown.
 Le contrôle dure *1h30*. Je vous laisserai 15 minutes au début pour vous préparer et 15 minutes à la fin pour m'envoyer votre travail.
 
