@@ -91,50 +91,100 @@ colnames(mental_health_survey)
 ```{r}
 library(dplyr)
 
-mental_health <- rename(mental_health_survey, 
-                        "EMPLOYED" = "I am currently employed at least part-time",
-                        "MENTAL_ILLNESS" = "I identify as having a mental illness",
-                        "EDUCATION" = "Education",
-                        "OWN_COMPUTER" = "I have my own computer separate from a smart phone",
-                        "HOSPITALIZED" = "I have been hospitalized before for my mental illness",
-                        "DAYS_HOSPITALIZED" = "How many days were you hospitalized for your mental illness",
-                        "DISABLED" = "I am legally disabled",
-                        "HAS_INTERNET" = "I have my regular access to the internet",
-                        "LIVE_WITH_PARENTS" = "I live with my parents",
-                        "GAP_RESUME" = "I have a gap in my resume",
-                        "GAP_LENGTH" = "Total length of any gaps in my resume in months.",
-                        "ANNUAL_INCOME" = "Annual income (including any social welfare programs) in USD",
-                        "UNEMPLOYED" = "I am unemployed",
-                        "READ_OUTSIDE" = "I read outside of work and school",
-                        "ANNUAL_SOCIAL_WELFARE_INCOME" = "Annual income from social welfare programs",
-                        "RECEIVE_FOOD_STAMPS" = "I receive food stamps",
-                        "SECTION_8_HOUSING" = "I am on section 8 housing",
-                        "TIMES_HOSPITALIZED" = "How many times were you hospitalized for your mental illness",
-                        "LACK_CONCENTRATION" = "Lack of concentration",
-                        "ANXIETY" = "Anxiety",
-                        "DEPRESSION" = "Depression",
-                        "OBSESSIVE_THINKING" = "Obsessive thinking",
-                        "MOOD_SWINGS" = "Mood swings",
-                        "PANIC_ATTACKS" = "Panic attacks",
-                        "COMPULSIVE_BEHAVIOR" = "Compulsive behavior",
-                        "TIREDNESS" = "Tiredness",
-                        
-                        "AGE" = "Age",
-                        "GENDER" = "Gender",
-                        "HOUSEHOLD_INCOME" = "Household Income",
-                        "REGION" = "Region",
-                        "DEVICE_TYPE" = "Device Type")
+mental_health <- read.csv("https://raw.githubusercontent.com/agailloty/Outils-Analyses-R/main/TD5/mental_health.csv")
+```
+
+
+## Convertir toutes les colonnes non-numériques en facteur 
+
+```{r}
+str(mental_health)
+```
+```{r}
+num_cols <- c("DAYS_HOSPITALIZED", "GAP_LENGTH", "ANNUAL_INCOME", "ANNUAL_SOCIAL_WELFARE_INCOME", "TIMES_HOSPITALIZED")
+non_num_cols <- setdiff(colnames(mental_health), num_cols)
+mental_health[non_num_cols] <- lapply(mental_health[non_num_cols], factor)
+```
+
+```{r}
+str(mental_health)
+```
+
+
+## Décrire brièvement le jeu de données 
+
+```{r}
+summary(mental_health)
+```
+
+Dans cette enquête 80 personnes des répondants ont plus de 60 ans. 107 personnes ne travaillent pas (EMPLOYED).
+
+
+# Réaliser une ACM avec FactoMineR 
+
+On utilise une fonction qui s'appelle MCA
+La fonction attend à ce qu'on lui fournisse en argument une matrice qui contient le jeu de données, les positions des variables quanti supplémentaires et des variables quali supplémentaires. 
+
+
+```{r}
+library(FactoMineR)
+```
+
+```{r}
+quali_sup <- c("REGION", "DEVICE_TYPE")
+# L'argument quali.sup attend les positions de ces variables dans la matrice des données
+idx_quali_sup <- match(quali_sup, colnames(mental_health))
+
+idx_quanti_sup <- match(num_cols, colnames(mental_health))
+
+premiere_acm <- MCA(mental_health, quanti.sup = idx_quanti_sup, quali.sup = idx_quali_sup, graph = FALSE)
 
 ```
 
-Convertir toutes les colonnes non-numériques en facteur 
-Décrire brièvement le jeu de données 
-Réaliser une ACM avec FactoMineR 
-Combien de dimensions faut-il retenir dans l’ACM ? 
-Quel % de la variance arrive-t-on à expliquer avec les dimensions retenues ? 
-Combien de variables il y avait-il dans le jeu de données initial et combien de 
-variables il y a-t-il dans l’ACM ? 
-Décrire les dimensions retenues dans l’analyse 
+
+## Combien de dimensions faut-il retenir dans l’ACM ? 
+
+La règle de Kaiser-Guttman ne s'apploque pas pour une ACM. Nous retenons le nombre de composantes qui selon nous résume suffisamment la variance du jeu de données initial. 
+
+Dans notre cas nous allons prendre 4 composantes.
+
+```{r}
+summary(premiere_acm)
+```
+
+## Quel % de la variance arrive-t-on à expliquer avec les dimensions retenues ? 
+
+Les 4 composantes que nous retenons dans l'analyse expliquent environ 34% de la variance du jeu de données initial. 
+
+## Combien de variables il y avait-il dans le jeu de données initial et combien de variables il y a-t-il dans l’ACM ? 
+
+Dans le jeu de données il y a 31 variables. En enlevant les variables quantitatives supplémentaires "DAYS_HOSPITALIZED" "GAP_LENGTH" "ANNUAL_INCOME" "ANNUAL_SOCIAL_WELFARE_INCOME" "TIMES_HOSPITALIZED" et les variables qualitatives supplémentaires "REGION" "DEVICE_TYPE", il reste 24 variables dans l'ACM.
+
+Si on explore l'objet `premiere_acm` on observerait qu'il y a plus que 24 variables dans l'ACM car chaque modalité de chaque variable initiale est éclatée (disjonctée) au moment de réaliser l'ACP. 
+
+Nous verrons chacune des modalités éclatée dans la description des dimensions.
+
+
+## Décrire les dimensions retenues dans l’analyse 
+
+Nous avons retenu 4 dimensions (composantes, axes) dans l'analyse. Nous pouvons utiliser la fonction `dimdesc` pour produire des statistiques sur chacune des dimensions. 
+
+### Dimension 1
+
+Plus le R2 d'une variable est élevé, plus cette variable entre dans la composition de l'axe. Par exemple les variables OBSESSIVE_THINKING, PANIC_ATTACKS, MOOD_SWINGS ont des R2 très proche de 1 sur l'axe 1, cela veut dire que l'axe 1 met en évidence le cacarctère maladif des répondants de l'enquête.
+
+
+```{r}
+dimdesc(premiere_acm, axe = 1)
+```
+
+L'axe 1 oppose des personnes qui ont fait le choix de ne pas répondre à certaines questions clés du questionnaire comme le fait d'être fatiguée, avoir un comportement compulsif aux personnes qui ont un état mentale stable. 
+
+```{r}
+dimdesc(premiere_acm, axe = 2)
+```
+
+
 Réaliser une classification ascendante hiérarchique 
-Réaliser une CAH à partir des résultats de l’ACM, laisser FactoMineR décider du nombre optimal de 
+Réaliser une CAH à partir des résultats de l’ACM, laisser FactoMineR décider du nombre optimal de
 cluster à former.
