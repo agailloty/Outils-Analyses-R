@@ -91,6 +91,7 @@ var_quanti_illustratives <- c("overall", "potential", "value_eur", "wage_eur","l
 var_quali_illustratives <- c("preferred_foot", "body_type")
 
 fifa300 <- fifa300[, c(var_actives, var_quanti_illustratives, var_quali_illustratives, "short_name")]
+rownames(fifa300) <- fifa300$short_name
 fifa300 <- dplyr::select(fifa300, -short_name)
 ```
 

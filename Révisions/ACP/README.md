@@ -154,6 +154,7 @@ dans le jeu de données.
     var_quali_illustratives <- c("preferred_foot", "body_type")
 
     fifa300 <- fifa300[, c(var_actives, var_quanti_illustratives, var_quali_illustratives, "short_name")]
+    rownames(fifa300) <- fifa300$short_name
     fifa300 <- dplyr::select(fifa300, -short_name)
 
 ## Réalisation de l’ACP avec FactoMineR
@@ -266,7 +267,7 @@ par chaque composante.
 
     fviz_screeplot(premiere_acp, main = "% de l'information expliquée par chaque composante.")
 
-![](README_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-15-1.png)
 
 Il importe maintenant d’explorer le contenu de chacune des 4 composantes
 que nous avons retenues pour expliquer la variabilité des individus.
@@ -358,9 +359,11 @@ joueurs ayant un profil de gardien.
     body_type=Lean (185+)      -3.1572534 4.307635e-04
     body_type=Normal (185+)    -4.1823260 3.436073e-12
 
-La première composante oppose donc des joueurs comme ***1, 4, 5, 29, 33,
-84, 7, 56, 18, 42*** à des joueurs comme ***195, 153, 266, 78, 212, 290,
-268, 55, 222, 203***.
+La première composante oppose donc des joueurs comme ***L, Messi, Neymar
+Jr, K, De Bruyne, Bruno Fernandes, L, Modrić, A, Griezmann, K, Mbappé,
+L, Insigne, M, Salah, P, Dybala*** à des joueurs comme ***É, Mendy, L,
+Hrádecký, Raphaelinho Anjos, P, Gulácsi, K, Trapp, A, Consigli, Unai
+Simón, K, Casteels, O, Baumann, S, Sirigu***.
 
 ### Composante 2
 
@@ -428,9 +431,11 @@ movement\_balance***.
     body_type=Stocky (185+)  2.0893776 2.866877e-02
     body_type=Unique        -0.4192054 1.905668e-02
 
-Cette composante oppose donc des joueurs comme ***156, 57, 245, 116, 48,
-121, 160, 47, 131, 69*** à des joueurs comme ***56, 101, 1, 231, 70, 4,
-59, 42, 65, 76***.
+Cette composante oppose donc des joueurs comme ***K, Manolas, K,
+Koulibaly, N, Süle, S, Savić, G, Chiellini, Felipe, S, Coates, Rúben
+Dias, J, Giménez, M, Škriniar*** à des joueurs comme ***L, Insigne, D,
+Mertens, L, Messi, Suso, A, Gómez, Neymar Jr, R, Mahrez, P, Dybala, K,
+Coman, E, Hazard***.
 
 ### Représentation simultanée des axes 1 et 2
 
@@ -444,7 +449,7 @@ entre les variables.
 
     Warning: ggrepel: 9 unlabeled data points (too many overlaps). Consider increasing max.overlaps
 
-![](README_files/figure-markdown_strict/unnamed-chunk-13-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-18-1.png)
 
 ### Composante 3
 
@@ -509,9 +514,11 @@ defending\_marking\_awareness, defending\_standing\_tackle***.
     body_type=Normal (170-)    -1.6477304 0.0014287292
     body_type=Lean (170-185)   -0.4707397 0.0001382698
 
-Cette composante oppose donc des joueurs comme ***26, 30, 98, 179, 184,
-3, 2, 10, 286, 37*** à des joueurs comme ***39, 99, 125, 56, 218, 233,
-175, 140, 249, 255***.
+Cette composante oppose donc des joueurs comme ***R, Lukaku, E, Haaland,
+Z, Ibrahimović, D, Zapata, W, Weghorst, Cristiano Ronaldo, R,
+Lewandowski, H, Kane, B, Yılmaz, C, Immobile*** à des joueurs comme
+***M, Verratti, Jesús Navas, R, Guerreiro, L, Insigne, J, Corona, Juan
+Bernat, Gayà, P, Foden, Rafa, M, Ødegaard***.
 
 # Classification ascendate hiérarchique (CAH)
 
@@ -610,9 +617,16 @@ description de chaque cluster.
 
     rownames(fifa300)[classif$data.clust$clust == 1]
 
-     [1] "6"   "8"   "9"   "13"  "19"  "21"  "22"  "27"  "32"  "35"  "49"  "55"  "71"  "74"  "78"  "107"
-    [17] "114" "128" "144" "153" "155" "168" "170" "195" "202" "203" "206" "212" "217" "222" "223" "227"
-    [33] "239" "244" "266" "268" "283" "290" "291" "296"
+     [1] "J, Oblak"          "M, Neuer"          "M, ter Stegen"     "T, Courtois"      
+     [5] "Ederson"           "Alisson"           "G, Donnarumma"     "K, Navas"         
+     [9] "H, Lloris"         "W, Szczęsny"       "S, Handanovič"     "K, Casteels"      
+    [13] "K, Schmeichel"     "Y, Sommer"         "P, Gulácsi"        "De Gea"           
+    [17] "E, Martínez"       "M, Maignan"        "Sergio Asenjo"     "L, Hrádecký"      
+    [21] "B, Leno"           "N, Pope"           "J, Pickford"       "É, Mendy"         
+    [25] "Ł, Fabiański"      "S, Sirigu"         "Rui Patrício"      "K, Trapp"         
+    [29] "A, Areola"         "O, Baumann"        "Neto"              "A, Lopes"         
+    [33] "Y, Bounou"         "P, Gollini"        "Raphaelinho Anjos" "Unai Simón"       
+    [37] "D, Livaković"      "A, Consigli"       "S, Mandanda"       "Adán"             
 
 ### Cluster 2
 
@@ -689,10 +703,17 @@ description de chaque cluster.
 
     rownames(fifa300)[classif$data.clust$clust == 2]
 
-     [1] "16"  "40"  "47"  "48"  "50"  "57"  "58"  "64"  "69"  "72"  "77"  "85"  "92"  "97"  "100" "115"
-    [17] "116" "120" "121" "131" "145" "147" "148" "156" "159" "160" "161" "167" "171" "182" "184" "187"
-    [33] "198" "200" "201" "229" "241" "245" "250" "252" "258" "261" "262" "263" "267" "270" "271" "274"
-    [49] "279" "280" "282" "293" "294"
+     [1] "V, van Dijk"      "Marquinhos"       "Rúben Dias"       "G, Chiellini"     "M, Hummels"      
+     [6] "K, Koulibaly"     "R, Varane"        "A, Laporte"       "M, Škriniar"      "Thiago Silva"    
+    [11] "L, Bonucci"       "S, de Vrij"       "W, Ndidi"         "M, de Ligt"       "Piqué"           
+    [16] "H, Maguire"       "S, Savić"         "M, Ginter"        "Felipe"           "J, Giménez"      
+    [21] "S, Kjær"          "J, Boateng"       "T, Alderweireld"  "K, Manolas"       "J, Matip"        
+    [26] "S, Coates"        "F, Acerbi"        "J, Stones"        "A, Rüdiger"       "L, Hernández"    
+    [31] "W, Weghorst"      "P, Kimpembe"      "J, Koundé"        "Pepe"             "Raúl Albiol"     
+    [36] "Gabriel Paulista" "A, Romagnoli"     "N, Süle"          "Diego Carlos"     "C, Lenglet"      
+    [41] "J, Gomez"         "Palhinha"         "D, Upamecano"     "Mario Hermoso"    "Josué Chiamulera"
+    [46] "C, Romero"        "D, Dumfries"      "D, Rice"          "T, Souček"        "Éder Militão"    
+    [51] "Pau Torres"       "José Fonte"       "J, Vertonghen"   
 
 ### Cluster 3
 
@@ -771,12 +792,30 @@ description de chaque cluster.
 
     rownames(fifa300)[classif$data.clust$clust == 3]
 
-     [1] "11"  "15"  "20"  "23"  "25"  "29"  "33"  "38"  "39"  "41"  "43"  "44"  "45"  "51"  "52"  "53" 
-    [17] "54"  "62"  "63"  "67"  "68"  "79"  "81"  "83"  "88"  "89"  "91"  "96"  "99"  "102" "103" "104"
-    [33] "105" "108" "112" "117" "118" "123" "125" "126" "129" "130" "134" "135" "137" "138" "141" "143"
-    [49] "149" "150" "152" "154" "158" "162" "166" "172" "173" "174" "175" "177" "181" "185" "186" "188"
-    [65] "189" "191" "197" "204" "207" "208" "209" "215" "218" "220" "221" "228" "230" "233" "234" "236"
-    [81] "237" "238" "240" "243" "246" "248" "254" "256" "259" "265" "275" "276" "278" "289" "295" "298"
+     [1] "N, Kanté"            "Casemiro"            "J, Kimmich"          "Sergio Ramos"       
+     [5] "T, Kroos"            "Bruno Fernandes"     "L, Modrić"           "P, Pogba"           
+     [9] "M, Verratti"         "L, Goretzka"         "A, Robertson"        "F, de Jong"         
+    [13] "T, Alexander-Arnold" "Jordi Alba"          "Thiago"              "Sergio Busquets"    
+    [17] "Parejo"              "Fabinho"             "João Cancelo"        "Marcos Llorente"    
+    [21] "Rodri"               "İ, Gündoğan"         "K, Walker"           "Koke"               
+    [25] "Carvajal"            "Jorginho"            "S, Milinković-Savić" "A, Hakimi"          
+    [29] "Jesús Navas"         "G, Wijnaldum"        "J, Henderson"        "Fernando"           
+    [33] "K, Trippier"         "D, Alaba"            "L, Digne"            "M, Sabitzer"        
+    [37] "L, Shaw"             "F, Kostić"           "R, Guerreiro"        "Ricardo Pereira"    
+    [41] "M, Brozović"         "Y, Tielemans"        "N, Barella"          "M, Acuña"           
+    [45] "F, Kessié"           "T, Hernández"        "Fernandinho"         "A, Witsel"          
+    [49] "Azpilicueta"         "Paulinho"            "Canales"             "Alex Sandro"        
+    [53] "J, Cuadrado"         "Allan"               "L, Spinazzola"       "L, Ocampos"         
+    [57] "M, Kovačić"          "T, Partey"           "Gayà"                "P, Højbjerg"        
+    [61] "Angeliño"            "R, Gosens"           "Merino"              "F, Mendy"           
+    [65] "A, Wan-Bissaka"      "Arthur"              "F, Valverde"         "I, Rakitić"         
+    [69] "É, Banega"           "M, Pjanić"           "Yuri Berchiche"      "D, Blind"           
+    [73] "J, Corona"           "I, Gueye"            "Mário Fernandes"     "Campaña"            
+    [77] "J, Veretout"         "Juan Bernat"         "Portu"               "E, Can"             
+    [81] "Saúl"                "M, de Roon"          "Grimaldo"            "N, Tagliafico"      
+    [85] "Alex Telles"         "R, De Paul"          "M, Locatelli"        "Rúben Neves"        
+    [89] "Fabián"              "B, Chilwell"         "A, Davies"           "F, Neuhaus"         
+    [93] "T, Ndombele"         "H, Herrera"          "Lucas Leiva"         "A, Vidal"           
 
 ## Les individus parangon
 
@@ -792,20 +831,20 @@ cluster. C’est eux qui caractérisent le mieux le cluster étudié.
     classif$desc.ind$para
 
     Cluster: 1
-           35       296       291       222        74 
-    0.4710950 0.8419724 0.8807462 1.0046714 1.1254410 
+    W, Szczęsny        Adán S, Mandanda  O, Baumann   Y, Sommer 
+      0.4710950   0.8419724   0.8807462   1.0046714   1.1254410 
     --------------------------------------------------------------------------- 
     Cluster: 2
-          250       171        58       252       200 
-    0.6991023 0.8376971 0.9479349 1.1087234 1.1933459 
+    Diego Carlos   A, Rüdiger    R, Varane   C, Lenglet         Pepe 
+       0.6991023    0.8376971    0.9479349    1.1087234    1.1933459 
     --------------------------------------------------------------------------- 
     Cluster: 3
-          230       246       162       112       248 
-    0.7296509 0.7647068 0.9202691 0.9677356 0.9796774 
+    J, Veretout Alex Telles       Allan    L, Digne  R, De Paul 
+      0.7296509   0.7647068   0.9202691   0.9677356   0.9796774 
     --------------------------------------------------------------------------- 
     Cluster: 4
-          132       190       219        90       122 
-    0.7304741 0.7490576 0.8285935 1.0686558 1.1170834 
+           N, Fekir Ronaldo Cabrais    A, Lacazette       S, Gnabry     Y, Carrasco 
+          0.7304741       0.7490576       0.8285935       1.0686558       1.1170834 
 
 ## Les individus spécifiques
 
@@ -816,28 +855,28 @@ d’un ou plusieurs clusters.
     classif$desc.ind$dist
 
     Cluster: 1
-         195      153      290      239      266 
-    13.38643 12.91537 12.80736 12.59505 12.47610 
+             É, Mendy       L, Hrádecký       A, Consigli         Y, Bounou Raphaelinho Anjos 
+             13.38643          12.91537          12.80736          12.59505          12.47610 
     --------------------------------------------------------------------------- 
     Cluster: 2
-          156       245        57       160       116 
-    10.362861  9.482744  9.254741  8.503150  8.266154 
+      K, Manolas      N, Süle K, Koulibaly    S, Coates     S, Savić 
+       10.362861     9.482744     9.254741     8.503150     8.266154 
     --------------------------------------------------------------------------- 
     Cluster: 3
-          11       39      215       25       23 
-    6.237446 6.221551 5.688239 5.337869 5.327892 
+        N, Kanté  M, Verratti     D, Blind     T, Kroos Sergio Ramos 
+        6.237446     6.221551     5.688239     5.337869     5.327892 
     --------------------------------------------------------------------------- 
     Cluster: 4
-          56        1      179       98      101 
-    8.047736 7.139763 6.995467 6.982446 6.919847 
+        L, Insigne       L, Messi      D, Zapata Z, Ibrahimović     D, Mertens 
+          8.047736       7.139763       6.995467       6.982446       6.919847 
 
     factoextra::fviz_cluster(classif, repel = TRUE, title = "Représentation des clusters")
 
     Warning: argument title is deprecated; please use main instead.
 
-    Warning: ggrepel: 254 unlabeled data points (too many overlaps). Consider increasing max.overlaps
+    Warning: ggrepel: 293 unlabeled data points (too many overlaps). Consider increasing max.overlaps
 
-![](README_files/figure-markdown_strict/unnamed-chunk-24-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-29-1.png)
 
 Nous pouvons réaliser une seconde classification mais cette fois-ci en
 laissant FactoMineR déterminer le nombre optimal de cluster. Pour ce
@@ -850,7 +889,7 @@ Représentons graphiquement les clusters.
 
     fviz_cluster(classif2)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-26-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-31-1.png)
 
 # Annexes
 
@@ -970,27 +1009,27 @@ Voici comment est composé le jeu de données initial.
 
     Individuals (the 10 first)
                                     Dist    Dim.1    ctr   cos2    Dim.2    ctr   cos2    Dim.3    ctr
-    1                           |  8.199 |  5.293  0.466  0.417 | -4.876  0.939  0.354 |  0.931  0.100
-    2                           |  6.067 |  3.370  0.189  0.309 | -1.441  0.082  0.056 |  4.150  1.984
-    3                           |  7.262 |  3.715  0.229  0.262 | -2.573  0.261  0.126 |  4.519  2.353
-    4                           |  6.932 |  4.786  0.381  0.477 | -4.347  0.746  0.393 | -0.132  0.002
-    5                           |  5.949 |  4.588  0.350  0.595 | -1.350  0.072  0.052 |  0.245  0.007
-    6                           | 10.727 | -9.969  1.652  0.864 | -2.273  0.204  0.045 |  0.132  0.002
-    7                           |  6.575 |  4.085  0.277  0.386 | -2.777  0.305  0.178 |  2.444  0.688
-    8                           | 10.302 | -8.865  1.306  0.740 | -1.912  0.144  0.034 |  1.431  0.236
-    9                           | 10.765 | -9.536  1.511  0.785 | -1.947  0.150  0.033 |  0.255  0.007
-    10                          |  5.935 |  3.173  0.167  0.286 | -0.729  0.021  0.015 |  4.043  1.884
+    L, Messi                    |  8.199 |  5.293  0.466  0.417 | -4.876  0.939  0.354 |  0.931  0.100
+    R, Lewandowski              |  6.067 |  3.370  0.189  0.309 | -1.441  0.082  0.056 |  4.150  1.984
+    Cristiano Ronaldo           |  7.262 |  3.715  0.229  0.262 | -2.573  0.261  0.126 |  4.519  2.353
+    Neymar Jr                   |  6.932 |  4.786  0.381  0.477 | -4.347  0.746  0.393 | -0.132  0.002
+    K, De Bruyne                |  5.949 |  4.588  0.350  0.595 | -1.350  0.072  0.052 |  0.245  0.007
+    J, Oblak                    | 10.727 | -9.969  1.652  0.864 | -2.273  0.204  0.045 |  0.132  0.002
+    K, Mbappé                   |  6.575 |  4.085  0.277  0.386 | -2.777  0.305  0.178 |  2.444  0.688
+    M, Neuer                    | 10.302 | -8.865  1.306  0.740 | -1.912  0.144  0.034 |  1.431  0.236
+    M, ter Stegen               | 10.765 | -9.536  1.511  0.785 | -1.947  0.150  0.033 |  0.255  0.007
+    H, Kane                     |  5.935 |  3.173  0.167  0.286 | -0.729  0.021  0.015 |  4.043  1.884
                                   cos2  
-    1                            0.013 |
-    2                            0.468 |
-    3                            0.387 |
-    4                            0.000 |
-    5                            0.002 |
-    6                            0.000 |
-    7                            0.138 |
-    8                            0.019 |
-    9                            0.001 |
-    10                           0.464 |
+    L, Messi                     0.013 |
+    R, Lewandowski               0.468 |
+    Cristiano Ronaldo            0.387 |
+    Neymar Jr                    0.000 |
+    K, De Bruyne                 0.002 |
+    J, Oblak                     0.000 |
+    K, Mbappé                    0.138 |
+    M, Neuer                     0.019 |
+    M, ter Stegen                0.001 |
+    H, Kane                      0.464 |
 
     Variables (the 10 first)
                                    Dim.1    ctr   cos2    Dim.2    ctr   cos2    Dim.3    ctr   cos2  
