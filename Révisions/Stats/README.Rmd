@@ -1,0 +1,126 @@
+---
+title: "Analyse en composantes principales sur le jeu de données FIFA 2022"
+author: "Axel-Cleris Gailloty"
+date: "2023-02-18"
+output: 
+  md_document:
+    df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA, tidy = TRUE, fig.height=6, fig.width=8)
+```
+
+# Statistiques générales pour explorer un jeu de données 
+
+```{r}
+fifa22 <- read.csv("https://raw.githubusercontent.com/agailloty/Outils-Analyses-R/main/dataset/fifa22.csv")
+```
+
+## Explorer le jeu de données 
+
+### Afficher la structure du jeu de données
+
+```{r}
+str(fifa22)
+```
+
+### Afficher toutes les colonnes 
+
+```{r}
+colnames(fifa22)
+```
+
+### Afficher les colonnes numériques
+
+```{r}
+colnames(fifa22)[sapply(fifa22, is.numeric)]
+```
+
+Ou bien 
+
+```{r}
+library(dplyr)
+colnames(select(fifa22, where(is.numeric)))
+```
+
+
+### Des colonnes non numériques 
+
+```{r}
+colnames(fifa22)[sapply(fifa22, is.character)]
+```
+
+```{r}
+colnames(select(fifa22, where(is.character)))
+```
+
+
+
+## Statistiques groupées
+
+```{r}
+aggregate(wage_eur ~ league_name, data=fifa22, FUN = mean)
+```
+
+```{r}
+salaire_moyen_league <- aggregate(wage_eur ~ league_name, data=fifa22, FUN = mean)
+arrange(salaire_moyen_league, -wage_eur)
+```
+
+```{r}
+aggregate(wage_eur ~ league_name + international_reputation, data=fifa22, FUN = mean)
+```
+
+## Statistiques de plusieurs données numériques
+
+```{r}
+num_cols <- select(fifa22, overall, wage_eur, height_cm, age)
+summary(num_cols)
+```
+
+## Convertir toutes les colonnes non numériques en facteur
+
+
+
+```{r}
+non_num_cols <- colnames(select(fifa22, where(Negate(is.numeric))))
+fifa22[non_num_cols] <- lapply(fifa22[non_num_cols], factor)
+```
+
+
+## Statistiques descriptives de toutes les données non-numériques
+
+```{r}
+fac_cols <- select(fifa22, where(Negate(is.numeric)))
+summary(fac_cols)
+```
+
+## Calcul du coefficient de corrélation linéaire
+
+```{r}
+cor(fifa22$weight_kg, fifa22$height_cm)
+```
+
+```{r}
+plot(fifa22$weight_kg, fifa22$height_cm, xlab = "Poids (kg)", ylab = "Taille (cm)", main = "Nuage de points poids et taille")
+```
+
+Ce graphique montre que le poids et la taille vont dans la même direction. 
+
+```{r}
+cor(fifa22[, c("height_cm", "weight_kg", "wage_eur", "potential", "skill_dribbling")])
+```
+
+S'il y a des données manquantes, R ignore le calcul du coefficient de corrélation et renvoie la NA qui signifie Not AVailable. Il faut que les observartions soient complètes pour que le coefficient de corrélation soit calculé. 
+Nous pouvons indiquer explicitement à R d'ignorer les données et ne calculer le coefficient que sur les données complètes. On utilise l'argument use = "complete.obs" pour indiquer que R ne prenne les lignes qui n'ont pas de données manquantes.
+
+```{r}
+cor(fifa22[, c("height_cm", "weight_kg", "wage_eur", "potential", "skill_dribbling")], 
+    use = "complete.obs")
+```
+
+
+
+
+
