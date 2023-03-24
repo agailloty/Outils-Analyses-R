@@ -30,9 +30,6 @@ On calcule le test d'indépendance du Khi-2 pour déterminer si deux variables q
 
 ## Lire, préparer et décrire le jeu de données 
 
-
-
-
 ## Lire le jeu de données mental_health_survey.xlsx avec R 
 
 ```{r}
@@ -117,6 +114,19 @@ str(mental_health)
 summary(mental_health)
 ```
 
+```{r}
+table(mental_health$HAS_INTERNET)
+```
+
+```{r}
+sum(mental_health$HAS_INTERNET == 1)
+```
+
+```{r}
+table(mental_health$REGION)
+```
+
+
 Dans cette enquête 80 personnes des répondants ont plus de 60 ans. 107 personnes ne travaillent pas (EMPLOYED).
 
 
@@ -132,6 +142,7 @@ library(FactoMineR)
 
 ```{r}
 quali_sup <- c("REGION", "DEVICE_TYPE")
+
 # L'argument quali.sup attend les positions de ces variables dans la matrice des données
 idx_quali_sup <- match(quali_sup, colnames(mental_health))
 
@@ -180,6 +191,7 @@ dimdesc(premiere_acm, axe = 1)
 
 L'axe 1 oppose des personnes qui ont fait le choix de ne pas répondre à certaines questions clés du questionnaire comme le fait d'être fatiguée, avoir un comportement compulsif aux personnes qui ont un état mentale stable. 
 
+
 ```{r}
 dimdesc(premiere_acm, axe = 2)
 ```
@@ -191,23 +203,35 @@ dimdesc(premiere_acm, axe = 3)
 ```{r fig.height=5, fig.width=10}
 plot(premiere_acm, axes = c(1,2), choix = "var")
 ```
+
+
 ```{r fig.height=5, fig.width=10}
 plot(premiere_acm, axes = c(3,4), choix = "var")
 ```
 
 # Réaliser une classification ascendante hiérarchique 
 
-Réaliser une CAH à partir des résultats de l’ACM, laisser FactoMineR décider du nombre optimal de
-cluster à former.
+Réaliser une CAH à partir des résultats de l’ACM, laisser FactoMineR décider du nombre optimal de 
+cluster à former
 
 ```{r warning=FALSE}
 classif <- HCPC(premiere_acm, nb.clust = -1, graph = FALSE)
 ```
 
+On peut décrire les cluster par composantes ou par la fréquence des individus dans chaque modalité.
 
-La colonne Cla/Mod indique pour chaque variable (et chaque modalité) le % des individus représentés. Par exemple pour DEPRESSION=DEPRESSION_0, Cla/Mod = 96.77, cela indique que les individus du cluster 1 ont répondu dans l'enquête qu'ils ne sont pas dépressif (DEPRESSION = 0). 
+```{r}
+classif$desc.axes
+```
 
-La colonne Mod/Class indique le % de la modalité DEPRESSION=0 dans la classe. Sur tous les répondants, 89.55% des personnes ayant répondu DEPRESSION=0 se trouvent dans la classe 1. 
+Probabilité d'appartenir au cluster 1 sachant qu'on a répondu DEPRESSION = 0 => Cla/Mod => P(Cluster=1 / DEPRESSION =0)
+Probabilité d'avoir déclaré ne pas être dépressif sachant qu'on appartient au cluster 1 => Mod/Cla => P(DEPRESSION =0 / Cluster=1) 
+Probailité d'avoir répondu DEPRESSION=0 => Global => P(DEPRESSION = 0)
+
+La p.value et le v.test sont liés. 
+Si le v.test > |2.96| alors le lien est significatif. 
+Le signe du v.test indique la sous représentation ou la surreprésentation de la modalité dans la classe.
+
 
 ```{r}
 classif$desc.var$category
@@ -218,50 +242,31 @@ library(factoextra)
 fviz_cluster(classif)
 ```
 
-## Refaire l'ACM en enlevant l'individu 334 du jeu de données
-
-```{r}
+```{r warning=FALSE}
 mental_health <- mental_health[1:333,]
-```
-
-
-```{r}
 seconde_acm <- MCA(mental_health, quanti.sup = idx_quanti_sup, quali.sup = idx_quali_sup, graph = FALSE)
-```
-
-```{r}
 classif2 <- HCPC(seconde_acm, nb.clust = -1, graph = FALSE)
 ```
 
+
+```{r}
+classif2$desc.var$category
+```
 
 ```{r}
 fviz_cluster(classif2)
 ```
 
 ```{r}
-classif2$desc.var$category
+plot(classif2)
 ```
 
-On peut aussi décrire les individus par composante
-
 ```{r}
-classif2$desc.axes
-```
-
-Les individus du cluster 1 ont en moyenne une coordonnée positive sur la composante 4. Nous pouvons afficher ce que mesure la composante 4. Les variables qui entrent dans la composition de cette composante. 
-
-```{r}
-seconde_acm$var$contrib[, 4]
-```
-
-Afficher les coordonnées (les variables qui s'opposent sur cette composante).
-
-```{r}
-seconde_acm$var$coord[, 4]
+classif3 <- HCPC(seconde_acm, nb.clust = 4, graph = FALSE)
 ```
 
 
 ```{r}
-dimdesc(seconde_acm, axe = 1)
+fviz_cluster(classif3)
 ```
 
