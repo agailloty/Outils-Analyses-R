@@ -1,0 +1,267 @@
+---
+title: "TD 5 ACM Groupe 5"
+author: "Axel-Cleris Gailloty"
+date: "2023-03-17"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Généralité de la méthode 
+
+## Définir l’analyse des correspondances multiples 
+
+L'ACM est une méthode d'analyse factorielle qui s'utilise sur les données d'enquêtes. Elle est pour données discrètes (qualitatives) ce que l'ACP est aux données quantitatives.
+
+## Sur quel type de données utilise-t-on l’ACM ? 
+
+L'ACM se fait sur des données qualitatives.
+
+## Qu’est-ce qu’un tableau disjonctif complet ? 
+
+C'est une transformation qu'on opère sur le jeu de données initial qui consiste à éclater toutes les modalités contenues dans dans les variables. Chaque modalité devient une variable. 
+
+
+## Comment mesure-t-on le degré d’association entre deux variables qualitatives ? 
+
+On calcule le test d'indépendance du Khi-2 pour déterminer si deux variables qualitatives sont liées entre elles. 
+
+## Lire, préparer et décrire le jeu de données 
+
+
+
+
+## Lire le jeu de données mental_health_survey.xlsx avec R 
+
+```{r}
+library(readxl)
+mental_health_survey <- read.csv("https://raw.githubusercontent.com/agailloty/Outils-Analyses-R/main/TD5/mental_health.csv")
+```
+
+
+## Combien d’observation il y a-t-il dans le jeu de données ? Combien de variables? 
+Le jeu de données est composé de 334 observations et de 31 variables. 
+
+```{r}
+str(mental_health_survey)
+```
+
+## Afficher les noms des colonnes du jeu de données 
+
+```{r}
+colnames(mental_health_survey)
+```
+
+## Renommer les colonnes 
+
+• I am currently employed at least part-time : EMPLOYED 
+• I identify as having a mental illness : MENTAL_ILLNESS 
+• Education : EDUCATION 
+• I have my own computer separate from a smart phone : OWN_COMPUTER 
+• I have been hospitalized before for my mental illness : HOSPITALIZED 
+• How many days were you hospitalized for your mental illness : DAYS_HOSPITALIZED 
+• I am legally disabled : DISABLED 
+• I have my regular access to the internet : HAS_INTERNET 
+• I live with my parents : LIVE_WITH_PARENTS 
+• I have a gap in my resume : GAP_RESUME 
+• Total length of any gaps in my resume in months. : GAP_LENGTH 
+• Annual income (including any social welfare programs) in USD : ANNUAL_INCOME 
+• I am unemployed : UNEMPLOYED 
+• I read outside of work and school : READ_OUTSIDE 
+• Annual income from social welfare programs : ANNUAL_SOCIAL_WELFARE_INCOME 
+• I receive food stamps : RECEIVE_FOOD_STAMPS 
+• I am on section 8 housing : SECTION_8_HOUSING 
+• How many times were you hospitalized for your mental illness : TIMES_HOSPITALIZED 
+• Lack of concentration : LACK_CONCENTRATION 
+• Anxiety : ANXIETY 
+• Depression : DEPRESSION 
+• Obsessive thinking : OBSESSIVE_THINKING 
+• Mood swings : MOOD_SWINGS 
+• Panic attacks : PANIC_ATTACKS 
+• Compulsive behavior : COMPULSIVE_BEHAVIOR 
+• Tiredness: TIREDNESS 
+• Age : AGE 
+• Gender : GENDER 
+• Household Income : HOUSEHOLD_INCOME 
+• Region : REGION 
+• Device Type : DEVICE_TYPE 
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+
+mental_health <- read.csv("https://raw.githubusercontent.com/agailloty/Outils-Analyses-R/main/TD5/mental_health.csv")
+```
+
+
+## Convertir toutes les colonnes non-numériques en facteur 
+
+```{r}
+str(mental_health)
+```
+```{r}
+num_cols <- c("DAYS_HOSPITALIZED", "GAP_LENGTH", "ANNUAL_INCOME", "ANNUAL_SOCIAL_WELFARE_INCOME", "TIMES_HOSPITALIZED")
+non_num_cols <- setdiff(colnames(mental_health), num_cols)
+mental_health[non_num_cols] <- lapply(mental_health[non_num_cols], factor)
+```
+
+```{r}
+str(mental_health)
+```
+
+
+## Décrire brièvement le jeu de données 
+
+```{r}
+summary(mental_health)
+```
+
+Dans cette enquête 80 personnes des répondants ont plus de 60 ans. 107 personnes ne travaillent pas (EMPLOYED).
+
+
+# Réaliser une ACM avec FactoMineR 
+
+On utilise une fonction qui s'appelle MCA
+La fonction attend à ce qu'on lui fournisse en argument une matrice qui contient le jeu de données, les positions des variables quanti supplémentaires et des variables quali supplémentaires. 
+
+
+```{r message=FALSE, warning=FALSE}
+library(FactoMineR)
+```
+
+```{r}
+quali_sup <- c("REGION", "DEVICE_TYPE")
+# L'argument quali.sup attend les positions de ces variables dans la matrice des données
+idx_quali_sup <- match(quali_sup, colnames(mental_health))
+
+idx_quanti_sup <- match(num_cols, colnames(mental_health))
+
+premiere_acm <- MCA(mental_health, quanti.sup = idx_quanti_sup, quali.sup = idx_quali_sup, graph = FALSE)
+
+```
+
+
+## Combien de dimensions faut-il retenir dans l’ACM ? 
+
+La règle de Kaiser-Guttman ne s'apploque pas pour une ACM. Nous retenons le nombre de composantes qui selon nous résume suffisamment la variance du jeu de données initial. 
+
+Dans notre cas nous allons prendre 4 composantes.
+
+```{r}
+summary(premiere_acm)
+```
+
+## Quel % de la variance arrive-t-on à expliquer avec les dimensions retenues ? 
+
+Les 4 composantes que nous retenons dans l'analyse expliquent environ 34% de la variance du jeu de données initial. 
+
+## Combien de variables il y avait-il dans le jeu de données initial et combien de variables il y a-t-il dans l’ACM ? 
+
+Dans le jeu de données il y a 31 variables. En enlevant les variables quantitatives supplémentaires "DAYS_HOSPITALIZED" "GAP_LENGTH" "ANNUAL_INCOME" "ANNUAL_SOCIAL_WELFARE_INCOME" "TIMES_HOSPITALIZED" et les variables qualitatives supplémentaires "REGION" "DEVICE_TYPE", il reste 24 variables dans l'ACM.
+
+Si on explore l'objet `premiere_acm` on observerait qu'il y a plus que 24 variables dans l'ACM car chaque modalité de chaque variable initiale est éclatée (disjonctée) au moment de réaliser l'ACP. 
+
+Nous verrons chacune des modalités éclatée dans la description des dimensions.
+
+
+## Décrire les dimensions retenues dans l’analyse 
+
+Nous avons retenu 4 dimensions (composantes, axes) dans l'analyse. Nous pouvons utiliser la fonction `dimdesc` pour produire des statistiques sur chacune des dimensions. 
+
+### Dimension 1
+
+Plus le R2 d'une variable est élevé, plus cette variable entre dans la composition de l'axe. Par exemple les variables OBSESSIVE_THINKING, PANIC_ATTACKS, MOOD_SWINGS ont des R2 très proche de 1 sur l'axe 1, cela veut dire que l'axe 1 met en évidence le cacarctère maladif des répondants de l'enquête.
+
+
+```{r}
+dimdesc(premiere_acm, axe = 1)
+```
+
+L'axe 1 oppose des personnes qui ont fait le choix de ne pas répondre à certaines questions clés du questionnaire comme le fait d'être fatiguée, avoir un comportement compulsif aux personnes qui ont un état mentale stable. 
+
+```{r}
+dimdesc(premiere_acm, axe = 2)
+```
+
+```{r}
+dimdesc(premiere_acm, axe = 3)
+```
+
+```{r fig.height=5, fig.width=10}
+plot(premiere_acm, axes = c(1,2), choix = "var")
+```
+```{r fig.height=5, fig.width=10}
+plot(premiere_acm, axes = c(3,4), choix = "var")
+```
+
+# Réaliser une classification ascendante hiérarchique 
+
+Réaliser une CAH à partir des résultats de l’ACM, laisser FactoMineR décider du nombre optimal de
+cluster à former.
+
+```{r warning=FALSE}
+classif <- HCPC(premiere_acm, nb.clust = -1, graph = FALSE)
+```
+
+
+La colonne Cla/Mod indique pour chaque variable (et chaque modalité) le % des individus représentés. Par exemple pour DEPRESSION=DEPRESSION_0, Cla/Mod = 96.77, cela indique que les individus du cluster 1 ont répondu dans l'enquête qu'ils ne sont pas dépressif (DEPRESSION = 0). 
+
+La colonne Mod/Class indique le % de la modalité DEPRESSION=0 dans la classe. Sur tous les répondants, 89.55% des personnes ayant répondu DEPRESSION=0 se trouvent dans la classe 1. 
+
+```{r}
+classif$desc.var$category
+```
+
+```{r}
+library(factoextra)
+fviz_cluster(classif)
+```
+
+## Refaire l'ACM en enlevant l'individu 334 du jeu de données
+
+```{r}
+mental_health <- mental_health[1:333,]
+```
+
+
+```{r}
+seconde_acm <- MCA(mental_health, quanti.sup = idx_quanti_sup, quali.sup = idx_quali_sup, graph = FALSE)
+```
+
+```{r}
+classif2 <- HCPC(seconde_acm, nb.clust = -1, graph = FALSE)
+```
+
+
+```{r}
+fviz_cluster(classif2)
+```
+
+```{r}
+classif2$desc.var$category
+```
+
+On peut aussi décrire les individus par composante
+
+```{r}
+classif2$desc.axes
+```
+
+Les individus du cluster 1 ont en moyenne une coordonnée positive sur la composante 4. Nous pouvons afficher ce que mesure la composante 4. Les variables qui entrent dans la composition de cette composante. 
+
+```{r}
+seconde_acm$var$contrib[, 4]
+```
+
+Afficher les coordonnées (les variables qui s'opposent sur cette composante).
+
+```{r}
+seconde_acm$var$coord[, 4]
+```
+
+
+```{r}
+dimdesc(seconde_acm, axe = 1)
+```
+
