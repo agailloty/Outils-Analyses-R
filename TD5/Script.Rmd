@@ -126,7 +126,11 @@ On utilise une fonction qui s'appelle MCA
 La fonction attend à ce qu'on lui fournisse en argument une matrice qui contient le jeu de données, les positions des variables quanti supplémentaires et des variables quali supplémentaires. 
 
 
+<<<<<<< HEAD
 ```{r message=FALSE, warning=FALSE}
+=======
+```{r}
+>>>>>>> 7376ee04bdd82cb810d96fead12a7d52cbe0663f
 library(FactoMineR)
 ```
 
@@ -184,6 +188,7 @@ L'axe 1 oppose des personnes qui ont fait le choix de ne pas répondre à certai
 dimdesc(premiere_acm, axe = 2)
 ```
 
+<<<<<<< HEAD
 ```{r}
 dimdesc(premiere_acm, axe = 3)
 ```
@@ -265,3 +270,9 @@ seconde_acm$var$coord[, 4]
 dimdesc(seconde_acm, axe = 1)
 ```
 
+=======
+
+Réaliser une classification ascendante hiérarchique 
+Réaliser une CAH à partir des résultats de l’ACM, laisser FactoMineR décider du nombre optimal de
+cluster à former.
+>>>>>>> 7376ee04bdd82cb810d96fead12a7d52cbe0663f
