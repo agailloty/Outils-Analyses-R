@@ -267,7 +267,7 @@ par chaque composante.
 
     fviz_screeplot(premiere_acp, main = "% de l'information expliquée par chaque composante.")
 
-![](README_files/figure-markdown_strict/unnamed-chunk-15-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-41-1.png)
 
 Il importe maintenant d’explorer le contenu de chacune des 4 composantes
 que nous avons retenues pour expliquer la variabilité des individus.
@@ -365,6 +365,20 @@ L, Insigne, M, Salah, P, Dybala*** à des joueurs comme ***É, Mendy, L,
 Hrádecký, Raphaelinho Anjos, P, Gulácsi, K, Trapp, A, Consigli, Unai
 Simón, K, Casteels, O, Baumann, S, Sirigu***.
 
+Opposition entre :
+
+    names(sort(premiere_acp$ind$coord[, 1], decreasing = TRUE))[1:10]
+
+     [1] "L, Messi"        "Neymar Jr"       "K, De Bruyne"    "Bruno Fernandes" "L, Modrić"       "A, Griezmann"    "K, Mbappé"      
+     [8] "L, Insigne"      "M, Salah"        "P, Dybala"      
+
+et
+
+    names(sort(premiere_acp$ind$coord[, 1], decreasing = FALSE))[1:10]
+
+     [1] "É, Mendy"          "L, Hrádecký"       "Raphaelinho Anjos" "P, Gulácsi"        "K, Trapp"          "A, Consigli"      
+     [7] "Unai Simón"        "K, Casteels"       "O, Baumann"        "S, Sirigu"        
+
 ### Composante 2
 
 La deuxième composante est fortement corrélée positivement avec des
@@ -437,6 +451,19 @@ Dias, J, Giménez, M, Škriniar*** à des joueurs comme ***L, Insigne, D,
 Mertens, L, Messi, Suso, A, Gómez, Neymar Jr, R, Mahrez, P, Dybala, K,
 Coman, E, Hazard***.
 
+Opposition entre :
+
+    names(sort(premiere_acp$ind$coord[, 2], decreasing = TRUE))[1:10]
+
+     [1] "K, Manolas"   "K, Koulibaly" "N, Süle"      "S, Savić"     "G, Chiellini" "Felipe"       "S, Coates"    "Rúben Dias"  
+     [9] "J, Giménez"   "M, Škriniar" 
+
+et
+
+    names(sort(premiere_acp$ind$coord[, 2], decreasing = FALSE))[1:10]
+
+     [1] "L, Insigne" "D, Mertens" "L, Messi"   "Suso"       "A, Gómez"   "Neymar Jr"  "R, Mahrez"  "P, Dybala"  "K, Coman"   "E, Hazard" 
+
 ### Représentation simultanée des axes 1 et 2
 
 #### Le cercle des corrélations.
@@ -449,7 +476,7 @@ entre les variables.
 
     Warning: ggrepel: 9 unlabeled data points (too many overlaps). Consider increasing max.overlaps
 
-![](README_files/figure-markdown_strict/unnamed-chunk-18-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-48-1.png)
 
 ### Composante 3
 
@@ -520,6 +547,11 @@ Lewandowski, H, Kane, B, Yılmaz, C, Immobile*** à des joueurs comme
 ***M, Verratti, Jesús Navas, R, Guerreiro, L, Insigne, J, Corona, Juan
 Bernat, Gayà, P, Foden, Rafa, M, Ødegaard***.
 
+    names(sort(premiere_acp$ind$coord[, 3], decreasing = FALSE))[1:10]
+
+     [1] "M, Verratti"  "Jesús Navas"  "R, Guerreiro" "L, Insigne"   "J, Corona"    "Juan Bernat"  "Gayà"         "P, Foden"    
+     [9] "Rafa"         "M, Ødegaard" 
+
 # Classification ascendate hiérarchique (CAH)
 
 ## Catégroriser les joueurs en groupes homogènes
@@ -542,280 +574,162 @@ description de chaque cluster.
 
     classif$desc.var$quanti$`1`
 
-                                    v.test Mean in category Overall mean sd in category   Overall sd
-    goalkeeping_diving           17.143431      8.37500e+01 2.001000e+01   2.896118e+00 2.521699e+01
-    goalkeeping_reflexes         17.140579      8.53250e+01 2.040000e+01   3.101512e+00 2.569008e+01
-    goalkeeping_handling         17.137652      8.15750e+01 1.981333e+01   3.254900e+00 2.444255e+01
-    height_cm                     7.561986      1.90675e+02 1.828333e+02   3.901202e+00 7.033175e+00
-    weight_kg                     7.056380      8.54750e+01 7.759667e+01   4.790551e+00 7.572361e+00
-    age                           3.189838      3.03750e+01 2.853000e+01   3.359222e+00 3.922894e+00
-    wage_eur                     -2.592203      8.16500e+04 1.075753e+05   5.937910e+04 6.783173e+04
-    value_eur                    -3.005434      3.32650e+07 4.577157e+07   3.036385e+07 2.822344e+07
-    movement_reactions           -3.489408      8.10000e+01 8.301000e+01   3.687818e+00 3.906819e+00
-    movement_agility             -9.823111      5.22250e+01 7.242667e+01   9.269540e+00 1.394816e+01
-    defending_sliding_tackle     -9.949500      1.45250e+01 5.380333e+01   3.114382e+00 2.677508e+01
-    movement_balance             -9.957564      4.56750e+01 6.933333e+01   8.716041e+00 1.611424e+01
-    power_shot_power            -10.037201      5.83250e+01 7.487667e+01   4.383991e+00 1.118428e+01
-    mentality_vision            -10.160249      5.37000e+01 7.336333e+01   1.018381e+01 1.312598e+01
-    mentality_interceptions     -10.342853      2.07500e+01 5.860000e+01   4.720964e+00 2.482015e+01
-    movement_sprint_speed       -10.600854      5.04500e+01 7.196333e+01   7.290233e+00 1.376403e+01
-    movement_acceleration       -10.695645      4.98250e+01 7.190000e+01   7.179441e+00 1.399821e+01
-    defending_standing_tackle   -10.871750      1.51250e+01 5.762333e+01   3.124000e+00 2.651254e+01
-    defending_marking_awareness -10.961482      1.83000e+01 5.810000e+01   5.988322e+00 2.462593e+01
-    mentality_penalties         -12.354041      2.40500e+01 6.044333e+01   9.259995e+00 1.997983e+01
-    skill_fk_accuracy           -12.534844      1.44250e+01 5.720000e+01   3.129597e+00 2.314462e+01
-    attacking_volleys           -13.008468      1.33250e+01 5.914667e+01   3.289282e+00 2.389041e+01
-    mentality_aggression        -13.023258      3.21500e+01 6.767000e+01   7.428156e+00 1.849832e+01
-    attacking_finishing         -13.267221      1.27750e+01 6.140667e+01   2.733930e+00 2.486097e+01
-    skill_long_passing          -13.679517      3.94250e+01 7.065000e+01   1.186357e+01 1.548141e+01
-    mentality_composure         -13.791917      6.19500e+01 7.928000e+01   7.148252e+00 8.522222e+00
-    power_long_shots            -13.969603      1.43250e+01 6.336000e+01   3.423357e+00 2.380680e+01
-    mentality_positioning       -14.076038      1.25000e+01 6.559000e+01   2.974895e+00 2.558063e+01
-    skill_curve                 -14.250505      1.53000e+01 6.497333e+01   4.290688e+00 2.364133e+01
-    attacking_heading_accuracy  -14.301447      1.47750e+01 6.224333e+01   4.782716e+00 2.251142e+01
-    attacking_crossing          -14.383234      1.45250e+01 6.402667e+01   3.464011e+00 2.334222e+01
-    power_stamina               -14.639414      3.82750e+01 7.339000e+01   5.108755e+00 1.626851e+01
-    skill_dribbling             -15.877012      1.67250e+01 7.064667e+01   5.590114e+00 2.303422e+01
-    attacking_short_passing     -15.936420      3.97000e+01 7.583333e+01   1.053613e+01 1.537787e+01
-    skill_ball_control          -16.346452      2.66250e+01 7.467000e+01   7.999023e+00 1.993442e+01
-                                     p.value
-    goalkeeping_diving          7.037327e-66
-    goalkeeping_reflexes        7.391108e-66
-    goalkeeping_handling        7.772638e-66
-    height_cm                   3.969623e-14
-    weight_kg                   1.708965e-12
-    age                         1.423524e-03
-    wage_eur                    9.536351e-03
-    value_eur                   2.652022e-03
-    movement_reactions          4.840924e-04
-    movement_agility            8.953669e-23
-    defending_sliding_tackle    2.534528e-23
-    movement_balance            2.337194e-23
-    power_shot_power            1.046004e-23
-    mentality_vision            2.983133e-24
-    mentality_interceptions     4.509108e-25
-    movement_sprint_speed       2.952711e-26
-    movement_acceleration       1.066744e-26
-    defending_standing_tackle   1.571564e-27
-    defending_marking_awareness 5.853310e-28
-    mentality_penalties         4.632464e-35
-    skill_fk_accuracy           4.813099e-36
-    attacking_volleys           1.095160e-38
-    mentality_aggression        9.023739e-39
-    attacking_finishing         3.586368e-40
-    skill_long_passing          1.345845e-42
-    mentality_composure         2.850819e-43
-    power_long_shots            2.389544e-44
-    mentality_positioning       5.331635e-45
-    skill_curve                 4.450498e-46
-    attacking_heading_accuracy  2.143079e-46
-    attacking_crossing          6.593949e-47
-    power_stamina               1.574195e-48
-    skill_dribbling             9.143160e-57
-    attacking_short_passing     3.540678e-57
-    skill_ball_control          4.610540e-60
+                                    v.test Mean in category Overall mean sd in category   Overall sd      p.value
+    goalkeeping_diving           17.143431      8.37500e+01 2.001000e+01   2.896118e+00 2.521699e+01 7.037327e-66
+    goalkeeping_reflexes         17.140579      8.53250e+01 2.040000e+01   3.101512e+00 2.569008e+01 7.391108e-66
+    goalkeeping_handling         17.137652      8.15750e+01 1.981333e+01   3.254900e+00 2.444255e+01 7.772638e-66
+    height_cm                     7.561986      1.90675e+02 1.828333e+02   3.901202e+00 7.033175e+00 3.969623e-14
+    weight_kg                     7.056380      8.54750e+01 7.759667e+01   4.790551e+00 7.572361e+00 1.708965e-12
+    age                           3.189838      3.03750e+01 2.853000e+01   3.359222e+00 3.922894e+00 1.423524e-03
+    wage_eur                     -2.592203      8.16500e+04 1.075753e+05   5.937910e+04 6.783173e+04 9.536351e-03
+    value_eur                    -3.005434      3.32650e+07 4.577157e+07   3.036385e+07 2.822344e+07 2.652022e-03
+    movement_reactions           -3.489408      8.10000e+01 8.301000e+01   3.687818e+00 3.906819e+00 4.840924e-04
+    movement_agility             -9.823111      5.22250e+01 7.242667e+01   9.269540e+00 1.394816e+01 8.953669e-23
+    defending_sliding_tackle     -9.949500      1.45250e+01 5.380333e+01   3.114382e+00 2.677508e+01 2.534528e-23
+    movement_balance             -9.957564      4.56750e+01 6.933333e+01   8.716041e+00 1.611424e+01 2.337194e-23
+    power_shot_power            -10.037201      5.83250e+01 7.487667e+01   4.383991e+00 1.118428e+01 1.046004e-23
+    mentality_vision            -10.160249      5.37000e+01 7.336333e+01   1.018381e+01 1.312598e+01 2.983133e-24
+    mentality_interceptions     -10.342853      2.07500e+01 5.860000e+01   4.720964e+00 2.482015e+01 4.509108e-25
+    movement_sprint_speed       -10.600854      5.04500e+01 7.196333e+01   7.290233e+00 1.376403e+01 2.952711e-26
+    movement_acceleration       -10.695645      4.98250e+01 7.190000e+01   7.179441e+00 1.399821e+01 1.066744e-26
+    defending_standing_tackle   -10.871750      1.51250e+01 5.762333e+01   3.124000e+00 2.651254e+01 1.571564e-27
+    defending_marking_awareness -10.961482      1.83000e+01 5.810000e+01   5.988322e+00 2.462593e+01 5.853310e-28
+    mentality_penalties         -12.354041      2.40500e+01 6.044333e+01   9.259995e+00 1.997983e+01 4.632464e-35
+    skill_fk_accuracy           -12.534844      1.44250e+01 5.720000e+01   3.129597e+00 2.314462e+01 4.813099e-36
+    attacking_volleys           -13.008468      1.33250e+01 5.914667e+01   3.289282e+00 2.389041e+01 1.095160e-38
+    mentality_aggression        -13.023258      3.21500e+01 6.767000e+01   7.428156e+00 1.849832e+01 9.023739e-39
+    attacking_finishing         -13.267221      1.27750e+01 6.140667e+01   2.733930e+00 2.486097e+01 3.586368e-40
+    skill_long_passing          -13.679517      3.94250e+01 7.065000e+01   1.186357e+01 1.548141e+01 1.345845e-42
+    mentality_composure         -13.791917      6.19500e+01 7.928000e+01   7.148252e+00 8.522222e+00 2.850819e-43
+    power_long_shots            -13.969603      1.43250e+01 6.336000e+01   3.423357e+00 2.380680e+01 2.389544e-44
+    mentality_positioning       -14.076038      1.25000e+01 6.559000e+01   2.974895e+00 2.558063e+01 5.331635e-45
+    skill_curve                 -14.250505      1.53000e+01 6.497333e+01   4.290688e+00 2.364133e+01 4.450498e-46
+    attacking_heading_accuracy  -14.301447      1.47750e+01 6.224333e+01   4.782716e+00 2.251142e+01 2.143079e-46
+    attacking_crossing          -14.383234      1.45250e+01 6.402667e+01   3.464011e+00 2.334222e+01 6.593949e-47
+    power_stamina               -14.639414      3.82750e+01 7.339000e+01   5.108755e+00 1.626851e+01 1.574195e-48
+    skill_dribbling             -15.877012      1.67250e+01 7.064667e+01   5.590114e+00 2.303422e+01 9.143160e-57
+    attacking_short_passing     -15.936420      3.97000e+01 7.583333e+01   1.053613e+01 1.537787e+01 3.540678e-57
+    skill_ball_control          -16.346452      2.66250e+01 7.467000e+01   7.999023e+00 1.993442e+01 4.610540e-60
 
     rownames(fifa300)[classif$data.clust$clust == 1]
 
-     [1] "J, Oblak"          "M, Neuer"          "M, ter Stegen"     "T, Courtois"      
-     [5] "Ederson"           "Alisson"           "G, Donnarumma"     "K, Navas"         
-     [9] "H, Lloris"         "W, Szczęsny"       "S, Handanovič"     "K, Casteels"      
-    [13] "K, Schmeichel"     "Y, Sommer"         "P, Gulácsi"        "De Gea"           
-    [17] "E, Martínez"       "M, Maignan"        "Sergio Asenjo"     "L, Hrádecký"      
-    [21] "B, Leno"           "N, Pope"           "J, Pickford"       "É, Mendy"         
-    [25] "Ł, Fabiański"      "S, Sirigu"         "Rui Patrício"      "K, Trapp"         
-    [29] "A, Areola"         "O, Baumann"        "Neto"              "A, Lopes"         
-    [33] "Y, Bounou"         "P, Gollini"        "Raphaelinho Anjos" "Unai Simón"       
+     [1] "J, Oblak"          "M, Neuer"          "M, ter Stegen"     "T, Courtois"       "Ederson"           "Alisson"          
+     [7] "G, Donnarumma"     "K, Navas"          "H, Lloris"         "W, Szczęsny"       "S, Handanovič"     "K, Casteels"      
+    [13] "K, Schmeichel"     "Y, Sommer"         "P, Gulácsi"        "De Gea"            "E, Martínez"       "M, Maignan"       
+    [19] "Sergio Asenjo"     "L, Hrádecký"       "B, Leno"           "N, Pope"           "J, Pickford"       "É, Mendy"         
+    [25] "Ł, Fabiański"      "S, Sirigu"         "Rui Patrício"      "K, Trapp"          "A, Areola"         "O, Baumann"       
+    [31] "Neto"              "A, Lopes"          "Y, Bounou"         "P, Gollini"        "Raphaelinho Anjos" "Unai Simón"       
     [37] "D, Livaković"      "A, Consigli"       "S, Mandanda"       "Adán"             
 
 ### Cluster 2
 
     classif$desc.var$quanti$`2`
 
-                                    v.test Mean in category Overall mean sd in category   Overall sd
-    defending                     8.827052        84.169811     64.40000       5.023476    17.939565
-    defending_marking_awareness   8.657473        84.716981     58.10000       6.539798    24.625935
-    defending_sliding_tackle      8.519803        82.283019     53.80333       7.761485    26.775075
-    defending_standing_tackle     8.327932        85.188679     57.62333       3.576952    26.512540
-    power_strength                8.207443        84.283019     72.61000       4.834535    11.392010
-    mentality_interceptions       7.977785        83.320755     58.60000       7.449892    24.820153
-    attacking_heading_accuracy    7.063251        82.094340     62.24333       3.778110    22.511422
-    physic                        7.062809        81.415094     74.42308       3.657166     7.929578
-    mentality_aggression          6.695154        83.132075     67.67000       4.710637    18.498318
-    height_cm                     6.528797       188.566038    182.83333       3.531580     7.033175
-    power_jumping                 6.055406        81.452830     71.79333       9.151896    12.777218
-    weight_kg                     5.935055        83.207547     77.59667       6.122518     7.572361
-    wage_eur                     -1.964907     90935.382091 107575.25084   48984.887473 67831.729470
-    skill_dribbling              -2.481884        63.509434     70.64667       6.943499    23.034217
-    goalkeeping_handling         -3.160197        10.169811     19.81333       3.148739    24.442555
-    goalkeeping_diving           -3.197531         9.943396     20.01000       3.316142    25.216990
-    goalkeeping_reflexes         -3.289660         9.849057     20.40000       3.092268    25.690076
-    movement_acceleration        -3.624331        65.566038     71.90000      11.117739    13.998214
-    mentality_penalties          -4.050552        50.339623     60.44333      12.471769    19.979826
-    attacking_crossing           -4.055720        52.207547     64.02667      13.873225    23.342221
-    power_long_shots             -5.015558        48.452830     63.36000      13.568229    23.806800
-    skill_fk_accuracy            -5.168981        42.264151     57.20000      14.986977    23.144618
-    skill_curve                  -5.207323        49.603774     64.97333      11.063009    23.641333
-    mentality_positioning        -5.596439        47.716981     65.59000      14.648559    25.580629
-    attacking_finishing          -5.796636        43.415094     61.40667      12.994097    24.860973
-    attacking_volleys            -5.913326        41.509434     59.14667      12.785048    23.890413
-    power_shot_power             -6.708545        65.509434     74.87667      11.372961    11.184280
-    movement_agility             -7.461181        59.433962     72.42667       9.417986    13.948164
-    mentality_vision             -7.521446        61.037736     73.36333      10.777269    13.125979
-    movement_balance             -7.546668        54.150943     69.33333      10.222794    16.114245
-    passing                     -12.113089        64.849057     76.24231       6.940165     7.533865
-    shooting                    -13.435496        49.320755     71.00385      10.364623    12.926845
-    dribbling                   -13.969326        67.226415     79.60769       4.920659     7.099292
-                                     p.value
-    defending                   1.074713e-18
-    defending_marking_awareness 4.823397e-18
-    defending_sliding_tackle    1.598252e-17
-    defending_standing_tackle   8.226690e-17
-    power_strength              2.259489e-16
-    mentality_interceptions     1.489827e-15
-    attacking_heading_accuracy  1.626514e-12
-    physic                      1.631695e-12
-    mentality_aggression        2.154439e-11
-    height_cm                   6.630010e-11
-    power_jumping               1.400639e-09
-    weight_kg                   2.937471e-09
-    wage_eur                    4.942497e-02
-    skill_dribbling             1.306899e-02
-    goalkeeping_handling        1.576626e-03
-    goalkeeping_diving          1.386094e-03
-    goalkeeping_reflexes        1.003087e-03
-    movement_acceleration       2.897100e-04
-    mentality_penalties         5.109688e-05
-    attacking_crossing          4.998004e-05
-    power_long_shots            5.287987e-07
-    skill_fk_accuracy           2.353735e-07
-    skill_curve                 1.915844e-07
-    mentality_positioning       2.187996e-08
-    attacking_finishing         6.765817e-09
-    attacking_volleys           3.352671e-09
-    power_shot_power            1.965748e-11
-    movement_agility            8.575060e-14
-    mentality_vision            5.417378e-14
-    movement_balance            4.465356e-14
-    passing                     9.003815e-34
-    shooting                    3.745488e-41
-    dribbling                   2.398861e-44
+                                    v.test Mean in category Overall mean sd in category   Overall sd      p.value
+    defending                     8.827052        84.169811     64.40000       5.023476    17.939565 1.074713e-18
+    defending_marking_awareness   8.657473        84.716981     58.10000       6.539798    24.625935 4.823397e-18
+    defending_sliding_tackle      8.519803        82.283019     53.80333       7.761485    26.775075 1.598252e-17
+    defending_standing_tackle     8.327932        85.188679     57.62333       3.576952    26.512540 8.226690e-17
+    power_strength                8.207443        84.283019     72.61000       4.834535    11.392010 2.259489e-16
+    mentality_interceptions       7.977785        83.320755     58.60000       7.449892    24.820153 1.489827e-15
+    attacking_heading_accuracy    7.063251        82.094340     62.24333       3.778110    22.511422 1.626514e-12
+    physic                        7.062809        81.415094     74.42308       3.657166     7.929578 1.631695e-12
+    mentality_aggression          6.695154        83.132075     67.67000       4.710637    18.498318 2.154439e-11
+    height_cm                     6.528797       188.566038    182.83333       3.531580     7.033175 6.630010e-11
+    power_jumping                 6.055406        81.452830     71.79333       9.151896    12.777218 1.400639e-09
+    weight_kg                     5.935055        83.207547     77.59667       6.122518     7.572361 2.937471e-09
+    wage_eur                     -1.964907     90935.382091 107575.25084   48984.887473 67831.729470 4.942497e-02
+    skill_dribbling              -2.481884        63.509434     70.64667       6.943499    23.034217 1.306899e-02
+    goalkeeping_handling         -3.160197        10.169811     19.81333       3.148739    24.442555 1.576626e-03
+    goalkeeping_diving           -3.197531         9.943396     20.01000       3.316142    25.216990 1.386094e-03
+    goalkeeping_reflexes         -3.289660         9.849057     20.40000       3.092268    25.690076 1.003087e-03
+    movement_acceleration        -3.624331        65.566038     71.90000      11.117739    13.998214 2.897100e-04
+    mentality_penalties          -4.050552        50.339623     60.44333      12.471769    19.979826 5.109688e-05
+    attacking_crossing           -4.055720        52.207547     64.02667      13.873225    23.342221 4.998004e-05
+    power_long_shots             -5.015558        48.452830     63.36000      13.568229    23.806800 5.287987e-07
+    skill_fk_accuracy            -5.168981        42.264151     57.20000      14.986977    23.144618 2.353735e-07
+    skill_curve                  -5.207323        49.603774     64.97333      11.063009    23.641333 1.915844e-07
+    mentality_positioning        -5.596439        47.716981     65.59000      14.648559    25.580629 2.187996e-08
+    attacking_finishing          -5.796636        43.415094     61.40667      12.994097    24.860973 6.765817e-09
+    attacking_volleys            -5.913326        41.509434     59.14667      12.785048    23.890413 3.352671e-09
+    power_shot_power             -6.708545        65.509434     74.87667      11.372961    11.184280 1.965748e-11
+    movement_agility             -7.461181        59.433962     72.42667       9.417986    13.948164 8.575060e-14
+    mentality_vision             -7.521446        61.037736     73.36333      10.777269    13.125979 5.417378e-14
+    movement_balance             -7.546668        54.150943     69.33333      10.222794    16.114245 4.465356e-14
+    passing                     -12.113089        64.849057     76.24231       6.940165     7.533865 9.003815e-34
+    shooting                    -13.435496        49.320755     71.00385      10.364623    12.926845 3.745488e-41
+    dribbling                   -13.969326        67.226415     79.60769       4.920659     7.099292 2.398861e-44
 
     rownames(fifa300)[classif$data.clust$clust == 2]
 
-     [1] "V, van Dijk"      "Marquinhos"       "Rúben Dias"       "G, Chiellini"     "M, Hummels"      
-     [6] "K, Koulibaly"     "R, Varane"        "A, Laporte"       "M, Škriniar"      "Thiago Silva"    
-    [11] "L, Bonucci"       "S, de Vrij"       "W, Ndidi"         "M, de Ligt"       "Piqué"           
-    [16] "H, Maguire"       "S, Savić"         "M, Ginter"        "Felipe"           "J, Giménez"      
-    [21] "S, Kjær"          "J, Boateng"       "T, Alderweireld"  "K, Manolas"       "J, Matip"        
-    [26] "S, Coates"        "F, Acerbi"        "J, Stones"        "A, Rüdiger"       "L, Hernández"    
-    [31] "W, Weghorst"      "P, Kimpembe"      "J, Koundé"        "Pepe"             "Raúl Albiol"     
-    [36] "Gabriel Paulista" "A, Romagnoli"     "N, Süle"          "Diego Carlos"     "C, Lenglet"      
-    [41] "J, Gomez"         "Palhinha"         "D, Upamecano"     "Mario Hermoso"    "Josué Chiamulera"
-    [46] "C, Romero"        "D, Dumfries"      "D, Rice"          "T, Souček"        "Éder Militão"    
-    [51] "Pau Torres"       "José Fonte"       "J, Vertonghen"   
+     [1] "V, van Dijk"      "Marquinhos"       "Rúben Dias"       "G, Chiellini"     "M, Hummels"       "K, Koulibaly"    
+     [7] "R, Varane"        "A, Laporte"       "M, Škriniar"      "Thiago Silva"     "L, Bonucci"       "S, de Vrij"      
+    [13] "W, Ndidi"         "M, de Ligt"       "Piqué"            "H, Maguire"       "S, Savić"         "M, Ginter"       
+    [19] "Felipe"           "J, Giménez"       "S, Kjær"          "J, Boateng"       "T, Alderweireld"  "K, Manolas"      
+    [25] "J, Matip"         "S, Coates"        "F, Acerbi"        "J, Stones"        "A, Rüdiger"       "L, Hernández"    
+    [31] "W, Weghorst"      "P, Kimpembe"      "J, Koundé"        "Pepe"             "Raúl Albiol"      "Gabriel Paulista"
+    [37] "A, Romagnoli"     "N, Süle"          "Diego Carlos"     "C, Lenglet"       "J, Gomez"         "Palhinha"        
+    [43] "D, Upamecano"     "Mario Hermoso"    "Josué Chiamulera" "C, Romero"        "D, Dumfries"      "D, Rice"         
+    [49] "T, Souček"        "Éder Militão"     "Pau Torres"       "José Fonte"       "J, Vertonghen"   
 
 ### Cluster 3
 
     classif$desc.var$quanti$`3`
 
-                                   v.test Mean in category Overall mean sd in category Overall sd
-    mentality_interceptions      9.998403         79.52083     58.60000       5.458135  24.820153
-    defending_sliding_tackle     9.893607         76.13542     53.80333       7.329478  26.775075
-    defending_standing_tackle    9.755196         79.42708     57.62333       5.576634  26.512540
-    defending_marking_awareness  9.159045         77.11458     58.10000       6.304545  24.625935
-    defending                    8.517305         77.28125     64.40000       5.353549  17.939565
-    power_stamina                8.077910         84.46875     73.39000       6.528708  16.268515
-    skill_long_passing           7.203932         80.05208     70.65000       6.584973  15.481414
-    attacking_crossing           6.640375         77.09375     64.02667       7.937356  23.342221
-    mentality_aggression         6.590661         77.94792     67.67000       7.755871  18.498318
-    attacking_short_passing      6.170920         83.83333     75.83333       3.676124  15.377870
-    skill_curve                  5.856634         76.64583     64.97333       8.025972  23.641333
-    passing                      5.686815         79.85417     76.24231       4.476744   7.533865
-    mentality_vision             5.564535         79.52083     73.36333       6.218218  13.125979
-    skill_dribbling              5.079544         80.51042     70.64667       4.819653  23.034217
-    skill_ball_control           5.068327         83.18750     74.67000       3.468046  19.934420
-    movement_balance             5.060796         76.20833     69.33333       9.040322  16.114245
-    power_long_shots             4.901830         73.19792     63.36000       9.859027  23.806800
-    mentality_positioning        4.754749         75.84375     65.59000       5.732452  25.580629
-    skill_fk_accuracy            4.750368         66.46875     57.20000      13.160035  23.144618
-    mentality_composure          3.756929         81.97917     79.28000       4.354067   8.522222
-    movement_agility             3.756424         76.84375     72.42667       7.565448  13.948164
-    power_shot_power             3.279437         77.96875     74.87667       6.676222  11.184280
-    attacking_volleys            2.983849         65.15625     59.14667      10.721210  23.890413
-    physic                       2.919905         76.37500     74.42308       6.397021   7.929578
-    attacking_finishing          2.837739         67.35417     61.40667       9.330706  24.860973
-    attacking_heading_accuracy   2.704031         67.37500     62.24333      10.347353  22.511422
-    dribbling                    2.256737         80.95833     79.60769       3.777446   7.099292
-    movement_acceleration        2.185561         74.47917     71.90000      10.729612  13.998214
-    mentality_penalties          2.130133         64.03125     60.44333      12.786266  19.979826
-    goalkeeping_diving          -4.571457         10.29167     20.01000       3.168585  25.216990
-    goalkeeping_reflexes        -4.614442         10.40625     20.40000       3.012398  25.690076
-    goalkeeping_handling        -4.676464         10.17708     19.81333       3.027632  24.442555
-    height_cm                   -5.288103        179.69792    182.83333       5.753839   7.033175
-    weight_kg                   -5.291438         74.21875     77.59667       5.824165   7.572361
-                                     p.value
-    mentality_interceptions     1.548740e-23
-    defending_sliding_tackle    4.437438e-23
-    defending_standing_tackle   1.752625e-22
-    defending_marking_awareness 5.235839e-20
-    defending                   1.633084e-17
-    power_stamina               6.588642e-16
-    skill_long_passing          5.850051e-13
-    attacking_crossing          3.128860e-11
-    mentality_aggression        4.378724e-11
-    attacking_short_passing     6.789371e-10
-    skill_curve                 4.723438e-09
-    passing                     1.294305e-08
-    mentality_vision            2.628530e-08
-    skill_dribbling             3.783419e-07
-    skill_ball_control          4.013266e-07
-    movement_balance            4.175088e-07
-    power_long_shots            9.494801e-07
-    mentality_positioning       1.986927e-06
-    skill_fk_accuracy           2.030465e-06
-    mentality_composure         1.720113e-04
-    movement_agility            1.723582e-04
-    power_shot_power            1.040145e-03
-    attacking_volleys           2.846472e-03
-    physic                      3.501378e-03
-    attacking_finishing         4.543430e-03
-    attacking_heading_accuracy  6.850394e-03
-    dribbling                   2.402449e-02
-    movement_acceleration       2.884775e-02
-    mentality_penalties         3.316062e-02
-    goalkeeping_diving          4.843437e-06
-    goalkeeping_reflexes        3.941522e-06
-    goalkeeping_handling        2.918639e-06
-    height_cm                   1.235911e-07
-    weight_kg                   1.213582e-07
+                                   v.test Mean in category Overall mean sd in category Overall sd      p.value
+    mentality_interceptions      9.998403         79.52083     58.60000       5.458135  24.820153 1.548740e-23
+    defending_sliding_tackle     9.893607         76.13542     53.80333       7.329478  26.775075 4.437438e-23
+    defending_standing_tackle    9.755196         79.42708     57.62333       5.576634  26.512540 1.752625e-22
+    defending_marking_awareness  9.159045         77.11458     58.10000       6.304545  24.625935 5.235839e-20
+    defending                    8.517305         77.28125     64.40000       5.353549  17.939565 1.633084e-17
+    power_stamina                8.077910         84.46875     73.39000       6.528708  16.268515 6.588642e-16
+    skill_long_passing           7.203932         80.05208     70.65000       6.584973  15.481414 5.850051e-13
+    attacking_crossing           6.640375         77.09375     64.02667       7.937356  23.342221 3.128860e-11
+    mentality_aggression         6.590661         77.94792     67.67000       7.755871  18.498318 4.378724e-11
+    attacking_short_passing      6.170920         83.83333     75.83333       3.676124  15.377870 6.789371e-10
+    skill_curve                  5.856634         76.64583     64.97333       8.025972  23.641333 4.723438e-09
+    passing                      5.686815         79.85417     76.24231       4.476744   7.533865 1.294305e-08
+    mentality_vision             5.564535         79.52083     73.36333       6.218218  13.125979 2.628530e-08
+    skill_dribbling              5.079544         80.51042     70.64667       4.819653  23.034217 3.783419e-07
+    skill_ball_control           5.068327         83.18750     74.67000       3.468046  19.934420 4.013266e-07
+    movement_balance             5.060796         76.20833     69.33333       9.040322  16.114245 4.175088e-07
+    power_long_shots             4.901830         73.19792     63.36000       9.859027  23.806800 9.494801e-07
+    mentality_positioning        4.754749         75.84375     65.59000       5.732452  25.580629 1.986927e-06
+    skill_fk_accuracy            4.750368         66.46875     57.20000      13.160035  23.144618 2.030465e-06
+    mentality_composure          3.756929         81.97917     79.28000       4.354067   8.522222 1.720113e-04
+    movement_agility             3.756424         76.84375     72.42667       7.565448  13.948164 1.723582e-04
+    power_shot_power             3.279437         77.96875     74.87667       6.676222  11.184280 1.040145e-03
+    attacking_volleys            2.983849         65.15625     59.14667      10.721210  23.890413 2.846472e-03
+    physic                       2.919905         76.37500     74.42308       6.397021   7.929578 3.501378e-03
+    attacking_finishing          2.837739         67.35417     61.40667       9.330706  24.860973 4.543430e-03
+    attacking_heading_accuracy   2.704031         67.37500     62.24333      10.347353  22.511422 6.850394e-03
+    dribbling                    2.256737         80.95833     79.60769       3.777446   7.099292 2.402449e-02
+    movement_acceleration        2.185561         74.47917     71.90000      10.729612  13.998214 2.884775e-02
+    mentality_penalties          2.130133         64.03125     60.44333      12.786266  19.979826 3.316062e-02
+    goalkeeping_diving          -4.571457         10.29167     20.01000       3.168585  25.216990 4.843437e-06
+    goalkeeping_reflexes        -4.614442         10.40625     20.40000       3.012398  25.690076 3.941522e-06
+    goalkeeping_handling        -4.676464         10.17708     19.81333       3.027632  24.442555 2.918639e-06
+    height_cm                   -5.288103        179.69792    182.83333       5.753839   7.033175 1.235911e-07
+    weight_kg                   -5.291438         74.21875     77.59667       5.824165   7.572361 1.213582e-07
 
     rownames(fifa300)[classif$data.clust$clust == 3]
 
-     [1] "N, Kanté"            "Casemiro"            "J, Kimmich"          "Sergio Ramos"       
-     [5] "T, Kroos"            "Bruno Fernandes"     "L, Modrić"           "P, Pogba"           
-     [9] "M, Verratti"         "L, Goretzka"         "A, Robertson"        "F, de Jong"         
-    [13] "T, Alexander-Arnold" "Jordi Alba"          "Thiago"              "Sergio Busquets"    
-    [17] "Parejo"              "Fabinho"             "João Cancelo"        "Marcos Llorente"    
-    [21] "Rodri"               "İ, Gündoğan"         "K, Walker"           "Koke"               
-    [25] "Carvajal"            "Jorginho"            "S, Milinković-Savić" "A, Hakimi"          
-    [29] "Jesús Navas"         "G, Wijnaldum"        "J, Henderson"        "Fernando"           
-    [33] "K, Trippier"         "D, Alaba"            "L, Digne"            "M, Sabitzer"        
-    [37] "L, Shaw"             "F, Kostić"           "R, Guerreiro"        "Ricardo Pereira"    
-    [41] "M, Brozović"         "Y, Tielemans"        "N, Barella"          "M, Acuña"           
-    [45] "F, Kessié"           "T, Hernández"        "Fernandinho"         "A, Witsel"          
-    [49] "Azpilicueta"         "Paulinho"            "Canales"             "Alex Sandro"        
-    [53] "J, Cuadrado"         "Allan"               "L, Spinazzola"       "L, Ocampos"         
-    [57] "M, Kovačić"          "T, Partey"           "Gayà"                "P, Højbjerg"        
-    [61] "Angeliño"            "R, Gosens"           "Merino"              "F, Mendy"           
-    [65] "A, Wan-Bissaka"      "Arthur"              "F, Valverde"         "I, Rakitić"         
-    [69] "É, Banega"           "M, Pjanić"           "Yuri Berchiche"      "D, Blind"           
-    [73] "J, Corona"           "I, Gueye"            "Mário Fernandes"     "Campaña"            
-    [77] "J, Veretout"         "Juan Bernat"         "Portu"               "E, Can"             
-    [81] "Saúl"                "M, de Roon"          "Grimaldo"            "N, Tagliafico"      
-    [85] "Alex Telles"         "R, De Paul"          "M, Locatelli"        "Rúben Neves"        
-    [89] "Fabián"              "B, Chilwell"         "A, Davies"           "F, Neuhaus"         
-    [93] "T, Ndombele"         "H, Herrera"          "Lucas Leiva"         "A, Vidal"           
+     [1] "N, Kanté"            "Casemiro"            "J, Kimmich"          "Sergio Ramos"        "T, Kroos"            "Bruno Fernandes"    
+     [7] "L, Modrić"           "P, Pogba"            "M, Verratti"         "L, Goretzka"         "A, Robertson"        "F, de Jong"         
+    [13] "T, Alexander-Arnold" "Jordi Alba"          "Thiago"              "Sergio Busquets"     "Parejo"              "Fabinho"            
+    [19] "João Cancelo"        "Marcos Llorente"     "Rodri"               "İ, Gündoğan"         "K, Walker"           "Koke"               
+    [25] "Carvajal"            "Jorginho"            "S, Milinković-Savić" "A, Hakimi"           "Jesús Navas"         "G, Wijnaldum"       
+    [31] "J, Henderson"        "Fernando"            "K, Trippier"         "D, Alaba"            "L, Digne"            "M, Sabitzer"        
+    [37] "L, Shaw"             "F, Kostić"           "R, Guerreiro"        "Ricardo Pereira"     "M, Brozović"         "Y, Tielemans"       
+    [43] "N, Barella"          "M, Acuña"            "F, Kessié"           "T, Hernández"        "Fernandinho"         "A, Witsel"          
+    [49] "Azpilicueta"         "Paulinho"            "Canales"             "Alex Sandro"         "J, Cuadrado"         "Allan"              
+    [55] "L, Spinazzola"       "L, Ocampos"          "M, Kovačić"          "T, Partey"           "Gayà"                "P, Højbjerg"        
+    [61] "Angeliño"            "R, Gosens"           "Merino"              "F, Mendy"            "A, Wan-Bissaka"      "Arthur"             
+    [67] "F, Valverde"         "I, Rakitić"          "É, Banega"           "M, Pjanić"           "Yuri Berchiche"      "D, Blind"           
+    [73] "J, Corona"           "I, Gueye"            "Mário Fernandes"     "Campaña"             "J, Veretout"         "Juan Bernat"        
+    [79] "Portu"               "E, Can"              "Saúl"                "M, de Roon"          "Grimaldo"            "N, Tagliafico"      
+    [85] "Alex Telles"         "R, De Paul"          "M, Locatelli"        "Rúben Neves"         "Fabián"              "B, Chilwell"        
+    [91] "A, Davies"           "F, Neuhaus"          "T, Ndombele"         "H, Herrera"          "Lucas Leiva"         "A, Vidal"           
 
 ## Les individus parangon
 
@@ -833,15 +747,15 @@ cluster. C’est eux qui caractérisent le mieux le cluster étudié.
     Cluster: 1
     W, Szczęsny        Adán S, Mandanda  O, Baumann   Y, Sommer 
       0.4710950   0.8419724   0.8807462   1.0046714   1.1254410 
-    --------------------------------------------------------------------------- 
+    ------------------------------------------------------------------------------------------------------ 
     Cluster: 2
     Diego Carlos   A, Rüdiger    R, Varane   C, Lenglet         Pepe 
        0.6991023    0.8376971    0.9479349    1.1087234    1.1933459 
-    --------------------------------------------------------------------------- 
+    ------------------------------------------------------------------------------------------------------ 
     Cluster: 3
     J, Veretout Alex Telles       Allan    L, Digne  R, De Paul 
       0.7296509   0.7647068   0.9202691   0.9677356   0.9796774 
-    --------------------------------------------------------------------------- 
+    ------------------------------------------------------------------------------------------------------ 
     Cluster: 4
            N, Fekir Ronaldo Cabrais    A, Lacazette       S, Gnabry     Y, Carrasco 
           0.7304741       0.7490576       0.8285935       1.0686558       1.1170834 
@@ -857,15 +771,15 @@ d’un ou plusieurs clusters.
     Cluster: 1
              É, Mendy       L, Hrádecký       A, Consigli         Y, Bounou Raphaelinho Anjos 
              13.38643          12.91537          12.80736          12.59505          12.47610 
-    --------------------------------------------------------------------------- 
+    ------------------------------------------------------------------------------------------------------ 
     Cluster: 2
       K, Manolas      N, Süle K, Koulibaly    S, Coates     S, Savić 
        10.362861     9.482744     9.254741     8.503150     8.266154 
-    --------------------------------------------------------------------------- 
+    ------------------------------------------------------------------------------------------------------ 
     Cluster: 3
         N, Kanté  M, Verratti     D, Blind     T, Kroos Sergio Ramos 
         6.237446     6.221551     5.688239     5.337869     5.327892 
-    --------------------------------------------------------------------------- 
+    ------------------------------------------------------------------------------------------------------ 
     Cluster: 4
         L, Insigne       L, Messi      D, Zapata Z, Ibrahimović     D, Mertens 
           8.047736       7.139763       6.995467       6.982446       6.919847 
@@ -876,7 +790,7 @@ d’un ou plusieurs clusters.
 
     Warning: ggrepel: 293 unlabeled data points (too many overlaps). Consider increasing max.overlaps
 
-![](README_files/figure-markdown_strict/unnamed-chunk-29-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-60-1.png)
 
 Nous pouvons réaliser une seconde classification mais cette fois-ci en
 laissant FactoMineR déterminer le nombre optimal de cluster. Pour ce
@@ -889,7 +803,7 @@ Représentons graphiquement les clusters.
 
     fviz_cluster(classif2)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-31-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-62-1.png)
 
 # Annexes
 
@@ -986,50 +900,31 @@ Voici comment est composé le jeu de données initial.
 
 
     Eigenvalues
-                           Dim.1   Dim.2   Dim.3   Dim.4   Dim.5   Dim.6   Dim.7   Dim.8   Dim.9
-    Variance              20.057   8.441   2.893   1.990   1.331   1.101   0.981   0.703   0.474
-    % of var.             48.920  20.588   7.056   4.853   3.247   2.685   2.392   1.714   1.155
-    Cumulative % of var.  48.920  69.509  76.564  81.417  84.664  87.349  89.741  91.455  92.611
-                          Dim.10  Dim.11  Dim.12  Dim.13  Dim.14  Dim.15  Dim.16  Dim.17  Dim.18
-    Variance               0.409   0.333   0.270   0.255   0.197   0.175   0.158   0.142   0.129
-    % of var.              0.999   0.813   0.658   0.621   0.481   0.427   0.384   0.345   0.316
-    Cumulative % of var.  93.609  94.423  95.080  95.702  96.183  96.610  96.994  97.340  97.655
-                          Dim.19  Dim.20  Dim.21  Dim.22  Dim.23  Dim.24  Dim.25  Dim.26  Dim.27
-    Variance               0.119   0.101   0.088   0.083   0.072   0.069   0.061   0.050   0.048
-    % of var.              0.291   0.247   0.215   0.203   0.175   0.167   0.149   0.123   0.117
-    Cumulative % of var.  97.946  98.193  98.408  98.611  98.786  98.953  99.102  99.225  99.342
-                          Dim.28  Dim.29  Dim.30  Dim.31  Dim.32  Dim.33  Dim.34  Dim.35  Dim.36
-    Variance               0.044   0.036   0.034   0.031   0.023   0.021   0.020   0.016   0.012
-    % of var.              0.108   0.087   0.083   0.076   0.057   0.052   0.050   0.039   0.030
-    Cumulative % of var.  99.450  99.536  99.620  99.696  99.753  99.805  99.855  99.894  99.924
-                          Dim.37  Dim.38  Dim.39  Dim.40  Dim.41
-    Variance               0.010   0.010   0.007   0.002   0.002
-    % of var.              0.025   0.024   0.017   0.006   0.004
-    Cumulative % of var.  99.950  99.974  99.990  99.996 100.000
+                           Dim.1   Dim.2   Dim.3   Dim.4   Dim.5   Dim.6   Dim.7   Dim.8   Dim.9  Dim.10  Dim.11  Dim.12  Dim.13  Dim.14
+    Variance              20.057   8.441   2.893   1.990   1.331   1.101   0.981   0.703   0.474   0.409   0.333   0.270   0.255   0.197
+    % of var.             48.920  20.588   7.056   4.853   3.247   2.685   2.392   1.714   1.155   0.999   0.813   0.658   0.621   0.481
+    Cumulative % of var.  48.920  69.509  76.564  81.417  84.664  87.349  89.741  91.455  92.611  93.609  94.423  95.080  95.702  96.183
+                          Dim.15  Dim.16  Dim.17  Dim.18  Dim.19  Dim.20  Dim.21  Dim.22  Dim.23  Dim.24  Dim.25  Dim.26  Dim.27  Dim.28
+    Variance               0.175   0.158   0.142   0.129   0.119   0.101   0.088   0.083   0.072   0.069   0.061   0.050   0.048   0.044
+    % of var.              0.427   0.384   0.345   0.316   0.291   0.247   0.215   0.203   0.175   0.167   0.149   0.123   0.117   0.108
+    Cumulative % of var.  96.610  96.994  97.340  97.655  97.946  98.193  98.408  98.611  98.786  98.953  99.102  99.225  99.342  99.450
+                          Dim.29  Dim.30  Dim.31  Dim.32  Dim.33  Dim.34  Dim.35  Dim.36  Dim.37  Dim.38  Dim.39  Dim.40  Dim.41
+    Variance               0.036   0.034   0.031   0.023   0.021   0.020   0.016   0.012   0.010   0.010   0.007   0.002   0.002
+    % of var.              0.087   0.083   0.076   0.057   0.052   0.050   0.039   0.030   0.025   0.024   0.017   0.006   0.004
+    Cumulative % of var.  99.536  99.620  99.696  99.753  99.805  99.855  99.894  99.924  99.950  99.974  99.990  99.996 100.000
 
     Individuals (the 10 first)
-                                    Dist    Dim.1    ctr   cos2    Dim.2    ctr   cos2    Dim.3    ctr
-    L, Messi                    |  8.199 |  5.293  0.466  0.417 | -4.876  0.939  0.354 |  0.931  0.100
-    R, Lewandowski              |  6.067 |  3.370  0.189  0.309 | -1.441  0.082  0.056 |  4.150  1.984
-    Cristiano Ronaldo           |  7.262 |  3.715  0.229  0.262 | -2.573  0.261  0.126 |  4.519  2.353
-    Neymar Jr                   |  6.932 |  4.786  0.381  0.477 | -4.347  0.746  0.393 | -0.132  0.002
-    K, De Bruyne                |  5.949 |  4.588  0.350  0.595 | -1.350  0.072  0.052 |  0.245  0.007
-    J, Oblak                    | 10.727 | -9.969  1.652  0.864 | -2.273  0.204  0.045 |  0.132  0.002
-    K, Mbappé                   |  6.575 |  4.085  0.277  0.386 | -2.777  0.305  0.178 |  2.444  0.688
-    M, Neuer                    | 10.302 | -8.865  1.306  0.740 | -1.912  0.144  0.034 |  1.431  0.236
-    M, ter Stegen               | 10.765 | -9.536  1.511  0.785 | -1.947  0.150  0.033 |  0.255  0.007
-    H, Kane                     |  5.935 |  3.173  0.167  0.286 | -0.729  0.021  0.015 |  4.043  1.884
-                                  cos2  
-    L, Messi                     0.013 |
-    R, Lewandowski               0.468 |
-    Cristiano Ronaldo            0.387 |
-    Neymar Jr                    0.000 |
-    K, De Bruyne                 0.002 |
-    J, Oblak                     0.000 |
-    K, Mbappé                    0.138 |
-    M, Neuer                     0.019 |
-    M, ter Stegen                0.001 |
-    H, Kane                      0.464 |
+                                    Dist    Dim.1    ctr   cos2    Dim.2    ctr   cos2    Dim.3    ctr   cos2  
+    L, Messi                    |  8.199 |  5.293  0.466  0.417 | -4.876  0.939  0.354 |  0.931  0.100  0.013 |
+    R, Lewandowski              |  6.067 |  3.370  0.189  0.309 | -1.441  0.082  0.056 |  4.150  1.984  0.468 |
+    Cristiano Ronaldo           |  7.262 |  3.715  0.229  0.262 | -2.573  0.261  0.126 |  4.519  2.353  0.387 |
+    Neymar Jr                   |  6.932 |  4.786  0.381  0.477 | -4.347  0.746  0.393 | -0.132  0.002  0.000 |
+    K, De Bruyne                |  5.949 |  4.588  0.350  0.595 | -1.350  0.072  0.052 |  0.245  0.007  0.002 |
+    J, Oblak                    | 10.727 | -9.969  1.652  0.864 | -2.273  0.204  0.045 |  0.132  0.002  0.000 |
+    K, Mbappé                   |  6.575 |  4.085  0.277  0.386 | -2.777  0.305  0.178 |  2.444  0.688  0.138 |
+    M, Neuer                    | 10.302 | -8.865  1.306  0.740 | -1.912  0.144  0.034 |  1.431  0.236  0.019 |
+    M, ter Stegen               | 10.765 | -9.536  1.511  0.785 | -1.947  0.150  0.033 |  0.255  0.007  0.001 |
+    H, Kane                     |  5.935 |  3.173  0.167  0.286 | -0.729  0.021  0.015 |  4.043  1.884  0.464 |
 
     Variables (the 10 first)
                                    Dim.1    ctr   cos2    Dim.2    ctr   cos2    Dim.3    ctr   cos2  
@@ -1054,28 +949,17 @@ Voici comment est composé le jeu de données initial.
     international_reputation    |  0.112  0.013 | -0.123  0.015 |  0.225  0.051 |
 
     Supplementary categories (the 10 first)
-                                    Dist    Dim.1   cos2 v.test    Dim.2   cos2 v.test    Dim.3   cos2
-    Left                        |  0.933 |  0.631  0.458  1.470 | -0.442  0.224 -1.586 | -0.260  0.077
-    Right                       |  0.339 | -0.230  0.458 -1.470 |  0.161  0.224  1.586 |  0.094  0.077
-    Lean (170-)                 |  5.737 |  2.880  0.252  0.911 | -2.037  0.126 -0.993 | -3.291  0.329
-    Lean (170-185)              |  2.799 |  2.443  0.762  3.484 | -0.772  0.076 -1.697 | -1.005  0.129
-    Lean (185+)                 |  3.130 | -2.765  0.781 -3.493 |  0.877  0.079  1.708 |  0.179  0.003
-    Normal (170-)               |  4.312 |  3.135  0.529  1.729 | -1.447  0.113 -1.230 | -2.182  0.256
-    Normal (170-185)            |  2.044 |  1.816  0.790  3.323 | -0.390  0.036 -1.099 | -0.644  0.099
-    Normal (185+)               |  4.094 | -3.791  0.857 -6.702 |  1.415  0.119  3.856 |  0.433  0.011
-    Stocky (170-185)            |  3.374 |  2.737  0.658  1.229 | -0.104  0.001 -0.072 |  0.362  0.012
-    Stocky (185+)               |  4.580 | -3.797  0.687 -2.722 |  1.977  0.186  2.185 |  0.829  0.033
-                                v.test  
-    Left                        -1.591 |
-    Right                        1.591 |
-    Lean (170-)                 -2.741 |
-    Lean (170-185)              -3.775 |
-    Lean (185+)                  0.595 |
-    Normal (170-)               -3.170 |
-    Normal (170-185)            -3.100 |
-    Normal (185+)                2.015 |
-    Stocky (170-185)             0.428 |
-    Stocky (185+)                1.565 |
+                                    Dist    Dim.1   cos2 v.test    Dim.2   cos2 v.test    Dim.3   cos2 v.test  
+    Left                        |  0.933 |  0.631  0.458  1.470 | -0.442  0.224 -1.586 | -0.260  0.077 -1.591 |
+    Right                       |  0.339 | -0.230  0.458 -1.470 |  0.161  0.224  1.586 |  0.094  0.077  1.591 |
+    Lean (170-)                 |  5.737 |  2.880  0.252  0.911 | -2.037  0.126 -0.993 | -3.291  0.329 -2.741 |
+    Lean (170-185)              |  2.799 |  2.443  0.762  3.484 | -0.772  0.076 -1.697 | -1.005  0.129 -3.775 |
+    Lean (185+)                 |  3.130 | -2.765  0.781 -3.493 |  0.877  0.079  1.708 |  0.179  0.003  0.595 |
+    Normal (170-)               |  4.312 |  3.135  0.529  1.729 | -1.447  0.113 -1.230 | -2.182  0.256 -3.170 |
+    Normal (170-185)            |  2.044 |  1.816  0.790  3.323 | -0.390  0.036 -1.099 | -0.644  0.099 -3.100 |
+    Normal (185+)               |  4.094 | -3.791  0.857 -6.702 |  1.415  0.119  3.856 |  0.433  0.011  2.015 |
+    Stocky (170-185)            |  3.374 |  2.737  0.658  1.229 | -0.104  0.001 -0.072 |  0.362  0.012  0.428 |
+    Stocky (185+)               |  4.580 | -3.797  0.687 -2.722 |  1.977  0.186  2.185 |  0.829  0.033  1.565 |
 
 # Bibliographie
 

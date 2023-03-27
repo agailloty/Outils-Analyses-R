@@ -190,6 +190,18 @@ dimdesc(premiere_acp, axes = 1)
 
 La première composante oppose donc des joueurs comme ***`r names(sort(premiere_acp$ind$coord[, 1], decreasing = TRUE))[1:10]`*** à des joueurs comme ***`r names(sort(premiere_acp$ind$coord[, 1], decreasing = FALSE))[1:10]`***. 
 
+Opposition entre : 
+
+```{r}
+names(sort(premiere_acp$ind$coord[, 1], decreasing = TRUE))[1:10]
+```
+
+et 
+
+```{r}
+names(sort(premiere_acp$ind$coord[, 1], decreasing = FALSE))[1:10]
+```
+
 ### Composante 2 
 
 La deuxième composante est fortement corrélée positivement avec des variables comme ***`r names(sort(premiere_acp$var$cor[, 2], decreasing = TRUE))[1:5]`***  mais corrélée négativement avec les variables ***`r names(sort(premiere_acp$var$cor[, 2], decreasing = FALSE))[1:5]`***. 
@@ -199,6 +211,18 @@ dimdesc(premiere_acp, axes = 2)
 ```
 
 Cette composante oppose donc des joueurs comme ***`r names(sort(premiere_acp$ind$coord[, 2], decreasing = TRUE))[1:10]`*** à des joueurs comme ***`r names(sort(premiere_acp$ind$coord[, 2], decreasing = FALSE))[1:10]`***. 
+
+Opposition entre : 
+
+```{r}
+names(sort(premiere_acp$ind$coord[, 2], decreasing = TRUE))[1:10]
+```
+
+et 
+
+```{r}
+names(sort(premiere_acp$ind$coord[, 2], decreasing = FALSE))[1:10]
+```
 
 ### Représentation simultanée des axes 1 et 2
 
@@ -223,6 +247,10 @@ dimdesc(premiere_acp, axes = 3)
 
 Cette composante oppose donc des joueurs comme ***`r names(sort(premiere_acp$ind$coord[, 3], decreasing = TRUE))[1:10]`*** à des joueurs comme ***`r names(sort(premiere_acp$ind$coord[, 3], decreasing = FALSE))[1:10]`***.
 
+
+```{r}
+names(sort(premiere_acp$ind$coord[, 3], decreasing = FALSE))[1:10]
+```
 
 
 
