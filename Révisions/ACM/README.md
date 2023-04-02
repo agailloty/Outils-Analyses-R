@@ -452,8 +452,9 @@ des individus projetés sur les deux première composantes. LA composante
     library(factoextra)
     fviz_mca_var(acm, axes = c(1,2), choixe = "var", repel = TRUE)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-10-1.png) \### Le
-graphique des modalités
+![](README_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+
+### Le graphique des modalités
 
     fviz_mca_var(acm, axes = c(1,2), choixe = "var.cat", repel = TRUE)
 
@@ -690,7 +691,7 @@ du nombre optimal de clusters.
     classif <- HCPC(acm, nb.clust = -1, graph = FALSE)
 
 Nous pouvons utiliser la fonction `summary()` pour afficher le nombre de
-cluster ainsi que le nombre d’individus dans chaque cluster.
+clusters ainsi que le nombre d’individus dans chaque cluster.
 
     summary(classif$data.clust$clust)
 
@@ -708,12 +709,10 @@ Le tableau suivant nous permet de dresser le profil des individus qui
 sont caractérisés dans le cluster 1. Il contient 5 colonnes.
 
 Les colonnes Cla/Mod et Mod/Cla représentent des probabilités
-conditionnelles. - Cla/Mod représente la probabilité d’appartenir au
-cluster 1 et avoir répondu *where=chain store*. 64% des individus ayant
-répondu *where=chain store* se trouvent dans le cluster.
+conditionnelles.
 
 Pour avoir une compréhension plus nette de ces probabilités, décomposons
-les modalités de la variable where.
+les modalités de la variable `where`.
 
     table(classif$data.clust$where)
 

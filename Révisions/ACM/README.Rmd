@@ -129,6 +129,7 @@ Le graphique suivant affiche un axe factoriel qui représente le profil des indi
 library(factoextra)
 fviz_mca_var(acm, axes = c(1,2), choixe = "var", repel = TRUE)
 ```
+
 ### Le graphique des modalités
 
 
@@ -182,7 +183,7 @@ Nous pouvons réaliser une classification en laissant FactoMineR décider du nom
 classif <- HCPC(acm, nb.clust = -1, graph = FALSE)
 ```
 
-Nous pouvons utiliser la fonction `summary()` pour afficher le nombre de cluster ainsi que le nombre d'individus dans chaque cluster. 
+Nous pouvons utiliser la fonction `summary()` pour afficher le nombre de clusters ainsi que le nombre d'individus dans chaque cluster. 
 
 ```{r}
 summary(classif$data.clust$clust)
@@ -195,13 +196,11 @@ FactoMineR a déterminer que 4 est le nombre optimal de clusters. Les clusters 1
 ### Cluster 1
 
 Le tableau suivant nous permet de dresser le profil des individus qui sont caractérisés dans le cluster 1.
-Il contient 5 colonnes. 
+Il contient 5 colonnes.  
 
 Les colonnes Cla/Mod et Mod/Cla représentent des probabilités conditionnelles. 
-- Cla/Mod représente la probabilité d'appartenir au cluster 1 et avoir répondu *where=chain store*. 
-64% des individus ayant répondu *where=chain store* se trouvent dans le cluster.
 
-Pour avoir une compréhension plus nette de ces probabilités, décomposons les modalités de la variable where. 
+Pour avoir une compréhension plus nette de ces probabilités, décomposons les modalités de la variable `where`. 
 
 ```{r}
 table(classif$data.clust$where)
