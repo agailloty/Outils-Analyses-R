@@ -1,0 +1,58 @@
+---
+title: "L'analyse des correspondances multiples"
+author: "Axel-Cleris Gailloty"
+date: "2023-03-29"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA, fig.width = 8, 
+                      fig.height = 6, warning = FALSE, message = FALSE)
+options(digits = 4)
+```
+
+```{r}
+library(FactoMineR)
+library(questionr)
+data("hobbies")
+```
+
+```{r}
+# Renommer les noms des colonnes
+colnames(hobbies) <- gsub(" ", "_", colnames(hobbies))
+# Remplacer 0, 1 par No, Yes sauf dans TV et nb.activities
+
+replacement_cols <- setdiff(colnames(hobbies), c("TV", "nb.activitees", "Sex", "Age", "Marital_status", "Profession"))
+for (col in replacement_cols) {
+  hobbies[[col]] <- ifelse(hobbies[[col]] == 0, "No", "Yes")
+  hobbies[[col]] <- as.factor(hobbies[[col]])
+}
+##hobbies$Profession <- as.character(hobbies$Profession)
+##hobbies$Profession <- replace(hobbies$Profession, is.na(hobbies$Profession), "Unknown")
+##hobbies$Profession <- as.factor(hobbies$Profession)
+hobbies <- subset(hobbies, select = -c(TV))
+```
+
+
+```{r}
+summary(hobbies)
+```
+
+# ACM en prenant les variables TV et nb.activitees comme illustratives
+
+```{r}
+var_quanti_sup <- match(c("nb.activitees"), colnames(hobbies))
+acm <- MCA(hobbies, quanti.sup = var_quanti_sup, graph = FALSE)
+```
+
+```{r}
+summary(acm)
+```
+
+
+
+```{r}
+dimdesc(acm, axes = 1)
+```
+
+
