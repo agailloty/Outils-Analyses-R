@@ -49,3 +49,7 @@ Pour y accéder cliquer sur le lien https://semestriel.framapad.org/p/analyses-d
 
 ## Contact 
 Je suis joignable par mail => agailloty@gmail.com
+
+# Environnement Rstudio en ligne
+
+Ouvrir ce répoertoire dans RStudio en ligne: [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/agailloty/Outils-Analyses-R/master?urlpath=rstudio)
