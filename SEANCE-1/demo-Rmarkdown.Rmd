@@ -1,0 +1,90 @@
+---
+title: "Démo Rmarkdown"
+output:
+  html_document: default
+  word_document: default
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Rmarkdown, c'est quoi ?
+
+R Markdown est une extension de Markdown (une syntaxe pour écrire un document) qui permet d'intégrer du code R, des résultats de code et du texte formaté dans un seul document. Cela en fait un outil puissant pour la création de rapports dynamiques, de présentations, de documents de recherche et bien plus encore.
+
+Par exemple, supposons que nous ayons une liste de tailles d'individus. Nous aimerons calculer la moyenne, la variance et l'écart-type et afficher quelques graphiques sans sortir de RStudio.
+A chaque fois nous voulons aussi commenter les résultats.
+
+# Analyse statistique simple
+
+## Charger les données 
+
+Nous allons charger les données via la ligne de code R suivant.
+
+
+```{r}
+tailles = c(1.81, 1.51, 1.90, 1.65, 1.78, 1.88, 1.92, 1.71, 1.68)
+```
+
+## Calculer la moyenne des tailles
+
+Pour calculer la moyenne, nous utilisons la fonction *mean* de R.
+
+```{r}
+mean(tailles)
+```
+Nous voyons que la moyenne est de 1.76m. 
+
+## Calculer la variance
+
+Nous pouvons aussi calculer la variance en utilisant la fonction var de R. 
+
+```{r}
+var(tailles)
+```
+
+La variance est égale à 0.01825 m. 
+
+## Calculer l'écart-type
+
+### Calculer l'écart-type grâce à la variance
+
+Nous pouvons déduire l'écart-type à l'aide de la variance en calculant la racine carrée de la variance. 
+
+```{r}
+sqrt(0.01825)
+```
+
+Nous pouvons aussi sauvegarder temporairement la variance dans une **variable** puis calculer l'écart-type à partir de cette variable.
+
+```{r}
+var_tailles = var(tailles)
+sqrt(var_tailles)
+```
+
+Nous obtenons le même résultat dans les deux cas précédents. 
+
+### Calculer l'écart-type grâce à une fonction R
+
+La fonction *sd* nous permet aussi de calculer l'écart-type directement à partir de la liste initiale des tailles. 
+
+```{r}
+sd(tailles)
+```
+
+# Graphiques et visualisation
+
+Dans un document R Markdown nous pouvons aussi représenter des graphiques. 
+
+```{r}
+titre = "Histogramme des tailles"
+axe_x = "Tailles des individus (en mètre)"
+hist(tailles, main = titre, xlab = axe_x)
+```
+
+# Conclusion
+
+Nous avons la possibilité d'exporter cette analyse dans une page HTML ou un document Word. Il suffit de cliquer sur le bouton Knit.
