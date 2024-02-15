@@ -1,0 +1,142 @@
+---
+title: "Statistiques descrptives et bivariées"
+author: "Axel-Cleris Gailloty"
+date: "2024-02-16"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = '', warning = FALSE, fig.width = 6)
+```
+
+
+```{r message=FALSE, warning=FALSE}
+library(readr)
+library(dplyr)
+fifa22 <- read_csv("https://raw.githubusercontent.com/agailloty/Outils-Analyses-R/main/dataset/fifa_players_22.csv")
+```
+
+
+# Statistiques descriptives 
+
+Les statistiques descriptives et l'analyse exploratoire des données sont des méthodes fondamentales en statistique utilisées pour explorer, résumer et comprendre les caractéristiques et les motifs inhérents à un ensemble de données. Les statistiques descriptives offrent une vue d'ensemble en résumant les principales caractéristiques des données, telles que la tendance centrale (moyenne, médiane), la dispersion (écart-type, quartiles), et la distribution (histogrammes, diagrammes en boîte), permettant ainsi de tirer des conclusions initiales sur les données. 
+
+Ces techniques permettent de transformer des données brutes en informations exploitables et pour mieux comprendre le monde qui nous entoure.
+
+
+## La moyenne
+
+**Moyenne**: Également connue sous le nom de moyenne arithmétique, c'est la somme de toutes les valeurs dans un ensemble de données, divisée par le nombre total de valeurs. C'est une mesure de tendance centrale souvent utilisée pour représenter la valeur "typique" dans un ensemble de données.
+
+## En moyenne combien gagne un joueur de football ? 
+
+Dans le jeu de données il y a une variable qui s'appelle wage_eur qui représente le salaire mensuel d'es jouers de foot.'un joueur de foot. 
+
+```{r}
+mean(fifa22$wage_eur)
+```
+Le joueur typique de football gagne 9132€ par mois.
+
+## Quelle est la valeur moyenne à laquelle est estimée un joueur de foot ?
+
+```{r}
+mean(fifa22$value_eur)
+```
+
+## Les quartiles
+
+**Quartiles**: Les quartiles divisent un ensemble de données en quatre parties égales. Le premier quartile (Q1) est la valeur en dessous de laquelle se trouvent 25 % des observations, le deuxième quartile est la médiane, et le troisième quartile (Q3) est la valeur en dessous de laquelle se trouvent 75 % des observations. Ils sont souvent utilisés pour décrire la dispersion des données et pour détecter la présence de valeurs aberrantes.
+
+```{r}
+quantile(fifa22$wage_eur, probs = 0.25)
+```
+
+```{r}
+quantile(fifa22$wage_eur, probs = 0.5)
+```
+
+
+```{r}
+median(fifa22$wage_eur)
+```
+
+```{r}
+quantile(fifa22$wage_eur, 0.75)
+```
+
+```{r}
+quantile(fifa22$wage_eur, 0.99)
+```
+
+```{r}
+summary(fifa22$wage_eur)
+```
+
+## Histogramme
+
+**Histogramme**: Un histogramme est un graphique qui représente la distribution des données en montrant la fréquence de chaque classe ou intervalle de valeurs. C'est un outil visuel utile pour comprendre la répartition des valeurs dans un ensemble de données et identifier les tendances ou les motifs.
+
+```{r}
+titre = "Distribution des salaires"
+axe_x = "Salaire"
+hist(fifa22$wage_eur, xlab = axe_x, main = titre)
+```
+
+```{r}
+titre = "Distribution des salaires"
+axe_x = "Salaire"
+hist(fifa22$wage_eur, xlab = axe_x, main = titre, breaks = 300)
+```
+
+## Les indicateurs de dispersion
+
+**Dispersion**: La dispersion mesure la variabilité des données autour de la tendance centrale. L'écart-type est une mesure courante de la dispersion, indiquant à quel point les valeurs d'un ensemble de données sont éloignées de la moyenne. Plus l'écart-type est élevé, plus les valeurs sont dispersées autour de la moyenne.
+
+```{r}
+sd(fifa22$wage_eur)
+```
+L'écart de salaire moyen entre deux joueurs de football toute league confondue est d'environ 20K euros.
+
+
+# Statistiques bivariées 
+
+## La relation entre deux variables quantitatives 
+
+```{r fig.height=5}
+titre = "Nuage de point entre le salaire d'un joueur et sa performance"
+axe_x = "Performance globale (100)"
+axe_y = "Salaire en €"
+plot(x = fifa22$overall, y = fifa22$wage_eur, 
+     main = titre, xlab = axe_x, ylab = axe_y)
+```
+
+```{r fig.height=5}
+titre = "Relation entre le poids et la rapidité"
+axe_x = "Poids (kg)"
+axe_y = "Rapidité dans les mouvements (100)"
+plot(x = fifa22$weight_kg, y = fifa22$movement_sprint_speed, 
+     main = titre, xlab = axe_x, ylab = axe_y)
+```
+
+## Le coefficient de corrélation linéaire
+
+Le coefficient de corrélation linéaire, souvent symbolisé par "r", est une mesure statistique qui évalue la force et la direction de la relation linéaire entre deux variables quantitatives. Il varie de -1 à 1 :
+
+Une valeur de 1 indique une corrélation positive parfaite, ce qui signifie que lorsque la valeur d'une variable augmente, la valeur de l'autre variable augmente également de manière parfaitement linéaire.
+
+Une valeur de -1 indique une corrélation négative parfaite, ce qui signifie que lorsque la valeur d'une variable augmente, la valeur de l'autre variable diminue de manière parfaitement linéaire.
+Une valeur de 0 indique qu'il n'y a pas de corrélation linéaire entre les variables.
+
+```{r}
+cor(x = fifa22$wage_eur, y = fifa22$overall)
+```
+
+```{r}
+cor(x = fifa22$weight_kg, y = fifa22$movement_sprint_speed)
+```
+## La matrice des corrélations
+
+```{r}
+cor(fifa22[, c("height_cm", "weight_kg", "overall", "wage_eur", "age")])
+```
+
