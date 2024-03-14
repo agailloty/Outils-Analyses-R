@@ -1,0 +1,165 @@
+---
+title: "Enquête histoire de vie 2003 de l'INSEE"
+author: "Axel-Cleris Gailloty"
+date: "2024-03-14"
+output: html_document
+---
+
+# Introduction 
+
+L'enquête Histoire de vie porte sur la construction des identités et a pour objectifs de décrire, de hiérarchiser, d'analyser les différents types de liens sociaux qui permettent aux individus de s'intégrer dans la société française du début du XXIème siècle.
+
+L'identité désigne, dans l'enquête Histoire de vie, la manière qu'a chaque individu de se construire une place dans la société qui permette à la fois son intégration sociale et l'affirmation de son individualité propre.
+
+L'enquête permet d'aborder différents aspects de la vie sociale des personnes (emploi, lieux de vie, loisirs) et les liens sociaux qu'ils ont établi tout au long de la vie.
+
+Lien vers la présentation de l'enquête https://www.insee.fr/fr/metadonnees/source/operation/s1384/presentation
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "", fig.width = 10, fig.height = 8)
+```
+
+
+```{r message=FALSE}
+library(FactoMineR)
+library(factoextra)
+options(digits = 3)
+```
+
+
+```{r warning=FALSE, echo=FALSE, message=FALSE}
+data <- read.csv("https://raw.githubusercontent.com/agailloty/Outils-Analyses-R/main/dataset/hdv2003.csv", stringsAsFactors = FALSE)
+```
+
+
+```{r}
+var_quant_illus <- match(c("age", "freres.soeurs", "heures.tv"), colnames(data))
+acm = MCA(data, quanti.sup = var_quant_illus, graph = FALSE)
+```
+
+### Q0 - Commenter le tableau suivant. Quel pourcentage d'information pouvons nous expliquons avec 4 composantes ?
+
+```{r}
+knitr::kable(get_eigenvalue(acm)[1:20,])
+``` 
+
+### Q1 - Que signifie le fait que l'age soit positivement corrélé à la première dimension de l'ACM ?
+
+### Q2 - Quelle dimension de variabilité entre les individus capture la première composante ?
+
+
+```{r}
+dimdesc(acm, axes = 1)
+```
+
+
+   
+### Q3 - A l'aide des résultats du tableau suivant caractérisez le profil des individus ayant des coordonnées positives et négatives sur la deuxième composante.
+
+
+```{r}
+dimdesc(acm, axes = 2)
+```
+
+### Q4 - A l'aide du graphique suivant :
+#### Expliquer la proximité entre les modalités **Etudiant, eleve** et **nivetud.NA** et **18-24**.
+#### Que peut-on dire de la proximité entre le niveau d'étude et l'activité professionnelle ?
+
+
+```{r}
+fviz_mca_var(acm, repel = TRUE)
+```
+
+```{r}
+fviz_mca_ind(acm, geom = "point")
+```
+
+### Q5 - Commenter les résultats de la troisième composante
+
+```{r}
+dimdesc(acm, axes = 3)
+```
+
+
+### Q6 - Commenter les résultats de la quatrième composante
+
+```{r}
+dimdesc(acm, axes = 4)
+```
+
+### Q7 - Commenter les coordonnées des modalités homme et femme sur le deuxième plan factoriel
+
+```{r}
+fviz_mca_var(acm, axes = c(3,4), repel = TRUE)
+```
+
+
+```{r}
+fviz_mca_ind(acm, axes = c(3,4), geom = "point")
+```
+
+### Q8 - Commenter le tableau des coordonnées des modalités des variables sur les 4 premières dimensions
+
+```{r}
+acm$var$coord[, 1:4]
+```
+
+### Q9 - Commenter le tableau des contributions des modalités des variables sur les 4 premières dimensions
+
+```{r}
+acm$var$contrib[, 1:4]
+```
+
+### Q10 - Commenter le tableau des cos² des modalités des variables sur les 4 premières dimensions
+
+```{r}
+acm$var$cos2
+```
+
+# Classification ascendante hiérarchique
+
+Nous classifions les individus en 4 clusters.
+
+```{r message=FALSE, warning=FALSE}
+classif <- HCPC(acm, nb.clust = 4, graph = FALSE, consol = FALSE)
+```
+
+### Q11 - Caractérisier le profil des individus du cluster 1
+
+```{r}
+classif$desc.var$category$`1`
+```
+
+### Q12 - Caractérisier le profil des individus du cluster 2
+
+```{r}
+classif$desc.var$category$`2`
+```
+
+### Q13 - Caractérisier le profil des individus du cluster 2
+
+```{r}
+classif$desc.var$category$`3`
+```
+
+### Q14 - Caractérisier le profil des individus du cluster 4
+
+```{r}
+classif$desc.var$category$`4`
+```
+
+```{r}
+fviz_cluster(classif)
+```
+
+# Annexes variables
+
+## Modalité des variables
+
+
+
+```{r}
+cat_variables <- data[, sapply(data, is.character)]
+lapply(cat_variables, function(x) table(x))
+```
+

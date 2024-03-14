@@ -1,0 +1,36 @@
+---
+title: "Différences ACM & ACP"
+format: html
+---
+
+L'Analyse en Composantes Principales (ACP) et l'Analyse des Correspondances Multiples (ACM) sont toutes deux des techniques d'analyse multivariée utilisées dans le domaine de la statistique et de l'analyse des données. Bien qu'elles partagent certaines similitudes, elles diffèrent dans leurs objectifs, leurs applications et leurs méthodes d'analyse. Voici les principales différences entre l'ACP et l'ACM :
+
+1. **Objectif** :
+   - ACP : L'objectif principal de l'ACP est de réduire la dimensionnalité d'un ensemble de données en trouvant un ensemble de variables non corrélées appelées composantes principales, qui capturent la plus grande part de la variance des données.
+   - ACM : L'objectif de l'ACM est d'analyser la structure de dépendance entre des variables catégorielles (qualitatives) dans un tableau de contingence, souvent utilisé pour explorer des relations entre des variables qualitatives dans un tableau croisé.
+
+2. **Type de données** :
+   - ACP : Elle est principalement utilisée pour des données quantitatives continues.
+   - ACM : Elle est spécifiquement conçue pour des données qualitatives catégorielles, souvent présentées sous forme de tableaux croisés.
+
+3. **Variables** :
+   - ACP : L'ACP traite des variables quantitatives continues.
+   - ACM : L'ACM est adaptée pour des variables qualitatives catégorielles.
+
+4. **Matrice de données** :
+   - ACP : Elle utilise une matrice de données contenant des observations en lignes et des variables en colonnes, où les éléments sont des valeurs numériques.
+   - ACM : Elle utilise également une matrice de données, mais cette fois-ci, les valeurs sont des fréquences ou des pourcentages d'occurrence de chaque modalité de variable dans les différentes catégories.
+
+5. **Méthode d'analyse** :
+   - ACP : L'ACP utilise la décomposition en valeurs propres de la matrice de covariance ou de corrélation des données pour extraire les composantes principales.
+   - ACM : L'ACM utilise une méthode basée sur le calcul de l'inertie et l'analyse des écarts pour extraire les dimensions significatives.
+
+6. **Interprétation des résultats** :
+   - ACP : Les résultats de l'ACP sont interprétés en examinant les charges des variables sur chaque composante principale, ainsi que les valeurs propres et les proportions de variance expliquée par chaque composante.
+   - ACM : Les résultats de l'ACM sont interprétés en examinant les distances entre les catégories de variables dans l'espace factoriel obtenu, ainsi que les contributions des variables à chaque dimension.
+
+7. **Applications** :
+   - ACP : Elle est largement utilisée dans la réduction de dimensionnalité, la visualisation de données et la compression de données.
+   - ACM : Elle est couramment utilisée dans l'analyse de données catégorielles, comme l'analyse de données de sondage, l'analyse de texte, et l'analyse de préférences.
+
+En résumé, bien que l'ACP et l'ACM soient toutes deux des techniques d'analyse multivariée, elles diffèrent dans leurs objectifs, leurs types de données, leurs méthodes d'analyse et leurs applications. Elles sont chacune adaptées à des types de données spécifiques et sont utilisées pour des types d'analyses différents.
