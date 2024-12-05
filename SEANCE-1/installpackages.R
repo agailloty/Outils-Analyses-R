@@ -1,9 +1,0 @@
-install.packages(
-  c("FactoMineR", 
-    "Factoshiny", 
-    "FactoInvestigate", 
-    "factoextra", 
-    "ggcorrplot",
-    "ggplot2", 
-    "dplyr",
-    "rmarkdown"))
