@@ -1,8 +1,7 @@
 ---
-title: "Analyse en composantes principales"
+title: "ACP sur les joueurs FIFA"
 webr:
   packages:
-    - readr
     - dplyr
     - ggplot2
     - FactoMineR
@@ -11,16 +10,14 @@ webr:
 
 ```{webr}
 #| include: false
-library(readr)
 library(dplyr)
 library(FactoMineR)
 library(factoextra) # Pour représenter graphiques
 ```
 
 ```{webr}
-library(readr)
 library(dplyr)
-fifa22 <- read_csv("https://raw.githubusercontent.com/agailloty/Outils-Analyses-R/main/dataset/fifa_players_22.csv")
+fifa22 <- read.csv("https://raw.githubusercontent.com/agailloty/Outils-Analyses-R/main/dataset/fifa_players_22.csv")
 ```
 
 # L'analyse en composantes principales
@@ -96,6 +93,8 @@ Une composante, dans le contexte de l'analyse en composantes principales (ACP), 
 
 
 ```{webr}
+#| fig-width: 10
+#| fig-height: 10
 fviz_pca_var(premiere_acp, title = "Premier plan factoriel", repel = TRUE)
 ```
 

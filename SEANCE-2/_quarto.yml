@@ -8,7 +8,7 @@ website:
       - index.qmd
 
 format:
-  html:
+  live-html:
     theme: cosmo
     css: styles.css
     toc: true
