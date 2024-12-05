@@ -24,10 +24,10 @@ jobs:
         env:
           QUARTO_PRINT_STACK: true
         run: |
-          quarto render README.qmd --output index.html
-          mv index.html docs/index.html
           quarto render SEANCE-1 --output-dir ../docs/intro
           quarto render SEANCE-2 --output-dir ../docs/fifa
+          quarto render README.qmd --output index.html
+          mv index.html docs/index.html
           echo "QUARTO_OUTPUT=docs" >> $GITHUB_ENV
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
