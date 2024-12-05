@@ -1,0 +1,113 @@
+---
+title: L'éxécution d'un programme Python
+toc: true
+---
+
+Un programme Python est organisé en une série d'instructions et de blocs de code. Voici une explication détaillée de ces concepts et de la manière dont le code Python est exécuté.
+
+## Instruction
+
+Une instruction en Python est une ligne de code qui effectue une action spécifique. Par exemple, une instruction peut être une affectation de valeur à une variable, une expression arithmétique, une déclaration de fonction, etc.
+
+```{pyodide}
+x = 5  # Instruction d'affectation
+print(x)  # Instruction d'appel de fonction
+```
+
+## Bloc de Code
+
+Un bloc de code est un groupe d'instructions qui sont exécutées ensemble. En Python, les blocs de code sont définis par l'indentation. Par exemple, les corps des fonctions, des boucles et des conditions sont des blocs de code.
+
+```{pyodide}
+def greet(name):
+    print(f"Hello, {name}!")  # Bloc de code de la fonction
+
+if x > 0:
+    print("x is positive")  # Bloc de code de la condition
+
+for i in range(5):
+    print(i)  # Bloc de code de la boucle
+```
+
+## Expressions  
+Une expression est une combinaison de valeurs, de variables, d'opérateurs et de fonctions qui sont évaluées pour produire une autre valeur. Les expressions peuvent être utilisées comme des instructions.
+
+Exemples d'expressions :
+
+```{pyodide}
+a = 3 + 4  # Expression arithmétique
+b = max(5, 10)  # Expression avec une fonction
+c = (a > b)  # Expression booléenne
+```
+
+## Fonctions  
+
+Les fonctions sont des blocs de code réutilisables qui effectuent une tâche spécifique. Elles peuvent prendre des arguments et retourner des valeurs.
+
+Exemples de fonctions :
+
+```{pyodide}
+def add(a, b):
+    return a + b
+
+result = add(3, 4)  # Appel de fonction
+```
+
+## Exécution du Code Python
+
+Le code Python est interprété, ce qui signifie qu'il est exécuté ligne par ligne par l'interpréteur Python. Voici les étapes générales de l'exécution d'un programme Python :
+
+1. **Lecture du Code Source** : L'interpréteur lit le code source.
+2. **Compilation en Bytecode** : Le code source est compilé en bytecode, une forme intermédiaire.
+3. **Exécution du Bytecode** : Le bytecode est exécuté par la machine virtuelle Python (PVM).
+
+Pour mieux comprendre ces étapes, nous pouvons utiliser le module `dis` pour désassembler le bytecode et voir les instructions d'exécution.
+
+### Démonstration avec le Module `dis`
+
+Voici un exemple de code Python simple et son désassemblage avec `dis` :
+
+```{pyodide}
+import dis
+
+def matrix_multiply(a, b):
+    result = [[0 for _ in range(len(b[0]))] for _ in range(len(a))]
+    for i in range(len(a)):
+        for j in range(len(b[0])):
+            for k in range(len(b)):
+                result[i][j] += a[i][k] * b[k][j]
+    return result
+
+dis.dis(matrix_multiply)
+```
+
+Le désassemblage du bytecode de la fonction matrix_multiply montre les instructions générées par l'interpréteur Python pour exécuter la multiplication matricielle. Voici une explication brève des principales sections :
+
+Initialisation de la Matrice Résultat :
+
+Les instructions de LOAD_GLOBAL, CALL, GET_ITER, et FOR_ITER sont utilisées pour créer une matrice de zéros de la taille appropriée.
+BUILD_LIST et LIST_APPEND sont utilisés pour construire les listes internes de la matrice.
+
+**Boucles de Multiplication :**
+
+Trois boucles imbriquées sont représentées par les instructions FOR_ITER, STORE_FAST, et JUMP_BACKWARD.
+Chaque boucle itère sur les indices des matrices a et b.
+
+**Calcul de la Multiplication :**
+
+Les instructions LOAD_FAST, BINARY_SUBSCR, et BINARY_OP sont utilisées pour accéder aux éléments des matrices et effectuer les opérations de multiplication et d'addition.
+STORE_SUBSCR est utilisé pour stocker le résultat intermédiaire dans la matrice result.
+
+**Retour du Résultat :**
+
+LOAD_FAST et RETURN_VALUE sont utilisés pour renvoyer la matrice result.
+
+**Gestion des Exceptions :**
+
+Les instructions SWAP, POP_TOP, et RERAISE sont utilisées pour gérer les exceptions potentielles pendant l'exécution des boucles.
+Ce désassemblage montre comment Python traduit le code source en instructions de bytecode pour être exécuté par la machine virtuelle Python. Les instructions de bytecode sont plus proches du langage machine et permettent une exécution efficace du code Python.
+
+
+### Conclusion
+
+Un programme Python est organisé en instructions et blocs de code, et il est exécuté par l'interpréteur Python en plusieurs étapes, y compris la compilation en bytecode et l'exécution par la machine virtuelle Python. Le module `dis` est un outil utile pour examiner les instructions de bytecode et comprendre le processus d'exécution du code Python.

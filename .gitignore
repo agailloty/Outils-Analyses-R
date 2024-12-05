@@ -38,3 +38,10 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+.python-version
+pyproject.toml
+uv.lock
+/docs
+
+/.quarto/
+*_site
