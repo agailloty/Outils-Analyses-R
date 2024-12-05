@@ -1,0 +1,48 @@
+on:
+  push:
+    branches:
+      - master
+      
+name: Render and Publish
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Jupyter
+        run: python3 -m pip install jupyter
+      - name: Render Quarto Project
+        env:
+          QUARTO_PRINT_STACK: true
+        run: |
+          quarto render README.qmd --output index.html
+          mv index.html docs/index.html
+          quarto render SEANCE-1 --output-dir ../docs/intro
+          quarto render SEANCE-2 --output-dir ../docs/fifa
+          echo "QUARTO_OUTPUT=docs" >> $GITHUB_ENV
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+       name: github-pages
+       url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
