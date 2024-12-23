@@ -28,6 +28,7 @@ jobs:
           quarto render SEANCE-2 -t live-html --output-dir ../docs/fifa
           quarto render README.qmd --output index.html
           mv index.html docs/index.html
+          mv assets docs/assets
           mv README_files docs/README_files
           echo "QUARTO_OUTPUT=docs" >> $GITHUB_ENV
       - name: Upload Artifact
