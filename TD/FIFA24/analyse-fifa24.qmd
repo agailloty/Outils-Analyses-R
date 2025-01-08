@@ -1,0 +1,7 @@
+---
+title: "Analyse multidimensionnelle des performances de joueurs de football"
+format: docx
+editor: visual
+---
+
+# Introduction
