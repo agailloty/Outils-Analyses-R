@@ -1,0 +1,83 @@
+---
+title: "Comment réaliser une analyse en composante principale"
+format: revealjs
+editor: visual
+---
+
+## Importer les données dans R 
+
+Le jeu de données peut être au format Excel (xls, xlsx), CSV (fichier texte séparé par une virgule ou point-virgule), TSV (fichier texte séparé par une tabulation), RDS (fichier compressé R). 
+
+Selon le format, vous pouvez utiliser les fonctions de base dans R.
+
+L'import d'un jeu de données Excel nécessite l'utilisation d'un package qu'il faudrait installer. Il est donc préférable que le jeu de données soit au format texte (csv, tsv) ou RDS car plus facile à utiliser dans R.
+
+## Connaître le jeu de données
+
+Il est important de connaître au préalable le jeu de données sur lequel on aimerait réaliser notre analyse. 
+Connaître le jeu de données revient à savoir : 
+
+- les variables qui composent le jeu de données  
+- les types des variables (numériques, catégoriques)  
+- les variables qu'on aimerait utiliser dans l'ACP :  
+    - lesquelles utiliser comme variables actives  
+    - lesquelles utiliser comme variables quantitatives illustratives  
+    - lesquelles utiliser comme variables qualitatives illustratives  
+    
+
+## Les types de variable pour l'ACP 
+
+
+### 1. **Variables actives**
+Les **variables actives** sont celles qui participent directement à la construction des axes factoriels de l'ACP. Elles sont utilisées pour calculer les composantes principales et forment la base de l'analyse. Ces variables sont généralement **quantitatives** et doivent être mesurées sur une échelle comparable, souvent standardisée pour éviter que les différences d'échelle influencent les résultats.
+
+- **Exemple** : Dans une enquête sur des produits alimentaires, les variables actives pourraient être :
+  - Teneur en sucre (g/100g),
+  - Teneur en sel (g/100g),
+  - Teneur en lipides (g/100g).
+
+- Ces variables sont utilisées pour calculer les **axes principaux** qui résument l'information contenue dans les données.
+
+---
+
+## Les types de variable pour l'ACP 
+
+### 2. **Variables quantitatives illustratives**
+Les **variables quantitatives illustratives** sont des variables quantitatives qui ne participent pas à la construction des axes factoriels mais qui sont projetées sur les axes a posteriori pour enrichir l'interprétation.
+
+- **Rôle** :
+  - Elles permettent de voir comment ces variables, bien qu'elles ne contribuent pas directement à l'ACP, se positionnent par rapport aux axes factoriels.
+  - Elles sont souvent corrélées aux axes pour interpréter les composantes principales en termes d'autres dimensions intéressantes.
+
+- **Exemple** :
+  - Le prix d’un produit (euros) ou sa durée de conservation (en jours) pourrait être une variable quantitative illustrative. Ces informations pourraient aider à interpréter les dimensions sans influencer leur construction.
+
+## Les types de variable pour l'ACP 
+
+### 3. **Variables qualitatives illustratives**
+Les **variables qualitatives illustratives** sont des variables catégoriques ou qualitatives qui, elles aussi, ne participent pas à la construction des axes factoriels mais qui sont utilisées pour enrichir l'interprétation des résultats.
+
+- **Rôle** :
+  - Ces variables permettent de voir si les individus ou objets de l’étude se répartissent de manière cohérente sur les axes en fonction de certaines catégories.
+  - Elles sont souvent analysées en observant la répartition des modalités sur le plan factoriel ou par des tests d’association avec les axes.
+
+- **Exemple** :
+  - Dans une étude sur des produits alimentaires, une variable qualitative illustrative pourrait être :
+    - Type de produit : (sucré, salé),
+    - Origine : (biologique, conventionnel).
+
+- En analysant la distribution des modalités ("biologique" ou "conventionnel"), on peut déduire si certains groupes se distinguent dans l’espace factoriel.
+
+## Les types de variable pour l'ACP 
+
+### Synthèse du rôle dans l'ACP
+
+| Type de variable                | Participe à la construction des axes ? | Objectif principal                           |
+|----------------------------------|----------------------------------------|---------------------------------------------|
+| **Variables actives**            | Oui                                    | Résumer les données dans un nouvel espace.   |
+| **Variables quantitatives illustratives** | Non                                    | Comprendre leur relation avec les axes.      |
+| **Variables qualitatives illustratives**  | Non                                    | Interpréter les groupes/catégories sur les axes.|
+
+
+## Exemple ACP jeu de données Decathlon
+
