@@ -1,0 +1,89 @@
+---
+title: "Introduction R & Rstudio"
+format: revealjs
+editor: visual
+---
+
+## R
+
+R est un langage de programmation et un logiciel libre destiné aux statistiques et à la science des données soutenu par la R Foundation for Statistical Computing.  
+Le langage R est largement utilisé par les statisticiens, les data miners, data scientists pour le développement de logiciels statistiques et l'analyse des données.
+
+## Interface de base
+
+L'interface de base de R se présente comme ceci : 
+
+![](assets/RGui.PNG)
+
+## Exemples
+
+Il est possible d'utiliser R comme une calculatrice intelligente. Par exemple définir une variable et effectuer des opérations avec celle-ci.
+
+![](assets/RGui_examples.PNG)
+
+## Installer R
+
+Télecharger puis installer R à partir de ce lien : https://cran.irsn.fr/ 
+
+## RStudio
+
+- Un IDE dédié au langage R : RStudio Desktop est conçu spécifiquement pour les développeurs et les scientifiques de données travaillant avec le langage de programmation R. Fourni gratuitement par RStudio Inc, cet environnement de développement intégré (IDE) met en avant une série d'outils permettant l'écriture de scripts, la compilation de code et la visualisation graphique de données.
+
+- Interface utilisateur et gestion de projets : L'interface de RStudio Desktop est divisée en plusieurs panneaux qui facilitent la navigation et l'organisation du travail. L'outil intègre une console et un éditeur de texte, tous deux épurés et conviviaux, pour une expérience utilisateur optimisée. L'autre point fort de RStudio Desktop est sa capacité à organiser efficacement le travail grâce au système de gestion de projets. Cela permet aux utilisateurs de structurer leurs espaces de travail pour une meilleure clarté et une optimisation du flux de développement.
+
+## RStudio
+
+- Édition et exécution de code : L'éditeur de texte de RStudio Desktop est conçu pour offrir une facilité d'exécution du code, avec des fonctionnalités telles que l'autocomplétion et l'indentation intelligente, réduisant ainsi la complexité inhérente à la rédaction de code en R. Les utilisateurs bénéficient également d'une intégration fluide avec la console pour l'exécution directe du code et le suivi des modifications, ce qui favorise une boucle de développement interactif et efficace.
+
+- Outils de développement et gestion des environnements : Outre l'éditeur et la console, RStudio Desktop est équipé de fonctionnalités de débogage, de traçabilité, de surveillance de l'espace de travail et d'historique de commandes, qui soutiennent le développeur à chaque étape de la création d'un projet en R. Un gestionnaire d'environnement est également intégré, offrant une vue d’ensemble et une intervention directe sur les paquets R et l'environnement global, une ressource précieuse pour la maintenance et l'optimisation du code.
+
+## Installer RStudio 
+
+Il faut avoir installé R au préalable avant de tenter d'installer Rstudio. 
+
+Télécharger et installer Rstudio à partir de ce lien https://posit.co/download/rstudio-desktop/
+
+## Code
+
+Pour utiliser R (même via Rstudio) il faut écrire du code. Il existe toutefois des extensions qui permettent de réaliser certaines analyses à travers une interface graphique (ex : RCmdr), mais en règle générale il est nécessaire d'écrire le code pour les analyses.
+
+```{r, echo=TRUE}
+x = 3
+x^2
+```
+## Code
+
+La syntaxe de R est relativement facile à apprendre.
+
+```{r, echo=TRUE}
+villes = c("Paris", "Marseille", "Angers", "Lyon", "Nantes", "Rennes")
+population = c(2133111, 873076, 157175, 522250, 323204, 225081)
+barplot(height=population, names=villes, 
+        main = "Population villes françaises 2021")
+```
+
+
+## Les packages
+
+Les packages R sont des extensions du langage de programmation statistique R. Les packages R contiennent du code, des données et de la documentation dans un format de collection standardisé qui peut être installé par les utilisateurs de R, généralement via un référentiel de logiciels centralisé tel que CRAN (Comprehensive R Archive Network). Le grand nombre de packages disponibles pour R, et la facilité de leur installation et de leur utilisation, ont été cités comme un facteur majeur à l'origine de l'adoption généralisée du langage en science des données.
+
+## FactoMineR
+
+FactoMineR est un package R dédié à l'analyse exploratoire multidimensionnelle de données (à la Française). Il a été développé et il est maintenu par F. Husson, J. Josse, S. Lê, d'Agrocampus Rennes, et J. Mazet.
+
+Il permet de réaliser des analyses classiques telles que l'analyse en composantes principales (ACP), l'analyse des correspondances (AC), l'analyse des correspondances multiples (ACM) ainsi que des analyses plus avancées.
+Il permet l'ajout d'information supplémentaire telle que des individus et/ou des variables supplémentaires.
+Il fournit un point de vue géométrique et de nombreuses sorties graphiques.
+Il fournit de nombreuses aides à l'interprétation (description automatique des axes, nombreux indicateurs, ...).
+
+## Quarto
+
+Quarto est un outil qui permet de créer et publier des documents techniques en utilisant R ou Python. Grâce à Quarto il est facile d'exporter par exemple une analyse réalisée en R au format Word, PDF ou même HTML. 
+Quarto permet de combiner du texte, du code R, le résultat du code R et des graphiques.
+
+Pour en savoir plus : https://quarto.org/ 
+
+## Références : 
+
+- The R Project for Statistical Computing : https://www.r-project.org/ 
+- R (langage) : https://fr.wikipedia.org/wiki/R_(langage)
