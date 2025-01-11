@@ -46,5 +46,12 @@ fr_columns <- c("nom", "positions_joueur", "note_globale", "potentiel",
 
 colnames(fifa24) <- fr_columns
 
+fifa24$nom <- make.unique(fifa24$nom)
 
-write.csv(fifa24, "FIFA24/fifa24.csv", sep = ",", row.names = F)
+fifa24 <- as.data.frame(fifa24)
+row.names(fifa24) <- fifa24$nom
+fifa24$nom <- NULL
+saveRDS(fifa24, "FIFA24/fifa24.RDS")
+
+write.csv(fifa24, "FIFA24/fifa24.csv", sep = ",", row.names = T)
+
