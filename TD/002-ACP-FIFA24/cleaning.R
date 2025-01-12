@@ -48,10 +48,22 @@ colnames(fifa24) <- fr_columns
 
 fifa24$nom <- make.unique(fifa24$nom)
 
+player_positions <- sapply(lapply(fifa24$positions_joueur, strsplit, ","), function(pos) pos[[1]][1])
+
+positions_abg <- unique(player_positions)
+
+positions_fr <- c("Avant-centre", "Milieu central", "Attaquant en retrait", "Gardien de but", "Ailier gauche", 
+                  "Milieu défensif central", "Défenseur central", "Ailier droit", "Milieu offensif central", 
+                  "Arrière droit", "Milieu droit", "Arrière gauche", "Milieu gauche", "Arrière latéral gauche", 
+                  "Arrière latéral droit")
+
+positions_traduites <- positions_fr[match(player_positions, positions_abg)]
+fifa24$positions_joueur <- positions_traduites
+
 fifa24 <- as.data.frame(fifa24)
 row.names(fifa24) <- fifa24$nom
 fifa24$nom <- NULL
-saveRDS(fifa24, "FIFA24/fifa24.RDS")
+saveRDS(fifa24, "002-ACP-FIFA24/fifa24b.RDS")
 
-write.csv(fifa24, "FIFA24/fifa24.csv", sep = ",", row.names = T)
+write.csv(fifa24, "002-ACP-FIFA24/fifa24.csv", sep = ",", row.names = T)
 
