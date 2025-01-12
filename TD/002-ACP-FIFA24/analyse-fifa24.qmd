@@ -1,0 +1,83 @@
+---
+title: "Analyse multidimensionnelle des performances de joueurs de football"
+format: docx
+editor: visual
+---
+
+# Introduction au Jeu de Données FIFA
+
+Ce jeu de données regroupe des informations détaillées sur les joueurs de football présents dans la franchise FIFA. Il permet d’analyser divers aspects des joueurs, allant de leurs capacités techniques et physiques à leurs performances globales et leur contexte professionnel. Ce jeu de données est idéal pour effectuer des recherches statistiques, explorer les caractéristiques des joueurs, ou encore réaliser des comparaisons approfondies entre joueurs.
+
+Voici une description détaillée des colonnes incluses dans le jeu de données :
+
+1.  **nom_court** : Le nom abrégé ou surnom du joueur.\
+2.  **positions_joueur** : Les positions principales occupées par le joueur sur le terrain.\
+3.  **note_globale** : La note globale attribuée au joueur, reflétant son niveau général.\
+4.  **potentiel** : Le potentiel maximal que le joueur peut atteindre.\
+5.  **valeur_eur** : La valeur marchande estimée du joueur en euros.\
+6.  **salaire_eur** : Le salaire hebdomadaire du joueur en euros.\
+7.  **age** : L’âge du joueur en années.\
+8.  **taille_cm** : La taille du joueur en centimètres.\
+9.  **poids_kg** : Le poids du joueur en kilogrammes.\
+10. **nom_club** : Le nom du club auquel appartient le joueur.\
+11. **nom_ligue** : Le nom de la ligue dans laquelle évolue le club du joueur.\
+12. **niveau_ligue** : Le niveau de la ligue (par exemple, première division, deuxième division).\
+13. **nationalite_nom** : Le pays ou la nationalité du joueur.\
+14. **pied_prefere** : Le pied dominant du joueur (gauche ou droit).\
+15. **mauvais_pied** : La compétence du joueur avec son pied non dominant (note sur 5).\
+16. **gestes_techniques** : La maîtrise des gestes techniques spéciaux (note sur 5).\
+17. **reputation_internationale** : La reconnaissance internationale du joueur (note sur 5).\
+18. **taux_effort** : Les efforts fournis par le joueur en attaque et en défense (ex. : Haut/Moyen).\
+19. **type_corps** : Le type corporel du joueur (ex. : Musclé, Fin).\
+20. **vitesse** : La vitesse globale du joueur, combinant accélération et vitesse de sprint.\
+21. **tir** : L’évaluation générale des capacités de tir du joueur.\
+22. **passe** : La qualité des passes effectuées par le joueur.\
+23. **dribble** : L’aptitude du joueur à dribbler efficacement.\
+24. **defense** : Les compétences défensives globales du joueur.\
+25. **physique** : La force et la robustesse physique du joueur.\
+26. **attaque_centres** : La capacité du joueur à effectuer des centres précis.\
+27. **attaque_finitions** : L’efficacité du joueur à conclure des actions devant le but.\
+28. **attaque_precision_tete** : La précision des coups de tête, notamment lors des duels aériens.\
+29. **attaque_passes_courtes** : La qualité des passes courtes réalisées par le joueur.\
+30. **attaque_volées** : L’efficacité des tirs effectués sur des balles aériennes.\
+31. **technique_dribbles** : Les compétences techniques en dribble.\
+32. **technique_effet** : La capacité du joueur à appliquer un effet sur le ballon.\
+33. **technique_precision_coups_francs** : La précision lors de l’exécution des coups francs.\
+34. **technique_passes_longues** : La précision des passes longues.\
+35. **technique_controle_balle** : L’aptitude à maîtriser et contrôler le ballon.\
+36. **mouvement_acceleration** : La rapidité avec laquelle le joueur atteint sa vitesse maximale.\
+37. **mouvement_vitesse_sprint** : La vitesse maximale atteinte par le joueur en sprint.\
+38. **mouvement_agilite** : La capacité du joueur à effectuer des mouvements rapides et fluides.\
+39. **mouvement_reactions** : La vitesse de réaction du joueur face aux situations de jeu.\
+40. **mouvement_equilibre** : La stabilité du joueur dans ses mouvements, notamment sous pression.\
+41. **puissance_tirs** : La puissance des tirs effectués par le joueur.\
+42. **puissance_sauts** : L’aptitude du joueur à effectuer des sauts élevés.\
+43. **puissance_endurance** : La capacité du joueur à maintenir un niveau élevé de performance tout au long du match.\
+44. **puissance_force** : La puissance physique brute du joueur dans les duels.\
+45. **puissance_tirs_longs** : La précision et la puissance des tirs tentés à longue distance.\
+46. **mental_agressivite** : L’intensité et la détermination du joueur dans ses actions.\
+47. **mental_interceptions** : L’aptitude à anticiper et intercepter les passes adverses.\
+48. **mental_placement** : L’intelligence positionnelle, notamment en attaque.\
+49. **mental_vision** : La capacité à détecter des opportunités de jeu et de passes.\
+50. **mental_penalties** : La précision des tirs au but réalisés par le joueur.\
+51. **mental_sang_froid** : La capacité à garder son calme dans des situations de pression.\
+52. **defense_marqueur** : Les compétences défensives générales, notamment pour marquer un adversaire.\
+53. **defense_tacles_debout** : La capacité à réaliser des tacles debout efficaces.\
+54. **defense_tacles_glisses** : La maîtrise des tacles glissés.\
+55. **gardien_plongeon** : La compétence du gardien à plonger pour arrêter les tirs.\
+56. **gardien_manipulation** : L’aptitude à attraper ou manipuler le ballon sans faute.\
+57. **gardien_degagements** : La précision et la puissance des dégagements effectués par le gardien.\
+58. **gardien_positionnement** : La capacité du gardien à se positionner correctement face aux tirs.\
+59. **gardien_reflexes** : La réactivité du gardien dans des situations critiques.\
+60. **gardien_vitesse** : La vitesse du gardien dans ses déplacements.
+
+Ce jeu de données est un outil puissant pour les analyses liées au football et offre une vue d’ensemble des talents disponibles dans FIFA.
+
+## Noms des colonnes ainsi que leurs types et positions 
+
+```{r, echo=FALSE}
+fifa24 <- readRDS("fifa24.RDS")
+position_cols <- data.frame(list(Colonnes = colnames(fifa24)), Position = seq_len(length(colnames(fifa24))), Type = sapply(fifa24, class), row.names = NULL)
+knitr::kable(position_cols)
+```
+
