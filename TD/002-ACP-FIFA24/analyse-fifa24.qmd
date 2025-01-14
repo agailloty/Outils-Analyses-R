@@ -73,7 +73,7 @@ Voici une description détaillée des colonnes incluses dans le jeu de données 
 
 Ce jeu de données est un outil puissant pour les analyses liées au football et offre une vue d’ensemble des talents disponibles dans FIFA.
 
-## Noms des colonnes ainsi que leurs types et positions 
+## Noms des colonnes ainsi que leurs types et positions
 
 ```{r, echo=FALSE}
 fifa24 <- readRDS("fifa24.RDS")
@@ -83,28 +83,19 @@ knitr::kable(position_cols)
 
 ## Réaliser une analyse en composantes principales
 
-Pour réaliser une analyse en composantes principales nous avons besoin de savoir : 
-- Quelles variables utiliser comme **variables actives de l'ACP**
-- Quelles variables utiliser comme **variables quantitatives supplémentaires (illustratives)**
-- Quelles variables utiliser comme **variables qualitatives supplémentaires (illustratives)**
+### Choix des variables à inclure dans l'étude
 
-Pour notre cas, nous alons choisir les variables suivantes **"vitesse", "tir", "passe", "dribble", "defense", 
-"physique", "attaque_centres", "attaque_finitions", "attaque_precision_tete", 
-"attaque_passes_courtes", "attaque_volées", "technique_dribbles", 
-"technique_effet", "technique_precision_coups_francs", "technique_passes_longues", 
-"technique_controle_balle", "mouvement_acceleration", "mouvement_vitesse_sprint", 
-"mouvement_agilite", "mouvement_reactions", "mouvement_equilibre", 
-"puissance_tirs", "puissance_sauts", "puissance_endurance", "puissance_force", 
-"puissance_tirs_longs", "mental_agressivite", "mental_interceptions", 
-"mental_placement", "mental_vision", "mental_penalties", "mental_sang_froid", 
-"defense_marqueur", "defense_tacles_debout", "defense_tacles_glisses", 
-"gardien_plongeon", "gardien_manipulation", "gardien_degagements", 
-"gardien_positionnement", "gardien_reflexes", "gardien_vitesse"** comme variables actives de l'ACP. 
+Pour réaliser une analyse en composantes principales nous avons besoin de savoir : - Quelles variables utiliser comme **variables actives de l'ACP** - Quelles variables utiliser comme **variables quantitatives supplémentaires (illustratives)** - Quelles variables utiliser comme **variables qualitatives supplémentaires (illustratives)**
 
-Ensuite nous choisissons les variables **"salaire_eur", "age", "taille_cm", "poids_kg", "niveau_ligue", "reputation_internationale"** comme variables quantitatives illustratives car nous estimons que ces variables ne sont pas liées fondamentalement liées aux performances des joueurs donc nous ne souhaitons pas les inclure dans la composition des axes de l'ACP mais nous voulons tout de même les utiliser pour comparer les joueurs. 
+Pour notre cas, nous alons choisir les variables suivantes **"vitesse", "tir", "passe", "dribble", "defense", "physique", "attaque_centres", "attaque_finitions", "attaque_precision_tete", "attaque_passes_courtes", "attaque_volées", "technique_dribbles", "technique_effet", "technique_precision_coups_francs", "technique_passes_longues", "technique_controle_balle", "mouvement_acceleration", "mouvement_vitesse_sprint", "mouvement_agilite", "mouvement_reactions", "mouvement_equilibre", "puissance_tirs", "puissance_sauts", "puissance_endurance", "puissance_force", "puissance_tirs_longs", "mental_agressivite", "mental_interceptions", "mental_placement", "mental_vision", "mental_penalties", "mental_sang_froid", "defense_marqueur", "defense_tacles_debout", "defense_tacles_glisses", "gardien_plongeon", "gardien_manipulation", "gardien_degagements", "gardien_positionnement", "gardien_reflexes", "gardien_vitesse"** comme variables actives de l'ACP.
+
+Ensuite nous choisissons les variables **"salaire_eur", "age", "taille_cm", "poids_kg", "niveau_ligue", "reputation_internationale"** comme variables quantitatives illustratives car nous estimons que ces variables ne sont pas liées fondamentalement liées aux performances des joueurs donc nous ne souhaitons pas les inclure dans la composition des axes de l'ACP mais nous voulons tout de même les utiliser pour comparer les joueurs.
+
+Enfin, nous choisissons les variables **positions_joueur** et **type_corps** comme variables qualitatives illustratives. 
+
+### Chargement du package FactoMineR
 
 ```{r}
-premieres_positions <- sapply(lapply(fifa24$positions_joueur, strsplit, ","), function(pos) pos[[1]][1])
+library(FactoMineR)
 ```
-
 

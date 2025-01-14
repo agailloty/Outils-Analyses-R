@@ -63,7 +63,7 @@ fifa24$positions_joueur <- positions_traduites
 fifa24 <- as.data.frame(fifa24)
 row.names(fifa24) <- fifa24$nom
 fifa24$nom <- NULL
-saveRDS(fifa24, "002-ACP-FIFA24/fifa24b.RDS")
+saveRDS(fifa24, "002-ACP-FIFA24/fifa24.RDS")
 
 write.csv(fifa24, "002-ACP-FIFA24/fifa24.csv", sep = ",", row.names = T)
 
