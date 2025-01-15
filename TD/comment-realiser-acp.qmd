@@ -1,10 +1,11 @@
 ---
 title: "Comment réaliser une analyse en composante principale"
-format: docx
-editor: visual
+format: 
+  docx:
+    reference-doc: template.docx
 ---
 
-## Importer les données dans R
+# Importer les données dans R
 
 Le jeu de données peut être au format Excel (xls, xlsx), CSV (fichier texte séparé par une virgule ou point-virgule), TSV (fichier texte séparé par une tabulation), RDS (fichier compressé R).
 
@@ -23,9 +24,9 @@ Il est important de connaître au préalable le jeu de données sur lequel on ai
     -   lesquelles utiliser comme variables quantitatives illustratives\
     -   lesquelles utiliser comme variables qualitatives illustratives
 
-## Les types de variable pour l'ACP
+# Les types de variable pour l'ACP
 
-### 1. **Variables actives**
+## 1. **Variables actives**
 
 Les **variables actives** sont celles qui participent directement à la construction des axes factoriels de l'ACP. Elles sont utilisées pour calculer les composantes principales et forment la base de l'analyse. Ces variables sont généralement **quantitatives** et doivent être mesurées sur une échelle comparable, souvent standardisée pour éviter que les différences d'échelle influencent les résultats.
 
@@ -37,9 +38,8 @@ Les **variables actives** sont celles qui participent directement à la construc
 
 ------------------------------------------------------------------------
 
-## Les types de variable pour l'ACP
 
-### 2. **Variables quantitatives illustratives**
+## 2. **Variables quantitatives illustratives**
 
 Les **variables quantitatives illustratives** sont des variables quantitatives qui ne participent pas à la construction des axes factoriels mais qui sont projetées sur les axes a posteriori pour enrichir l'interprétation.
 
@@ -49,9 +49,7 @@ Les **variables quantitatives illustratives** sont des variables quantitatives q
 -   **Exemple** :
     -   Le prix d’un produit (euros) ou sa durée de conservation (en jours) pourrait être une variable quantitative illustrative. Ces informations pourraient aider à interpréter les dimensions sans influencer leur construction.
 
-## Les types de variable pour l'ACP
-
-### 3. **Variables qualitatives illustratives**
+## 3. **Variables qualitatives illustratives**
 
 Les **variables qualitatives illustratives** sont des variables catégoriques ou qualitatives qui, elles aussi, ne participent pas à la construction des axes factoriels mais qui sont utilisées pour enrichir l'interprétation des résultats.
 
@@ -64,9 +62,8 @@ Les **variables qualitatives illustratives** sont des variables catégoriques ou
         -   Origine : (biologique, conventionnel).
 -   En analysant la distribution des modalités ("biologique" ou "conventionnel"), on peut déduire si certains groupes se distinguent dans l’espace factoriel.
 
-## Les types de variable pour l'ACP
 
-### Synthèse du rôle dans l'ACP
+## Synthèse du rôle dans l'ACP
 
 | Type de variable | Participe à la construction des axes ? | Objectif principal |
 |---------------------|------------------------|---------------------------|
@@ -74,7 +71,11 @@ Les **variables qualitatives illustratives** sont des variables catégoriques ou
 | **Variables quantitatives illustratives** | Non | Comprendre leur relation avec les axes. |
 | **Variables qualitatives illustratives** | Non | Interpréter les groupes/catégories sur les axes. |
 
-## Exemple ACP jeu de données Decathlon
+------------------------------------------------------------------------
+
+\newpage
+
+# Exemple d'une ACP jeu de données Decathlon
 
 ```{r}
 library(FactoMineR)
