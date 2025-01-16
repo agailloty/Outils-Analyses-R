@@ -91,11 +91,45 @@ Pour notre cas, nous alons choisir les variables suivantes **"vitesse", "tir", "
 
 Ensuite nous choisissons les variables **"salaire_eur", "age", "taille_cm", "poids_kg", "niveau_ligue", "reputation_internationale"** comme variables quantitatives illustratives car nous estimons que ces variables ne sont pas liées fondamentalement liées aux performances des joueurs donc nous ne souhaitons pas les inclure dans la composition des axes de l'ACP mais nous voulons tout de même les utiliser pour comparer les joueurs.
 
-Enfin, nous choisissons les variables **positions_joueur** et **type_corps** comme variables qualitatives illustratives. 
+Enfin, nous choisissons les variables **"positions_joueur", "type_corps"** comme variables qualitatives illustratives. 
 
 ### Chargement du package FactoMineR
 
 ```{r}
 library(FactoMineR)
 ```
+
+
+```{r, echo=FALSE}
+fifa250 <- fifa24[1:250,]
+```
+
+## Choix des variables de l'ACP 
+
+```{r}
+var_actives <- c("vitesse", "tir", "passe", "dribble", "defense", "physique", "attaque_centres", "attaque_finitions", "attaque_precision_tete", "attaque_passes_courtes", "attaque_volées", "technique_dribbles", "technique_effet", "technique_precision_coups_francs", "technique_passes_longues", "technique_controle_balle", "mouvement_acceleration", "mouvement_vitesse_sprint", "mouvement_agilite", "mouvement_reactions", "mouvement_equilibre", "puissance_tirs", "puissance_sauts", "puissance_endurance", "puissance_force", "puissance_tirs_longs", "mental_agressivite", "mental_interceptions", "mental_placement", "mental_vision", "mental_penalties", "mental_sang_froid", "defense_marqueur", "defense_tacles_debout", "defense_tacles_glisses", "gardien_plongeon", "gardien_manipulation", "gardien_degagements", "gardien_positionnement", "gardien_reflexes", "gardien_vitesse")
+
+
+var_quanti_sup <- c("salaire_eur", "age", "taille_cm", "poids_kg", "niveau_ligue", "reputation_internationale")
+
+var_quali_sup <- c("positions_joueur", "type_corps")
+
+fifa250 <- fifa250[, c(var_actives, var_quanti_sup, var_quali_sup)]
+
+var_actives <- match(var_actives, colnames(fifa250))
+var_quanti_sup <- match(var_quanti_sup, colnames(fifa250))
+var_quali_sup <- match(var_quali_sup, colnames(fifa250))
+```
+
+
+## Calcul de l'ACP 
+
+```{r}
+acp_fifa <- PCA(X =  fifa250, quanti.sup = var_quanti_sup, quali.sup = var_quali_sup, graph = F)
+```
+
+```{r}
+summary(acp_fifa)
+```
+
 
