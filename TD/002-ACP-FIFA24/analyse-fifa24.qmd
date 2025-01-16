@@ -1,7 +1,8 @@
 ---
 title: "Analyse multidimensionnelle des performances de joueurs de football"
-format: docx
-editor: visual
+format: 
+  docx:
+    reference-doc: "../template.docx"
 ---
 
 # Introduction au Jeu de Données FIFA
