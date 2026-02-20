@@ -1,0 +1,301 @@
+Matin;Gouter;Soiree;apres dejeuner;apres diner;tt moment;Travail;Salon_t;Resto;Bar;Variete;Complement;Sucre;Forme;Lieu.achat;type;sexe;CSP;Sport;age;age_Q;frequence
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;noir;pur;Oui;sachet;GMS;t_inconnu;H;cadre moyen;Oui;39;35-44;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;noir;lait;Non;sachet;GMS;t_variable;F;cadre moyen;Oui;45;45-59;1/jour
+Non;Oui;Oui;Non;Oui;Non;Oui;Non;Oui;Non;parfume;pur;Non;sachet;GMS;t_variable;F;autre actif;Oui;47;45-59;+ de 2/jour
+Non;Non;Non;Non;Oui;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_variable;H;etudiant;Non;23;15-24;1/jour
+Oui;Non;Oui;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_variable;H;employe;Oui;48;45-59;+ de 2/jour
+Non;Non;Non;Non;Oui;Non;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_MDD;H;etudiant;Oui;21;15-24;1/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_variable;H;cadre sup;Oui;37;35-44;3 a 6/sem
+Non;Oui;Oui;Non;Non;Non;Non;Non;Non;Non;noir;lait;Non;sachet;GMS;t_variable;F;cadre moyen;Oui;36;35-44;1 a 2/sem
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;lait;Non;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;H;cadre sup;Oui;40;35-44;+ de 2/jour
+Oui;Non;Oui;Non;Non;Non;Non;Oui;Non;Non;noir;pur;Non;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;H;cadre sup;Non;37;35-44;+ de 2/jour
+Non;Non;Oui;Non;Non;Non;Non;Non;Oui;Non;parfume;pur;Non;sachet;GMS;t_inconnu;H;cadre moyen;Oui;32;25-34;1/jour
+Oui;Non;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_variable;H;cadre moyen;Oui;31;25-34;1/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;lait;Non;sachet+vrac;GMS+mag.spe.;t_MDD;H;cadre sup;Oui;56;45-59;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;noir;lait;Oui;sachet;GMS;t_marque_connue;H;non actif;Oui;66;60 et +;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;noir;lait;Non;sachet;GMS+mag.spe.;t_haut_de_gamme;H;non actif;Oui;65;60 et +;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;vrac;GMS+mag.spe.;t_haut_de_gamme;H;cadre moyen;Oui;60;60 et +;+ de 2/jour
+Oui;Oui;Oui;Non;Non;Non;Oui;Non;Non;Non;noir;pur;Non;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;H;cadre moyen;Oui;35;35-44;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Non;Oui;Non;Non;parfume;pur;Non;sachet;GMS+mag.spe.;t_variable;F;non actif;Oui;72;60 et +;+ de 2/jour
+Oui;Oui;Oui;Oui;Non;Non;Non;Non;Oui;Non;noir;pur;Non;sachet;GMS;t_marque_connue;F;non actif;Non;73;60 et +;+ de 2/jour
+Non;Oui;Non;Oui;Non;Non;Non;Non;Non;Non;noir;pur;Non;sachet;GMS;t_variable;F;non actif;Oui;80;60 et +;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;citron;Non;sachet;GMS+mag.spe.;t_variable;F;non actif;Non;76;60 et +;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Non;Oui;Oui;Non;noir;autre;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;non actif;Oui;63;60 et +;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_haut_de_gamme;F;non actif;Oui;55;45-59;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Oui;Non;noir;pur;Non;sachet;GMS;t_haut_de_gamme;F;non actif;Non;56;45-59;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Oui;Non;parfume;pur;Non;vrac;GMS+mag.spe.;t_marque_connue;F;non actif;Non;60;60 et +;+ de 2/jour
+Oui;Non;Oui;Non;Non;Oui;Oui;Oui;Oui;Oui;parfume;lait;Non;sachet;GMS+mag.spe.;t_inconnu;F;etudiant;Oui;22;15-24;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Non;Oui;Non;Non;parfume;pur;Oui;sachet;GMS;t_variable;F;employe;Oui;24;15-24;+ de 2/jour
+Oui;Oui;Oui;Oui;Non;Non;Oui;Non;Oui;Non;parfume;pur;Non;sachet+vrac;GMS;t_variable;F;cadre moyen;Oui;21;15-24;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;sachet;GMS;t_variable;F;non actif;Non;75;60 et +;1 a 2/sem
+Oui;Oui;Non;Non;Non;Non;Non;Oui;Non;Non;parfume;pur;Oui;sachet;GMS;t_variable;F;non actif;Non;37;35-44;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Non;vrac;mag.spe;t_haut_de_gamme;F;cadre moyen;Oui;32;25-34;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Oui;Non;parfume;citron;Oui;sachet+vrac;GMS+mag.spe.;t_variable;F;cadre moyen;Non;32;25-34;1/jour
+Non;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Oui;sachet+vrac;GMS+mag.spe.;t_variable;F;cadre moyen;Non;38;35-44;3 a 6/sem
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;sachet;GMS;t_MDD;F;non actif;Non;50;45-59;3 a 6/sem
+Non;Oui;Oui;Non;Non;Oui;Non;Non;Oui;Oui;noir;citron;Non;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;F;employe;Oui;26;25-34;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;parfume;lait;Oui;sachet;GMS;t_variable;H;cadre sup;Non;39;35-44;1/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Non;vert;pur;Non;sachet+vrac;GMS;t_marque_connue;F;etudiant;Oui;17;15-24;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;vert;pur;Non;sachet;GMS;t_marque_connue;F;non actif;Non;45;45-59;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Oui;Oui;Oui;Non;parfume;lait;Non;sachet;GMS+mag.spe.;t_marque_connue;F;cadre moyen;Non;36;35-44;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;vert;pur;Non;sachet+vrac;GMS+mag.spe.;t_marque_connue;F;cadre moyen;Non;37;35-44;3 a 6/sem
+Oui;Oui;Non;Oui;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;F;non actif;Non;71;60 et +;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Oui;Oui;Non;Non;vert;pur;Non;sachet;GMS;t_MDD;F;autre actif;Oui;48;45-59;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Oui;Non;parfume;lait;Non;sachet;GMS;t_marque_connue;F;etudiant;Non;23;15-24;1/jour
+Oui;Oui;Non;Non;Non;Non;Non;Oui;Oui;Non;noir;autre;Non;sachet;GMS+mag.spe.;t_variable;F;non actif;Non;70;60 et +;+ de 2/jour
+Non;Non;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_variable;F;etudiant;Oui;19;15-24;3 a 6/sem
+Oui;Oui;Non;Non;Non;Oui;Oui;Oui;Oui;Oui;parfume;lait;Oui;sachet;GMS;t_variable;F;etudiant;Oui;25;25-34;1/jour
+Non;Non;Oui;Non;Oui;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_inconnu;F;etudiant;Non;22;15-24;1 a 2/sem
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;etudiant;Oui;22;15-24;1 a 2/sem
+Oui;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Non;sachet+vrac;GMS;t_MDD;F;employe;Non;34;25-34;1/jour
+Oui;Oui;Non;Non;Non;Non;Non;Oui;Oui;Non;noir;pur;Non;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;F;etudiant;Oui;23;15-24;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Oui;parfume;pur;Oui;sachet+vrac;GMS+mag.spe.;t_variable;F;employe;Oui;21;15-24;1/jour
+Non;Oui;Oui;Non;Non;Oui;Non;Oui;Non;Non;noir;pur;Oui;sachet+vrac;GMS;t_haut_de_gamme;F;employe;Oui;37;35-44;1 a 2/sem
+Non;Oui;Non;Non;Non;Non;Oui;Non;Non;Oui;parfume;pur;Non;vrac;mag.spe;t_haut_de_gamme;F;non actif;Oui;40;35-44;3 a 6/sem
+Non;Oui;Oui;Non;Oui;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_haut_de_gamme;F;etudiant;Oui;18;15-24;1 a 2/sem
+Non;Non;Oui;Non;Non;Oui;Non;Non;Non;Non;vert;lait;Oui;sachet;GMS;t_marque_connue;F;employe;Oui;18;15-24;1/jour
+Non;Oui;Oui;Non;Non;Oui;Oui;Oui;Non;Non;parfume;pur;Non;sachet+vrac;GMS;t_variable;F;cadre moyen;Oui;56;45-59;3 a 6/sem
+Oui;Oui;Non;Non;Non;Non;Non;Oui;Non;Oui;vert;pur;Non;sachet;GMS;t_variable;F;autre actif;Non;34;25-34;1/jour
+Oui;Non;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;lait;Oui;sachet+vrac;GMS+mag.spe.;t_variable;H;autre actif;Oui;32;25-34;+ de 2/jour
+Non;Oui;Non;Oui;Non;Non;Non;Oui;Non;Non;vert;citron;Oui;sachet+vrac;GMS+mag.spe.;t_variable;F;cadre sup;Non;60;60 et +;3 a 6/sem
+Oui;Oui;Non;Oui;Non;Non;Non;Non;Oui;Oui;noir;pur;Non;sachet+vrac;GMS;t_marque_connue;F;non actif;Oui;66;60 et +;+ de 2/jour
+Oui;Oui;Non;Oui;Non;Non;Oui;Oui;Oui;Non;parfume;pur;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;cadre sup;Oui;49;45-59;3 a 6/sem
+Oui;Oui;Oui;Oui;Non;Oui;Oui;Non;Non;Non;parfume;pur;Non;vrac;mag.spe;t_marque_connue;F;etudiant;Non;28;25-34;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_variable;F;non actif;Non;22;15-24;1/jour
+Non;Non;Non;Non;Non;Oui;Oui;Non;Oui;Oui;noir;pur;Non;sachet;GMS+mag.spe.;t_variable;F;cadre moyen;Non;35;35-44;+ de 2/jour
+Non;Non;Oui;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Oui;sachet+vrac;GMS;t_variable;F;employe;Oui;25;25-34;1 a 2/sem
+Non;Oui;Oui;Non;Oui;Non;Non;Oui;Oui;Non;noir;autre;Non;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;F;non actif;Oui;62;60 et +;1/jour
+Oui;Oui;Non;Non;Non;Oui;Non;Oui;Oui;Oui;parfume;pur;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;non actif;Non;57;45-59;+ de 2/jour
+Non;Non;Oui;Oui;Non;Non;Oui;Non;Non;Oui;parfume;citron;Oui;sachet+vrac;GMS+mag.spe.;t_variable;F;etudiant;Oui;20;15-24;3 a 6/sem
+Oui;Oui;Non;Oui;Non;Non;Oui;Non;Non;Oui;parfume;citron;Non;sachet;GMS;t_variable;F;etudiant;Oui;22;15-24;1/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Oui;parfume;pur;Oui;sachet;GMS;t_marque_connue;F;employe;Oui;36;35-44;1/jour
+Non;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_variable;H;etudiant;Non;19;15-24;1 a 2/sem
+Oui;Oui;Oui;Oui;Non;Oui;Non;Non;Non;Non;parfume;lait;Oui;sachet+vrac;GMS+mag.spe.;t_variable;H;employe;Oui;24;15-24;+ de 2/jour
+Non;Non;Oui;Oui;Non;Oui;Non;Non;Non;Non;parfume;lait;Oui;sachet;GMS;t_variable;H;etudiant;Oui;22;15-24;1 a 2/sem
+Non;Non;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;citron;Oui;vrac;mag.spe;t_haut_de_gamme;H;cadre moyen;Oui;28;25-34;1/jour
+Oui;Oui;Oui;Oui;Non;Oui;Oui;Oui;Oui;Oui;noir;lait;Oui;sachet;GMS;t_MDD;H;etudiant;Oui;18;15-24;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;parfume;lait;Oui;sachet;GMS;t_marque_connue;F;cadre moyen;Oui;34;25-34;1/jour
+Non;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;F;employe;Oui;51;45-59;1/jour
+Oui;Oui;Non;Oui;Non;Non;Non;Non;Non;Non;parfume;lait;Non;sachet+vrac;GMS;t_marque_connue;F;employe;Oui;55;45-59;+ de 2/jour
+Non;Oui;Non;Oui;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;mag.spe;t_variable;F;non actif;Oui;76;60 et +;1/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Oui;Oui;parfume;pur;Non;sachet+vrac;GMS;t_marque_connue;F;etudiant;Oui;22;15-24;1/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;noir;pur;Non;sachet;GMS;t_haut_de_gamme;F;cadre moyen;Oui;50;45-59;+ de 2/jour
+Non;Oui;Oui;Non;Non;Non;Non;Oui;Oui;Non;parfume;pur;Oui;vrac;GMS;t_MDD;F;etudiant;Oui;25;25-34;1 a 2/sem
+Non;Non;Non;Non;Non;Oui;Oui;Non;Non;Non;parfume;lait;Oui;sachet;GMS+mag.spe.;t_haut_de_gamme;F;autre actif;Oui;44;35-44;1/jour
+Non;Oui;Non;Oui;Non;Non;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_variable;F;etudiant;Non;19;15-24;3 a 6/sem
+Oui;Non;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;citron;Oui;sachet;GMS;t_MDD;F;etudiant;Oui;20;15-24;3 a 6/sem
+Oui;Oui;Non;Non;Non;Oui;Oui;Non;Non;Oui;parfume;lait;Oui;sachet;GMS;t_inconnu;F;etudiant;Oui;19;15-24;3 a 6/sem
+Oui;Oui;Oui;Oui;Non;Oui;Oui;Oui;Non;Oui;parfume;pur;Oui;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;F;etudiant;Oui;19;15-24;+ de 2/jour
+Non;Oui;Oui;Oui;Non;Oui;Oui;Non;Oui;Non;parfume;lait;Oui;sachet;GMS;t_MDD;F;etudiant;Non;17;15-24;1 a 2/sem
+Oui;Non;Non;Oui;Non;Oui;Oui;Non;Non;Non;parfume;lait;Non;sachet;GMS+mag.spe.;t_variable;H;cadre sup;Oui;51;45-59;1/jour
+Non;Oui;Oui;Non;Non;Oui;Non;Non;Oui;Non;parfume;pur;Oui;sachet+vrac;GMS;t_inconnu;H;cadre sup;Oui;50;45-59;1 a 2/sem
+Non;Oui;Oui;Non;Non;Non;Non;Non;Oui;Non;noir;lait;Oui;sachet+vrac;GMS;t_marque_connue;H;etudiant;Oui;20;15-24;1/jour
+Non;Non;Non;Oui;Non;Non;Oui;Non;Oui;Non;parfume;pur;Oui;sachet+vrac;GMS;t_variable;H;cadre sup;Oui;25;25-34;1 a 2/sem
+Oui;Oui;Oui;Non;Non;Oui;Non;Non;Oui;Non;noir;lait;Non;sachet;GMS;t_haut_de_gamme;H;non actif;Non;78;60 et +;+ de 2/jour
+Non;Non;Oui;Non;Non;Non;Non;Oui;Oui;Non;parfume;pur;Non;vrac;GMS;t_haut_de_gamme;H;cadre sup;Oui;49;45-59;1 a 2/sem
+Non;Oui;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Oui;vrac;mag.spe;t_haut_de_gamme;H;autre actif;Non;42;35-44;1 a 2/sem
+Oui;Non;Oui;Non;Non;Non;Non;Non;Oui;Non;noir;lait;Oui;sachet+vrac;GMS;t_variable;H;autre actif;Oui;32;25-34;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;parfume;lait;Oui;sachet;GMS;t_marque_connue;H;employe;Oui;20;15-24;1/jour
+Oui;Oui;Non;Non;Non;Non;Oui;Non;Oui;Non;parfume;pur;Non;sachet;GMS;t_variable;H;cadre moyen;Non;35;35-44;+ de 2/jour
+Oui;Oui;Oui;Oui;Non;Non;Oui;Non;Oui;Non;noir;lait;Oui;sachet+vrac;GMS+mag.spe.;t_variable;H;cadre sup;Oui;33;25-34;+ de 2/jour
+Non;Oui;Oui;Non;Non;Non;Oui;Oui;Non;Non;parfume;pur;Non;vrac;mag.spe;t_haut_de_gamme;H;cadre sup;Non;56;45-59;1/jour
+Non;Non;Oui;Oui;Non;Non;Non;Oui;Oui;Oui;parfume;pur;Oui;sachet;GMS;t_variable;F;non actif;Oui;33;25-34;+ de 2/jour
+Non;Non;Oui;Non;Non;Non;Non;Non;Non;Non;vert;pur;Oui;sachet+vrac;GMS;t_marque_connue;H;non actif;Oui;29;25-34;1/jour
+Oui;Oui;Non;Non;Non;Oui;Oui;Oui;Non;Non;parfume;lait;Oui;sachet+vrac;GMS+mag.spe.;t_marque_connue;F;cadre moyen;Non;43;35-44;+ de 2/jour
+Oui;Oui;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;lait;Oui;sachet;GMS;t_marque_connue;F;etudiant;Oui;22;15-24;+ de 2/jour
+Oui;Non;Oui;Non;Non;Oui;Non;Non;Non;Oui;parfume;pur;Oui;sachet;GMS;t_bas_de_gamme;F;employe;Non;20;15-24;+ de 2/jour
+Non;Oui;Oui;Non;Non;Non;Non;Non;Oui;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;H;etudiant;Non;27;25-34;+ de 2/jour
+Non;Oui;Oui;Non;Non;Non;Non;Non;Oui;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;F;etudiant;Non;22;15-24;+ de 2/jour
+Non;Oui;Oui;Non;Non;Oui;Oui;Oui;Oui;Oui;parfume;pur;Oui;sachet+vrac;GMS;t_marque_connue;F;etudiant;Non;23;15-24;1/jour
+Non;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Non;sachet;GMS+mag.spe.;t_marque_connue;F;ouvrier;Oui;46;45-59;1/jour
+Non;Non;Non;Non;Non;Oui;Oui;Non;Non;Oui;parfume;pur;Non;sachet+vrac;mag.spe;t_variable;F;cadre sup;Oui;35;35-44;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;parfume;citron;Non;sachet;GMS;t_marque_connue;F;autre actif;Non;28;25-34;1/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;etudiant;Non;20;15-24;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS+mag.spe.;t_haut_de_gamme;H;non actif;Non;71;60 et +;1/jour
+Non;Non;Oui;Non;Non;Non;Non;Non;Oui;Oui;parfume;pur;Oui;sachet;GMS;t_MDD;H;cadre moyen;Non;28;25-34;+ de 2/jour
+Oui;Non;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;F;etudiant;Oui;23;15-24;+ de 2/jour
+Non;Non;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_inconnu;F;employe;Non;21;15-24;1/jour
+Non;Non;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;citron;Oui;sachet;GMS;t_marque_connue;H;autre actif;Non;19;15-24;1 a 2/sem
+Oui;Non;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_variable;H;employe;Oui;27;25-34;1/jour
+Oui;Non;Non;Non;Non;Oui;Oui;Non;Non;Non;parfume;pur;Non;sachet+vrac;GMS;t_marque_connue;H;etudiant;Non;25;25-34;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Oui;Non;Non;parfume;pur;Non;sachet;GMS+mag.spe.;t_haut_de_gamme;F;non actif;Oui;71;60 et +;1/jour
+Non;Oui;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;F;etudiant;Oui;21;15-24;1/jour
+Oui;Oui;Oui;Non;Non;Oui;Non;Oui;Non;Oui;parfume;citron;Oui;sachet+vrac;GMS+mag.spe.;t_marque_connue;F;employe;Non;23;15-24;+ de 2/jour
+Non;Non;Oui;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;H;etudiant;Oui;22;15-24;3 a 6/sem
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;H;non actif;Non;22;15-24;1 a 2/sem
+Non;Oui;Oui;Non;Non;Non;Non;Non;Oui;Oui;parfume;lait;Oui;sachet;GMS;t_marque_connue;F;etudiant;Non;23;15-24;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_MDD;F;etudiant;Oui;21;15-24;1 a 2/sem
+Oui;Oui;Non;Non;Non;Non;Oui;Non;Oui;Non;noir;autre;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;cadre sup;Non;42;35-44;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Oui;Oui;Non;Non;noir;pur;Non;sachet+vrac;GMS;t_MDD;F;employe;Non;23;15-24;1/jour
+Non;Oui;Oui;Non;Non;Non;Oui;Non;Oui;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;F;employe;Non;52;45-59;1/jour
+Non;Oui;Non;Non;Non;Oui;Oui;Non;Oui;Oui;parfume;lait;Non;sachet;GMS;t_marque_connue;H;cadre sup;Non;54;45-59;1 a 2/sem
+Oui;Oui;Oui;Non;Non;Oui;Oui;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;F;employe;Non;33;25-34;1/jour
+Oui;Non;Non;Non;Non;Oui;Oui;Non;Oui;Non;noir;pur;Non;sachet;GMS;t_marque_connue;H;cadre sup;Non;37;35-44;1/jour
+Non;Non;Oui;Non;Non;Oui;Oui;Non;Oui;Non;parfume;citron;Oui;sachet+vrac;GMS+mag.spe.;t_variable;H;etudiant;Oui;29;25-34;1/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;noir;citron;Oui;sachet;GMS;t_MDD;H;non actif;Non;66;60 et +;3 a 6/sem
+Non;Oui;Non;Non;Non;Oui;Oui;Oui;Non;Oui;noir;autre;Non;sachet;GMS;t_marque_connue;F;cadre moyen;Oui;47;45-59;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Oui;Oui;Non;Oui;parfume;citron;Oui;sachet;GMS+mag.spe.;t_marque_connue;F;employe;Non;45;45-59;+ de 2/jour
+Non;Non;Oui;Non;Non;Non;Oui;Non;Non;Non;parfume;citron;Oui;sachet;GMS;t_MDD;F;employe;Non;54;45-59;1/jour
+Oui;Oui;Oui;Oui;Non;Oui;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_variable;F;etudiant;Oui;19;15-24;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;F;etudiant;Oui;17;15-24;1 a 2/sem
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;F;etudiant;Oui;18;15-24;1 a 2/sem
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;lait;Oui;sachet;GMS;t_marque_connue;F;non actif;Non;79;60 et +;1/jour
+Non;Non;Non;Non;Non;Oui;Oui;Non;Oui;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;H;cadre sup;Oui;48;45-59;1/jour
+Non;Oui;Non;Non;Non;Oui;Non;Non;Oui;Non;parfume;pur;Oui;sachet;GMS;t_variable;H;etudiant;Oui;26;25-34;1/jour
+Non;Oui;Non;Non;Non;Oui;Oui;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;F;cadre moyen;Oui;47;45-59;3 a 6/sem
+Oui;Non;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;lait;Oui;sachet;GMS;t_variable;H;ouvrier;Oui;30;25-34;1/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;H;non actif;Non;24;15-24;3 a 6/sem
+Non;Oui;Oui;Non;Non;Oui;Oui;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;F;employe;Non;29;25-34;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;noir;autre;Oui;sachet;GMS+mag.spe.;t_haut_de_gamme;H;non actif;Non;72;60 et +;3 a 6/sem
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;citron;Oui;sachet;mag.spe;t_inconnu;H;ouvrier;Non;41;35-44;1/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Oui;parfume;pur;Oui;sachet;GMS;t_MDD;H;etudiant;Oui;18;15-24;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;sachet+vrac;GMS;t_bas_de_gamme;F;etudiant;Oui;19;15-24;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;F;employe;Non;55;45-59;3 a 6/sem
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;vrac;GMS;t_bas_de_gamme;F;cadre moyen;Oui;47;45-59;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;vert;pur;Non;sachet;GMS;t_marque_connue;F;cadre moyen;Non;49;45-59;1/jour
+Non;Non;Non;Non;Non;Oui;Oui;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;F;employe;Oui;30;25-34;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;noir;lait;Non;sachet;GMS;t_bas_de_gamme;F;autre actif;Oui;45;45-59;1/jour
+Oui;Oui;Non;Non;Non;Oui;Oui;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_MDD;F;ouvrier;Oui;22;15-24;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;F;non actif;Non;18;15-24;1 a 2/sem
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;noir;lait;Non;vrac;GMS+mag.spe.;t_marque_connue;F;non actif;Non;36;35-44;3 a 6/sem
+Non;Oui;Oui;Non;Non;Non;Non;Non;Oui;Oui;noir;pur;Non;sachet;GMS+mag.spe.;t_marque_connue;F;non actif;Non;75;60 et +;3 a 6/sem
+Non;Non;Oui;Non;Non;Non;Non;Non;Oui;Oui;noir;pur;Oui;vrac;GMS;t_marque_connue;F;non actif;Oui;19;15-24;+ de 2/jour
+Oui;Non;Oui;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;sachet;GMS;t_marque_connue;F;employe;Non;50;45-59;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;vert;pur;Non;sachet+vrac;GMS;t_marque_connue;F;non actif;Non;60;60 et +;1/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;sachet+vrac;GMS;t_marque_connue;F;employe;Oui;21;15-24;1/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;vert;pur;Non;vrac;GMS;t_haut_de_gamme;F;employe;Oui;45;45-59;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;F;non actif;Non;45;45-59;1/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;vert;pur;Non;sachet;GMS;t_marque_connue;F;non actif;Non;75;60 et +;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Oui;noir;citron;Non;vrac;mag.spe;t_haut_de_gamme;F;cadre sup;Non;53;45-59;+ de 2/jour
+Non;Non;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_variable;F;employe;Non;25;25-34;1 a 2/sem
+Oui;Oui;Oui;Non;Non;Non;Non;Non;Non;Oui;parfume;pur;Oui;sachet;GMS;t_variable;F;etudiant;Oui;20;15-24;+ de 2/jour
+Oui;Oui;Non;Non;Non;Oui;Oui;Non;Non;Oui;parfume;pur;Oui;vrac;GMS+mag.spe.;t_haut_de_gamme;F;etudiant;Oui;20;15-24;+ de 2/jour
+Oui;Oui;Non;Non;Non;Oui;Non;Non;Non;Oui;parfume;pur;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;cadre moyen;Oui;30;25-34;+ de 2/jour
+Oui;Oui;Oui;Non;Non;Non;Non;Non;Oui;Oui;noir;pur;Non;sachet+vrac;GMS;t_haut_de_gamme;F;employe;Non;51;45-59;+ de 2/jour
+Non;Oui;Oui;Non;Non;Non;Non;Non;Oui;Oui;parfume;pur;Oui;sachet;GMS;t_marque_connue;F;etudiant;Non;18;15-24;+ de 2/jour
+Oui;Non;Non;Non;Non;Oui;Non;Non;Oui;Non;parfume;pur;Oui;sachet;GMS;t_variable;F;non actif;Non;27;25-34;1/jour
+Oui;Non;Non;Non;Non;Oui;Non;Non;Non;Oui;parfume;pur;Oui;sachet;GMS;t_marque_connue;F;etudiant;Oui;22;15-24;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Oui;parfume;pur;Oui;sachet;GMS;t_marque_connue;F;etudiant;Oui;22;15-24;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Non;sachet+vrac;GMS;t_variable;F;etudiant;Oui;15;15-24;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;citron;Oui;sachet;GMS;t_marque_connue;F;ouvrier;Oui;20;15-24;+ de 2/jour
+Non;Non;Oui;Non;Non;Oui;Non;Non;Non;Non;vert;pur;Oui;sachet+vrac;GMS;t_marque_connue;F;etudiant;Oui;19;15-24;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Oui;Non;noir;lait;Oui;sachet;GMS;t_inconnu;H;autre actif;Oui;45;45-59;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;vrac;mag.spe;t_haut_de_gamme;H;cadre moyen;Oui;48;45-59;3 a 6/sem
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;sachet;GMS;t_MDD;H;cadre sup;Oui;35;35-44;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;parfume;lait;Oui;sachet;GMS;t_variable;H;cadre moyen;Non;50;45-59;1/jour
+Oui;Oui;Oui;Non;Non;Oui;Non;Non;Non;Oui;parfume;pur;Oui;sachet+vrac;GMS;t_variable;H;employe;Oui;25;25-34;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;vert;pur;Non;sachet;GMS;t_variable;H;non actif;Non;69;60 et +;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;vert;pur;Oui;sachet;GMS;t_marque_connue;H;non actif;Non;70;60 et +;1/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;vert;pur;Oui;sachet;GMS;t_marque_connue;H;ouvrier;Oui;40;35-44;1/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;vert;pur;Oui;sachet+vrac;GMS;t_MDD;H;non actif;Oui;21;15-24;1 a 2/sem
+Oui;Non;Non;Non;Non;Oui;Non;Oui;Non;Non;vert;citron;Oui;vrac;mag.spe;t_haut_de_gamme;H;cadre moyen;Non;26;25-34;+ de 2/jour
+Non;Non;Non;Non;Oui;Non;Non;Non;Oui;Non;parfume;pur;Oui;sachet+vrac;mag.spe;t_variable;H;ouvrier;Oui;25;25-34;3 a 6/sem
+Non;Non;Oui;Oui;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet+vrac;GMS;t_marque_connue;H;employe;Oui;26;25-34;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_bas_de_gamme;H;ouvrier;Non;23;15-24;1/jour
+Non;Non;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet+vrac;GMS;t_marque_connue;F;etudiant;Non;22;15-24;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;vert;pur;Non;vrac;mag.spe;t_haut_de_gamme;H;autre actif;Oui;45;45-59;1/jour
+Oui;Oui;Non;Non;Non;Oui;Oui;Non;Non;Non;noir;pur;Non;vrac;GMS;t_variable;H;employe;Non;36;35-44;+ de 2/jour
+Non;Non;Non;Non;Oui;Oui;Non;Non;Non;Oui;parfume;citron;Oui;sachet;GMS;t_marque_connue;H;employe;Oui;27;25-34;1 a 2/sem
+Non;Non;Oui;Non;Oui;Non;Non;Non;Non;Oui;parfume;pur;Non;sachet;GMS+mag.spe.;t_variable;H;ouvrier;Oui;18;15-24;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Oui;vert;pur;Non;sachet;mag.spe;t_haut_de_gamme;H;non actif;Oui;61;60 et +;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;vert;pur;Oui;sachet;GMS;t_marque_connue;H;cadre moyen;Oui;56;45-59;1/jour
+Oui;Oui;Non;Non;Oui;Non;Oui;Non;Non;Non;parfume;citron;Oui;sachet+vrac;GMS+mag.spe.;t_marque_connue;H;employe;Non;25;25-34;1/jour
+Non;Oui;Non;Non;Non;Non;Non;Oui;Non;Non;noir;pur;Non;vrac;mag.spe;t_haut_de_gamme;H;cadre moyen;Oui;50;45-59;1 a 2/sem
+Non;Non;Non;Non;Oui;Non;Non;Non;Non;Oui;parfume;pur;Oui;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;H;non actif;Oui;29;25-34;1/jour
+Non;Non;Non;Non;Oui;Non;Non;Oui;Oui;Non;parfume;autre;Oui;sachet;GMS;t_marque_connue;H;employe;Oui;20;15-24;1 a 2/sem
+Non;Non;Non;Non;Oui;Non;Non;Non;Non;Non;vert;pur;Non;sachet;GMS;t_marque_connue;H;autre actif;Oui;32;25-34;1/jour
+Oui;Oui;Oui;Non;Non;Non;Non;Non;Non;Non;noir;lait;Non;vrac;GMS;t_haut_de_gamme;H;non actif;Non;71;60 et +;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Oui;Non;Oui;noir;citron;Non;sachet+vrac;GMS+mag.spe.;t_variable;H;non actif;Non;65;60 et +;1/jour
+Non;Non;Oui;Non;Non;Oui;Non;Non;Non;Non;noir;citron;Oui;vrac;mag.spe;t_haut_de_gamme;H;non actif;Non;61;60 et +;1 a 2/sem
+Non;Non;Oui;Non;Non;Non;Non;Non;Non;Non;vert;pur;Oui;vrac;GMS;t_variable;H;employe;Non;27;25-34;3 a 6/sem
+Oui;Oui;Non;Non;Non;Non;Oui;Non;Non;Oui;parfume;pur;Oui;sachet;GMS;t_variable;H;employe;Oui;21;15-24;1/jour
+Oui;Non;Non;Non;Oui;Non;Non;Non;Non;Non;noir;pur;Oui;vrac;mag.spe;t_haut_de_gamme;H;cadre sup;Oui;31;25-34;+ de 2/jour
+Non;Non;Non;Non;Oui;Oui;Oui;Non;Non;Non;vert;lait;Non;sachet;mag.spe;t_haut_de_gamme;H;employe;Oui;30;25-34;1 a 2/sem
+Non;Non;Oui;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;sachet;GMS;t_variable;H;etudiant;Non;55;45-59;3 a 6/sem
+Oui;Non;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS+mag.spe.;t_variable;H;employe;Oui;19;15-24;+ de 2/jour
+Oui;Non;Non;Oui;Non;Non;Oui;Non;Oui;Oui;parfume;citron;Non;sachet;GMS;t_variable;H;non actif;Oui;26;25-34;+ de 2/jour
+Oui;Non;Non;Non;Non;Oui;Oui;Non;Non;Non;noir;lait;Oui;sachet;GMS;t_marque_connue;H;cadre sup;Oui;47;45-59;+ de 2/jour
+Non;Non;Non;Non;Oui;Non;Non;Non;Non;Non;noir;pur;Non;sachet+vrac;GMS;t_variable;H;employe;Oui;28;25-34;1 a 2/sem
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Oui;parfume;pur;Non;sachet;GMS;t_marque_connue;H;etudiant;Oui;23;15-24;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;parfume;lait;Oui;sachet;GMS;t_marque_connue;H;cadre moyen;Oui;22;15-24;1/jour
+Non;Oui;Non;Non;Non;Non;Non;Oui;Oui;Oui;parfume;citron;Non;vrac;mag.spe;t_haut_de_gamme;H;non actif;Oui;70;60 et +;1/jour
+Oui;Oui;Oui;Oui;Non;Oui;Oui;Non;Oui;Non;parfume;citron;Non;sachet+vrac;GMS;t_marque_connue;H;employe;Oui;27;25-34;+ de 2/jour
+Non;Non;Non;Non;Oui;Non;Non;Non;Non;Non;vert;pur;Non;sachet+vrac;mag.spe;t_variable;H;ouvrier;Non;27;25-34;1/jour
+Non;Non;Non;Non;Oui;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;H;employe;Oui;23;15-24;3 a 6/sem
+Oui;Oui;Oui;Non;Non;Oui;Non;Non;Non;Non;parfume;citron;Non;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;H;cadre sup;Oui;45;45-59;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Oui;Oui;Non;Non;noir;lait;Non;sachet+vrac;GMS+mag.spe.;t_variable;H;cadre sup;Non;29;25-34;1/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Non;vert;pur;Non;sachet;GMS;t_variable;F;employe;Non;45;45-59;+ de 2/jour
+Non;Non;Non;Non;Oui;Non;Non;Non;Non;Non;vert;pur;Non;sachet+vrac;mag.spe;t_haut_de_gamme;F;employe;Non;25;25-34;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;noir;pur;Oui;sachet;GMS;t_marque_connue;F;employe;Non;37;35-44;1/jour
+Non;Oui;Oui;Oui;Non;Oui;Oui;Non;Non;Non;vert;pur;Non;vrac;mag.spe;t_haut_de_gamme;F;etudiant;Oui;25;25-34;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;lait;Non;sachet;GMS;t_marque_connue;F;non actif;Non;41;35-44;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;sachet+vrac;GMS;t_marque_connue;F;employe;Oui;45;45-59;1/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_MDD;F;etudiant;Oui;15;15-24;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Oui;Non;parfume;pur;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;cadre sup;Oui;25;25-34;1/jour
+Oui;Oui;Non;Non;Non;Non;Oui;Oui;Non;Non;parfume;lait;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;non actif;Oui;51;45-59;1/jour
+Non;Non;Non;Non;Non;Oui;Oui;Oui;Non;Non;parfume;pur;Non;sachet+vrac;GMS;t_variable;F;employe;Non;50;45-59;+ de 2/jour
+Oui;Oui;Oui;Oui;Non;Non;Non;Non;Oui;Non;parfume;pur;Non;sachet;GMS;t_variable;F;cadre sup;Oui;38;35-44;3 a 6/sem
+Oui;Non;Non;Non;Oui;Non;Oui;Non;Non;Non;parfume;lait;Oui;sachet;GMS;t_marque_connue;F;employe;Non;25;25-34;1 a 2/sem
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Oui;parfume;pur;Oui;vrac;GMS+mag.spe.;t_variable;F;cadre moyen;Oui;49;45-59;1/jour
+Oui;Oui;Non;Oui;Non;Non;Non;Non;Oui;Oui;parfume;citron;Non;sachet;GMS+mag.spe.;t_marque_connue;F;non actif;Non;52;45-59;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Non;Oui;Oui;Non;parfume;lait;Non;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;F;ouvrier;Non;40;35-44;+ de 2/jour
+Non;Non;Non;Oui;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;F;etudiant;Oui;23;15-24;1/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Oui;Non;parfume;lait;Non;sachet+vrac;GMS;t_marque_connue;F;employe;Non;54;45-59;1/jour
+Non;Non;Oui;Oui;Non;Non;Non;Non;Non;Non;vert;lait;Oui;sachet+vrac;GMS+mag.spe.;t_variable;F;non actif;Oui;26;25-34;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;citron;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;non actif;Non;21;15-24;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;F;employe;Oui;21;15-24;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;lait;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;cadre moyen;Oui;50;45-59;+ de 2/jour
+Oui;Oui;Oui;Non;Non;Oui;Oui;Non;Non;Non;noir;pur;Non;sachet;GMS;t_marque_connue;F;employe;Non;40;35-44;+ de 2/jour
+Oui;Oui;Oui;Non;Non;Oui;Oui;Oui;Non;Non;parfume;lait;Oui;vrac;mag.spe;t_haut_de_gamme;F;cadre moyen;Non;40;35-44;1/jour
+Oui;Oui;Non;Non;Oui;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet+vrac;mag.spe;t_haut_de_gamme;F;etudiant;Non;21;15-24;1/jour
+Oui;Oui;Oui;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;F;employe;Oui;31;25-34;+ de 2/jour
+Oui;Oui;Oui;Non;Non;Oui;Non;Non;Oui;Oui;parfume;pur;Oui;sachet+vrac;GMS+mag.spe.;t_variable;H;etudiant;Oui;21;15-24;+ de 2/jour
+Non;Oui;Oui;Non;Non;Non;Non;Oui;Oui;Non;parfume;citron;Oui;sachet+vrac;GMS+mag.spe.;t_variable;F;employe;Non;24;15-24;3 a 6/sem
+Non;Non;Non;Non;Non;Oui;Non;Non;Non;Oui;parfume;pur;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;etudiant;Non;20;15-24;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Oui;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_marque_connue;H;cadre moyen;Oui;34;25-34;1/jour
+Non;Non;Oui;Oui;Non;Non;Non;Non;Oui;Non;parfume;pur;Non;vrac;GMS;t_variable;H;cadre moyen;Oui;33;25-34;3 a 6/sem
+Oui;Non;Oui;Non;Non;Non;Non;Non;Non;Non;noir;lait;Non;sachet;GMS;t_marque_connue;H;employe;Non;24;15-24;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;noir;pur;Oui;sachet;GMS;t_marque_connue;H;etudiant;Oui;25;25-34;1/jour
+Non;Oui;Non;Oui;Non;Non;Non;Non;Non;Non;vert;lait;Oui;sachet;GMS;t_MDD;H;cadre sup;Non;48;45-59;1 a 2/sem
+Oui;Oui;Oui;Non;Non;Oui;Oui;Oui;Oui;Non;parfume;pur;Oui;sachet+vrac;GMS+mag.spe.;t_variable;H;cadre sup;Oui;26;25-34;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet+vrac;GMS;t_variable;H;etudiant;Oui;21;15-24;1 a 2/sem
+Non;Oui;Oui;Oui;Non;Non;Non;Non;Non;Non;noir;pur;Oui;vrac;mag.spe;t_marque_connue;H;ouvrier;Oui;30;25-34;+ de 2/jour
+Non;Non;Oui;Non;Non;Non;Non;Non;Non;Non;vert;pur;Oui;sachet;GMS;t_marque_connue;H;cadre sup;Oui;40;35-44;1 a 2/sem
+Oui;Oui;Non;Non;Non;Non;Non;Non;Non;Non;noir;lait;Non;sachet;GMS;t_inconnu;H;cadre moyen;Non;57;45-59;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Oui;Non;Oui;Oui;parfume;pur;Oui;sachet+vrac;GMS+mag.spe.;t_variable;H;employe;Oui;29;25-34;3 a 6/sem
+Non;Oui;Oui;Non;Non;Oui;Oui;Oui;Oui;Oui;parfume;pur;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;autre actif;Non;36;35-44;+ de 2/jour
+Non;Non;Non;Oui;Non;Oui;Non;Non;Non;Non;parfume;pur;Oui;sachet+vrac;GMS;t_haut_de_gamme;H;etudiant;Oui;25;25-34;3 a 6/sem
+Oui;Oui;Non;Oui;Non;Oui;Oui;Oui;Oui;Non;noir;lait;Non;sachet+vrac;GMS;t_variable;F;etudiant;Oui;21;15-24;+ de 2/jour
+Oui;Oui;Non;Oui;Non;Oui;Oui;Oui;Oui;Non;parfume;pur;Oui;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;F;cadre sup;Oui;24;15-24;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Oui;Non;Oui;Non;noir;pur;Oui;sachet+vrac;GMS+mag.spe.;t_haut_de_gamme;H;employe;Oui;25;25-34;3 a 6/sem
+Oui;Oui;Non;Oui;Non;Non;Non;Oui;Oui;Non;parfume;lait;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;non actif;Non;89;60 et +;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Oui;Non;Non;noir;pur;Oui;vrac;GMS+mag.spe.;t_variable;F;non actif;Non;90;60 et +;+ de 2/jour
+Oui;Oui;Oui;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;vrac;mag.spe;t_variable;H;cadre moyen;Oui;27;25-34;1 a 2/sem
+Oui;Oui;Oui;Non;Non;Oui;Oui;Oui;Oui;Oui;parfume;autre;Oui;sachet+vrac;GMS+mag.spe.;t_variable;F;autre actif;Non;42;35-44;+ de 2/jour
+Oui;Oui;Non;Non;Non;Non;Non;Non;Oui;Oui;parfume;autre;Oui;sachet;GMS;t_variable;H;cadre sup;Non;46;45-59;1/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;noir;pur;Non;sachet;GMS;t_variable;H;etudiant;Oui;22;15-24;1 a 2/sem
+Non;Oui;Oui;Oui;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_variable;F;etudiant;Oui;21;15-24;1 a 2/sem
+Non;Oui;Oui;Non;Non;Non;Non;Oui;Non;Non;noir;pur;Oui;vrac;GMS+mag.spe.;t_variable;H;cadre moyen;Oui;48;45-59;1 a 2/sem
+Non;Oui;Oui;Non;Non;Non;Oui;Oui;Oui;Oui;noir;pur;Non;vrac;GMS+mag.spe.;t_variable;F;employe;Oui;44;35-44;3 a 6/sem
+Oui;Oui;Non;Oui;Non;Oui;Non;Non;Non;Oui;noir;pur;Non;sachet+vrac;GMS;t_variable;F;etudiant;Oui;21;15-24;+ de 2/jour
+Non;Oui;Non;Non;Non;Oui;Non;Oui;Non;Oui;parfume;pur;Non;sachet;GMS;t_variable;F;etudiant;Oui;21;15-24;1 a 2/sem
+Oui;Oui;Oui;Oui;Non;Oui;Non;Non;Non;Non;parfume;pur;Non;sachet;GMS;t_variable;H;non actif;Oui;21;15-24;+ de 2/jour
+Oui;Oui;Oui;Non;Non;Oui;Non;Non;Non;Oui;parfume;pur;Oui;sachet;GMS;t_variable;F;etudiant;Oui;22;15-24;+ de 2/jour
+Oui;Oui;Oui;Non;Non;Oui;Non;Oui;Non;Oui;parfume;pur;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;etudiant;Oui;20;15-24;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Oui;Non;Non;Non;noir;citron;Oui;sachet;GMS;t_variable;F;autre actif;Non;37;35-44;1 a 2/sem
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;parfume;pur;Oui;sachet;GMS;t_marque_connue;H;cadre sup;Non;26;25-34;1/jour
+Oui;Oui;Oui;Non;Non;Non;Non;Oui;Oui;Non;parfume;pur;Non;sachet;GMS;t_variable;F;autre actif;Oui;31;25-34;+ de 2/jour
+Oui;Oui;Non;Non;Non;Oui;Non;Oui;Non;Oui;parfume;lait;Oui;vrac;mag.spe;t_variable;F;non actif;Non;47;45-59;+ de 2/jour
+Non;Oui;Oui;Non;Non;Oui;Non;Oui;Non;Non;noir;pur;Non;sachet;GMS;t_haut_de_gamme;H;autre actif;Non;27;25-34;1 a 2/sem
+Oui;Non;Oui;Oui;Non;Non;Non;Non;Oui;Non;parfume;lait;Oui;sachet;GMS+mag.spe.;t_bas_de_gamme;H;non actif;Oui;60;60 et +;3 a 6/sem
+Oui;Non;Non;Non;Non;Non;Oui;Non;Oui;Oui;parfume;lait;Non;sachet;GMS;t_inconnu;H;cadre sup;Oui;34;25-34;1/jour
+Non;Oui;Non;Non;Non;Oui;Non;Non;Non;Non;parfume;pur;Non;sachet+vrac;GMS;t_variable;F;etudiant;Oui;21;15-24;+ de 2/jour
+Non;Oui;Oui;Non;Non;Non;Non;Non;Non;Non;parfume;citron;Oui;sachet;GMS;t_bas_de_gamme;F;non actif;Non;72;60 et +;1 a 2/sem
+Oui;Non;Non;Oui;Non;Non;Non;Non;Non;Non;parfume;lait;Oui;sachet;GMS;t_marque_connue;F;non actif;Oui;53;45-59;+ de 2/jour
+Non;Oui;Non;Non;Non;Oui;Oui;Non;Oui;Non;parfume;lait;Oui;sachet;GMS;t_inconnu;F;autre actif;Oui;32;25-34;1/jour
+Non;Oui;Oui;Oui;Non;Non;Non;Oui;Non;Oui;parfume;pur;Non;sachet+vrac;GMS+mag.spe.;t_variable;F;cadre sup;Oui;50;45-59;+ de 2/jour
+Non;Oui;Non;Non;Non;Non;Non;Non;Non;Non;vert;lait;Non;sachet;GMS;t_variable;F;non actif;Oui;68;60 et +;1 a 2/sem
+Oui;Oui;Oui;Non;Non;Oui;Non;Oui;Non;Non;vert;lait;Non;sachet+vrac;mag.spe;t_haut_de_gamme;H;cadre sup;Oui;50;45-59;+ de 2/jour
+Non;Non;Non;Non;Non;Oui;Non;Non;Oui;Non;parfume;pur;Oui;sachet;GMS;t_variable;F;autre actif;Non;36;35-44;1 a 2/sem
+Oui;Oui;Non;Non;Non;Oui;Non;Non;Non;Non;noir;citron;Oui;sachet;mag.spe;t_haut_de_gamme;F;non actif;Non;73;60 et +;+ de 2/jour
+Oui;Non;Non;Non;Non;Non;Non;Non;Non;Non;noir;lait;Oui;sachet;GMS;t_MDD;H;employe;Oui;41;35-44;1/jour

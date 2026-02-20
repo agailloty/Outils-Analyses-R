@@ -1,7 +1,2 @@
-install.packages("tidyverse")
-install.packages("rmarkdown")
-install.packages("httr")
 install.packages("FactoMineR")
-install.packages("ggplot2")
-install.packages("factoextra")
-install.packages("ggcorrplot")
+install.packages("Factoshiny")
