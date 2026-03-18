@@ -1,6 +1,6 @@
-# OEAD 2026 RStudio image
+# Image RStudio OEAD 2026
 
-This image provides an RStudio Server environment with the following packages preinstalled:
+Cette image fournit un environnement RStudio Server avec les packages suivants préinstallés :
 
 - `FactoMineR`
 - `Factoshiny`
@@ -9,44 +9,42 @@ This image provides an RStudio Server environment with the following packages pr
 - `rmarkdown`
 - `quarto`
 
-Published image:
+Image publiée :
 
 ```text
 ghcr.io/agailloty/oead-2026:latest
 ```
 
-## Pull the image
-
-If the package is public:
+## Récupérer l'image
 
 ```bash
 docker pull ghcr.io/agailloty/oead-2026:latest
 ```
 
-## Start RStudio Server
+## Lancer RStudio Server
 
-Run the container and set your own RStudio password:
+Démarrez le conteneur en définissant votre propre mot de passe RStudio :
 
 ```bash
 docker run --rm -p 8787:8787 -e PASSWORD='change-me' ghcr.io/agailloty/oead-2026:latest
 ```
 
-Then open:
+Puis ouvrez :
 
 ```text
 http://localhost:8787
 ```
 
-Sign in with:
+Connectez-vous avec :
 
-- username: `rstudio`
-- password: the value passed in `PASSWORD`
+- nom d'utilisateur : `rstudio`
+- mot de passe : la valeur transmise dans `PASSWORD`
 
-If you do not set `PASSWORD`, the container generates one at startup and prints it in the logs.
+Si vous ne définissez pas `PASSWORD`, le conteneur en génère un au démarrage et l'affiche dans les journaux.
 
-## Persist your work
+## Conserver votre travail
 
-To keep your files between runs, mount a local folder into the RStudio home directory:
+Pour garder vos fichiers entre les exécutions, montez un dossier local dans le répertoire personnel de RStudio :
 
 ```bash
 mkdir -p "$HOME/oead-2026-work"
@@ -56,9 +54,9 @@ docker run --rm -p 8787:8787 \
   ghcr.io/agailloty/oead-2026:latest
 ```
 
-## Use Docker Compose
+## Utiliser Docker Compose
 
-A ready-to-use `compose.yaml` file is included in this repository:
+Un fichier `compose.yaml` prêt à l'emploi est inclus dans ce dépôt :
 
 ```yaml
 services:
@@ -72,24 +70,24 @@ services:
       - ./work:/home/rstudio
 ```
 
-Start the service:
+Démarrez le service :
 
 ```bash
 mkdir -p work
 PASSWORD='change-me' docker compose up -d
 ```
 
-Then open `http://localhost:8787` and sign in as `rstudio`.
+Puis ouvrez `http://localhost:8787` et connectez-vous en tant qu'`rstudio`.
 
-Stop it with:
+Arrêtez-le avec :
 
 ```bash
 docker compose down
 ```
 
-## Check the installed packages
+## Vérifier les packages installés
 
-Inside R or the RStudio console, you can load the main packages with:
+Dans R ou la console RStudio, vous pouvez charger les packages principaux avec :
 
 ```r
 library(FactoMineR)
@@ -100,28 +98,28 @@ library(rmarkdown)
 library(quarto)
 ```
 
-You can also verify them from the command line:
+Vous pouvez également les vérifier depuis la ligne de commande :
 
 ```bash
 docker run --rm ghcr.io/agailloty/oead-2026:latest \
-  Rscript -e "library(FactoMineR); library(Factoshiny); library(factoextra); library(ggplot2); library(rmarkdown); library(quarto); cat('All packages loaded\n')"
+  Rscript -e "library(FactoMineR); library(Factoshiny); library(factoextra); library(ggplot2); library(rmarkdown); library(quarto); cat('Tous les packages sont chargés\n')"
 ```
 
-## Notes about Factoshiny
+## Remarques sur Factoshiny
 
-This is a headless container, so loading `tcltk` or `Factoshiny` may print this warning:
+Ce conteneur est sans interface graphique, donc le chargement de `tcltk` ou `Factoshiny` peut afficher cet avertissement :
 
 ```text
 no DISPLAY variable so Tk is not available
 ```
 
-That warning is expected in containers without a graphical desktop and does not prevent `Factoshiny` from loading.
+Cet avertissement est normal dans les conteneurs sans bureau graphique et n'empêche pas le chargement de `Factoshiny`.
 
-## Stop the container
+## Arrêter le conteneur
 
-If you started it in the foreground, press `Ctrl+C`.
+Si vous l'avez démarré en avant-plan, appuyez sur `Ctrl+C`.
 
-If you started it with `-d`, stop it with:
+Si vous l'avez démarré avec `-d`, arrêtez-le avec :
 
 ```bash
 docker stop <container_id>
