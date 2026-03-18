@@ -1,0 +1,9 @@
+services:
+  rstudio:
+    image: ghcr.io/agailloty/oead-2026:latest
+    ports:
+      - "8787:8787"
+    environment:
+      PASSWORD: ${PASSWORD:-change-me}
+    volumes:
+      - ./work:/home/rstudio

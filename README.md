@@ -1,55 +1,128 @@
-# TD d'outils d'enquête, d'analyse de données et de décision
-Cet espace est destiné à contenir les ressources du TD d'outils d'enquête, d'analyse de données et de décision avec R.
+# OEAD 2026 RStudio image
 
-Ceci est un TD de 16h. 
-Cet espace est mis à jour régulièrement à la fin de chaque séance afin de vous permettre de récuperer les scripts R et Rmarkdown, les PDF. Le contenu de chaque séance sera placé dans un sous-dossier. 
+This image provides an RStudio Server environment with the following packages preinstalled:
 
-## Installation de R et Rstudio
+- `FactoMineR`
+- `Factoshiny`
+- `factoextra`
+- `ggplot2`
+- `rmarkdown`
+- `quarto`
 
-![](assets/rstudio.png)
+Published image:
 
-### Windows, MacOs, Linux (Ubuntu, Debian ...)
-
-Initialement j'ai pensé à utiliser l'environnement R avec Rcmdr pour les travaux dirigés, mais pour des raisons de compatibilité avec les différents systèmes d'exploitations (Windows, MacOs, Linux, Chromebook), il me semble plus pertinent d'utiliser R et Rstudio.
-Ce guide vous permet d'installer R et Rstudio sur votre PC personnel et ainsi suivre les travaux dirigés. 
-
-Se rendre sur le site : https://posit.co/download/rstudio-desktop/
-
-Ce site vous propose deux liens de téléchagrement. 
-Le téléchargement du langage R : https://cran.rstudio.com/ et de Rstudio
-Si vous avez déjà R installé, vous pouvez sauter cette étape et passer à l'installation de Rstudio en cliquant sur le second lien proposé sur site: ce lien détecte votre système d'exploitation et vous propose de télécharger l'installateur.
-
-### Pour Chromebook 
-Suivre le lien suivant pour l'installer. Regarder la vidéo qui montre comment activer Linux sur un Chromebook puis exécuter les scripts bash.
-https://www.linuxmadesimple.info/2021/03/how-to-install-rstudio-on-chromebook.html
-
-## Installer les packages d'analyses de données
-
-Ouvrer Rstudio et coller le script suivant dans la console de R.
-
-```r
-install.packages(
-  c("FactoMineR", "Factoshiny", "FactoInvestigate", "factoextra", "ggcorrplot","ggplot2", "dplyr"))
-```
-Ce script installe tous les packages dont nous aurons besoin pour réaliser les études. 
-
-## Vérifier qu'un package est correctement installé
-Vous pouvez écrire du code R pour vérifier si un package est correctement installé.
-Voici le script pour vérifier si le package "FactoMineR" est correctement installé. Si c'est le cas, R affiche TRUE. 
-**Assurez-vous de bien écrire correctement le nom du package en respectant la casse. FactoMiner est différent de FactoMineR, Factoshiny est différent factoshiny**
-
-```r
-"FactoMineR" %in% installed.packages()[, "Package"]
+```text
+ghcr.io/agailloty/oead-2026:latest
 ```
 
-## Lien collaboratif 
+## Pull the image
 
-J'ai créé un espace Framapad pour collborer en temps réel lors des séances de TD. Je pourrai de temps en temps copier et coller le code R que j'écris pour que vous le récupériez. 
-Pour y accéder cliquer sur le lien https://semestriel.framapad.org/p/analyses-donnees-r-9z4q?lang=fr
+If the package is public:
 
-## Contact 
-Je suis joignable par mail => agailloty@gmail.com
+```bash
+docker pull ghcr.io/agailloty/oead-2026:latest
+```
 
-# Environnement Rstudio en ligne
+## Start RStudio Server
 
-Ouvrir ce répoertoire dans RStudio en ligne: [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/agailloty/Outils-Analyses-R/master?urlpath=rstudio)
+Run the container and set your own RStudio password:
+
+```bash
+docker run --rm -p 8787:8787 -e PASSWORD='change-me' ghcr.io/agailloty/oead-2026:latest
+```
+
+Then open:
+
+```text
+http://localhost:8787
+```
+
+Sign in with:
+
+- username: `rstudio`
+- password: the value passed in `PASSWORD`
+
+If you do not set `PASSWORD`, the container generates one at startup and prints it in the logs.
+
+## Persist your work
+
+To keep your files between runs, mount a local folder into the RStudio home directory:
+
+```bash
+mkdir -p "$HOME/oead-2026-work"
+docker run --rm -p 8787:8787 \
+  -e PASSWORD='change-me' \
+  -v "$HOME/oead-2026-work:/home/rstudio" \
+  ghcr.io/agailloty/oead-2026:latest
+```
+
+## Use Docker Compose
+
+A ready-to-use `compose.yaml` file is included in this repository:
+
+```yaml
+services:
+  rstudio:
+    image: ghcr.io/agailloty/oead-2026:latest
+    ports:
+      - "8787:8787"
+    environment:
+      PASSWORD: ${PASSWORD:-change-me}
+    volumes:
+      - ./work:/home/rstudio
+```
+
+Start the service:
+
+```bash
+mkdir -p work
+PASSWORD='change-me' docker compose up -d
+```
+
+Then open `http://localhost:8787` and sign in as `rstudio`.
+
+Stop it with:
+
+```bash
+docker compose down
+```
+
+## Check the installed packages
+
+Inside R or the RStudio console, you can load the main packages with:
+
+```r
+library(FactoMineR)
+library(Factoshiny)
+library(factoextra)
+library(ggplot2)
+library(rmarkdown)
+library(quarto)
+```
+
+You can also verify them from the command line:
+
+```bash
+docker run --rm ghcr.io/agailloty/oead-2026:latest \
+  Rscript -e "library(FactoMineR); library(Factoshiny); library(factoextra); library(ggplot2); library(rmarkdown); library(quarto); cat('All packages loaded\n')"
+```
+
+## Notes about Factoshiny
+
+This is a headless container, so loading `tcltk` or `Factoshiny` may print this warning:
+
+```text
+no DISPLAY variable so Tk is not available
+```
+
+That warning is expected in containers without a graphical desktop and does not prevent `Factoshiny` from loading.
+
+## Stop the container
+
+If you started it in the foreground, press `Ctrl+C`.
+
+If you started it with `-d`, stop it with:
+
+```bash
+docker stop <container_id>
+```
