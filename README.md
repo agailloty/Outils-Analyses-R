@@ -68,18 +68,46 @@ services:
       PASSWORD: ${PASSWORD:-change-me}
     volumes:
       - ./work:/home/rstudio
+    restart: unless-stopped
 ```
 
-Démarrez le service :
+La directive `restart: unless-stopped` redémarre automatiquement le conteneur après un redémarrage du système, sauf si vous l'avez arrêté manuellement.
+
+### Démarrage rapide
+
+Créez le dossier de travail et lancez le service :
 
 ```bash
 mkdir -p work
-PASSWORD='change-me' docker compose up -d
+docker compose up -d
 ```
 
-Puis ouvrez `http://localhost:8787` et connectez-vous en tant qu'`rstudio`.
+Puis ouvrez `http://localhost:8787` et connectez-vous en tant qu'`rstudio` avec le mot de passe par défaut `change-me`.
 
-Arrêtez-le avec :
+### Personnaliser le mot de passe
+
+Pour définir votre propre mot de passe, copiez le fichier `.env.example` en `.env` et modifiez la valeur :
+
+```bash
+cp .env.example .env
+```
+
+Éditez `.env` :
+
+```ini
+PASSWORD=votre-mot-de-passe
+```
+
+Puis démarrez le service :
+
+```bash
+mkdir -p work
+docker compose up -d
+```
+
+> **Note** : le fichier `.env` contient votre mot de passe et n'est pas versionné. Ne le partagez pas et ne le commitez pas dans votre dépôt.
+
+Arrêtez le service avec :
 
 ```bash
 docker compose down

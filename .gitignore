@@ -40,3 +40,6 @@ vignettes/*.pdf
 .Renviron
 comment-realiser-acp_files
 /TD/*.html
+
+# Docker environment file
+.env

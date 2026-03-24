@@ -7,3 +7,4 @@ services:
       PASSWORD: ${PASSWORD:-change-me}
     volumes:
       - ./work:/home/rstudio
+    restart: unless-stopped
